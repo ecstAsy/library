@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-04 17:55:02
+ * @LastEditTime: 2022-01-04 18:11:41
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -31,6 +31,35 @@ module.exports = {
           title: "学前必读",
           path: "/"
         }]
+    },
+      {
+        title: 'Taro',
+        path: '/library/taro/taro-api',
+        collapsable: false,
+        children: [
+          {
+            title: "交互API封装",
+            path: "/library/taro/taro-api"
+          },{
+            title: "Dva项目配置",
+            path: "/library/taro/taro-dva-config"
+          },{
+            title: "金钱输入框",
+            path: "/library/taro/taro-input"
+          },{
+            title: "配置 Mock 数据",
+            path: "/library/taro/taro-mock"
+          },{
+            title: "请求模板",
+            path: "/library/taro/taro-request"
+          },{
+            title: "渲染富文本",
+            path: "/library/taro/taro-richtext"
+          },{
+            title: "Weapp H5 踩坑",
+            path: "/library/taro/taro-weapp-h5"
+          },
+        ]
       },
       {
         title: "javascript技巧",
