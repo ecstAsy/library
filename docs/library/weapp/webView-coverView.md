@@ -46,6 +46,6 @@ setTimeout(() => {
 
 效果图
 
-![WebView 嵌套 CoverView](../../Image/WebView-CoverView.jpg)
+![WebView 嵌套 CoverView](../../assets/WebView-CoverView.jpg)
 
 **_附言：_** **按照官方给出的文档说明，WebView 和 CoverView 是不可能共存的，社区也一直提出只有部分手机机型支持，还是有部分机型不支持的，使用时候请慎用！！！**

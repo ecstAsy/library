@@ -1,6 +1,6 @@
 <h2 align="center">Flex 布局 实现 ellipsis 查看更多more </h2>
 
-![Flex 布局 实现 ellipsis](../../Image/flex-ellipsis.png)
+![Flex 布局 实现 ellipsis](../../assets/flex-ellipsis.png)
 
 ```html
 <!DOCTYPE html>

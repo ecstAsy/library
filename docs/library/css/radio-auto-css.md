@@ -2,7 +2,7 @@
 
 ### Weapp
 
-![Radio Weapp](../../Image/radio-weapp.png)
+![Radio Weapp](../../assets/radio-weapp.png)
 
 ```css
 radio .wx-radio-input.wx-radio-input-checked::before {

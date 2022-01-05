@@ -1,6 +1,6 @@
 <h2 align="center">Flex 布局 实现 左二右一 </h2>
 
-![Flex 左二右一](../../Image/flex-left2-right1.png)
+![Flex 左二右一](../../assets/flex-left2-right1.png)
 
 ```html
 <!DOCTYPE html>

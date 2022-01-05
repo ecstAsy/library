@@ -1,12 +1,13 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-05 09:22:24
+ * @LastEditTime: 2022-01-05 09:28:07
  * @LastEditors: ecstAsy
  */
 module.exports = {
   title: 'ecstAsy 前端记录',
   description: 'ecstAsy 前端记录',
+  base:'/ecstAsy-library/',
   theme: 'reco',
   themeConfig: {
     subSidebar: 'auto',

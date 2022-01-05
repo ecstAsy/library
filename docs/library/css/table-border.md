@@ -2,7 +2,7 @@
 
 > **border-collapse: collapse** 可以把重复部分的边框隐藏掉
 
-![Table Border](../../Image/table-border.png)
+![Table Border](../../assets/table-border.png)
 
 ```css
 table {
