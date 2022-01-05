@@ -26,7 +26,7 @@
 
 > 最主要是为了实现表格功能
 
-![Weapp Table](../../Image/taro-rich-text.png)
+![Weapp Table](../../assets/taro-rich-text.png)
 
 - **tagStyle** 设置标签的默认样式
 
