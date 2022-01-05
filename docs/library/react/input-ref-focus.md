@@ -1,4 +1,8 @@
-<h2 align="center">refs 自动获取 input 框焦点记录</h2>
+---
+title: refs 自动获取 input 框焦点记录
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### 效果图
 

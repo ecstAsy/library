@@ -1,16 +1,21 @@
-<h3 align='center'>NPM 快速生成文件</h3>
+---
+title: node 快速生成文件
+author: ecstAsy
+date: "2022-01-04"
+---
 
-__node快速生成文件夹脚本__
+**node 快速生成文件夹脚本**
 
 - template.js
+
 ```js
 var fs = require("fs");
 // 生成的文件夹名
 var dirName = process.argv[2];
 // 文件名
-var fileName = process.argv[3] || 'index';
+var fileName = process.argv[3] || "index";
 // 写入组件名称（大写）
-var copName = `${dirName.substring(0, 1).toUpperCase()}${dirName.substring(1)}`
+var copName = `${dirName.substring(0, 1).toUpperCase()}${dirName.substring(1)}`;
 
 // 文件模板 (Vue文件为例)
 var fileTemp = `
@@ -35,7 +40,7 @@ var fileTemp = `
       height: 100%;
     }
     </style>
-`
+`;
 
 // 对应路径下面创建文件
 fs.mkdirSync(`./view/${dirName}`);
@@ -57,11 +62,12 @@ process.exit(0);
 ```
 
 - example
-> npm run tep good
 
-    ├── view
-    │   ├── good
-    │   │   ├── index.vue
+  > npm run tep good
+
+      ├── view
+      │   ├── good
+      │   │   ├── index.vue
 
 > npm run tep good list
 

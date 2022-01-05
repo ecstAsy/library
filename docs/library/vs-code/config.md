@@ -1,4 +1,8 @@
-<h2 align="center"> Vscode 编辑器配置记录</h2>
+---
+title: Vscode 编辑器配置记录
+author: ecstAsy
+date: "2022-01-04"
+---
 
 - 配置文件 settings.json
 

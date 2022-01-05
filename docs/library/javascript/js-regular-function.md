@@ -1,4 +1,8 @@
-<h2 align="center">javaScript中常用函数</h2>
+---
+title: javaScript中常用函数
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### Array
 

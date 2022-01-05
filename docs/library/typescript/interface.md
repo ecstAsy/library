@@ -1,50 +1,55 @@
-<h2 align="center"> TS 的接口</h2>
+---
+title: TS 的接口
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ##### interface
 
-__js__
+**js**
+
 ```js
 function getName({ firstName, secondName }) {
-  return `my name is ${secondName}-${firstName}!`
+  return `my name is ${secondName}-${firstName}!`;
 }
 
 let obj = {
-  firstName: '秋萍',
-  secondName: '李'
+  firstName: "秋萍",
+  secondName: "李",
 };
 
-console.log(getName(obj));     // my name is 李-秋萍!
+console.log(getName(obj)); // my name is 李-秋萍!
 ```
 
-__ts__
+**ts**
 
-> 接口里面所提到属性，必须都要有。 
+> 接口里面所提到属性，必须都要有。
 
 ```js
 interface Name {
   realName: string;
   age: number;
-  sex?: string
+  sex?: string;
 }
 
 function getRealName(info: Name): string {
-  return `my name is ${info.realName}!`
+  return `my name is ${info.realName}!`;
 }
 
-let people = { realName: '秋萍', age: 20 };
+let people = { realName: "秋萍", age: 20 };
 
-console.log(getRealName(people));   // my name is 秋萍!
+console.log(getRealName(people)); // my name is 秋萍!
 ```
 
 ##### 可选属性
 
-> 如果有的属性不是必须的可以在属性后面加？来代替 例如： __sex?: string__
+> 如果有的属性不是必须的可以在属性后面加？来代替 例如： **sex?: string**
 
 ##### 只读属性
 
 ###### readonly
 
-> 一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用readonly来指定只读属性
+> 一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 readonly 来指定只读属性
 
 ```js
 interface Point {
@@ -56,9 +61,9 @@ let P: Point = { x: 10, y: 20 };
 P.x = 40;    // Error: Cannot assign to 'x' because it is a read-only property.
 ```
 
-###### ReadonlyArray<T>
+###### ReadonlyArray<泛型>
 
-> 它与 __Array<T>__ 相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改
+> 只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改
 
 ```js
 let a: number[] = [1, 2, 3, 4];

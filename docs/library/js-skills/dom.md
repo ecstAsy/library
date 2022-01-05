@@ -1,10 +1,10 @@
 ---
 title: Dom
 author: ecstAsy
-date: "2021-12-12"
+date: "2022-01-04"
 ---
 
-###### 显示全部 DOM 边框
+## 显示全部 DOM 边框
 
 > _调试页面元素边界时使用_
 
@@ -15,7 +15,7 @@ date: "2021-12-12"
 });
 ```
 
-###### 自适应页面
+## 自适应页面
 
 > _页面基于一张设计图但需做多款机型自适应，元素尺寸使用 rem 进行设置_
 
@@ -28,7 +28,7 @@ function AutoResponse(width = 750) {
 }
 ```
 
-###### 过滤 XSS
+## 过滤 XSS
 
 ```js
 function FilterXss(content) {
@@ -40,7 +40,7 @@ function FilterXss(content) {
 }
 ```
 
-###### 存取 LocalStorage
+## 存取 LocalStorage
 
 > _反序列化取，序列化存_
 

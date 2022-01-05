@@ -1,4 +1,8 @@
-<h2 align="center">Throw Error</h2>
+---
+title: Throw Error
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### 自定义捕获抛出异常
 

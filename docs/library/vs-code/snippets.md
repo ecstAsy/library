@@ -1,4 +1,8 @@
-<h2 align="center"> Vscode 代码片段配置记录</h2>
+---
+title: Vscode 代码片段配置记录
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### 配置流程
 
@@ -16,7 +20,7 @@
 - => User Snippets
 - => javascript.json
 
-```js
+```json
 {
   // Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and
   // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
@@ -24,7 +28,7 @@
   // same ids are connected.
   "import": {
     "prefix": "import 导入资源",
-    "body": "import Name from '';",
+    "body": "import Name from '';"
   },
   "react-class-comp": {
     "prefix": "React Class Component",
@@ -50,7 +54,7 @@
       "$2",
       "export default ${1:Compname}"
     ],
-    "description": "React Class 类组件",
+    "description": "React Class 类组件"
   },
   "react-function-comp": {
     "prefix": "React Function Component",
@@ -74,7 +78,7 @@
       "$2",
       "export default ${1:CompName}"
     ],
-    "description": "React 函数式组件",
+    "description": "React 函数式组件"
   },
   "react-html-func-comp": {
     "prefix": "React Html Function Component",
@@ -83,7 +87,7 @@
       "const ${1:CompName} = (props) =>",
       "\t<div>${1:CompName}</div>"
     ],
-    "description": "React 函数式组件",
+    "description": "React 函数式组件"
   },
   "dva-connect-store": {
     "prefix": "Dva Connect Store",
@@ -92,9 +96,9 @@
       "\t...${1:StoreName},",
       "\tloading: loading.models.${1:StoreName},",
       "}))",
-      "$2",
+      "$2"
     ],
-    "description": "dva 关联 store",
+    "description": "dva 关联 store"
   },
   "dva-dispatch-store": {
     "prefix": "Dva Dispatch Store",
@@ -106,7 +110,7 @@
       "\t},",
       "})"
     ],
-    "description": "dva 调用 store",
+    "description": "dva 调用 store"
   },
   "dva-model-js": {
     "prefix": "Dva Model Js",
@@ -140,9 +144,9 @@
       "\t\t\treturn { ...state, ...payload }",
       "\t\t}",
       "\t},",
-      "}",
+      "}"
     ],
-    "description": "dva 新建 model.js",
+    "description": "dva 新建 model.js"
   },
   "dva-effects-action": {
     "prefix": "Dva Effects Action",
@@ -153,12 +157,12 @@
       "\treturn data;",
       "},"
     ],
-    "description": "dva 新建 action",
+    "description": "dva 新建 action"
   },
   "form-props": {
     "prefix": "Form Props",
     "body": "form: { getFieldDecorator, validateFields, resetFields },",
-    "description": "Antd Form 表单配置",
+    "description": "Antd Form 表单配置"
   },
   "form-html": {
     "prefix": "Form Html",
@@ -173,63 +177,47 @@
       "\t}",
       "</FormItem>"
     ],
-    "description": "Antd Form 表单组件",
+    "description": "Antd Form 表单组件"
   },
   "form-rules": {
     "prefix": "Form Rules",
     "body": "rules: [{ required: true, message: '${1:Name}不能为空！' }],",
-    "description": "Antd Form 表单校验",
+    "description": "Antd Form 表单校验"
   },
   "function-common": {
     "prefix": "Function Common Style",
-    "body": [
-      "function ${1:name} () {",
-      "$2",
-      "}",
-    ],
-    "description": "普通函数",
+    "body": ["function ${1:name} () {", "$2", "}"],
+    "description": "普通函数"
   },
   "function-arrow": {
     "prefix": "Function Arrow Style",
-    "body": [
-      "const ${1:FuncName} = () => {",
-      "$2",
-      "};"
-    ],
-    "description": "箭头函数",
+    "body": ["const ${1:FuncName} = () => {", "$2", "};"],
+    "description": "箭头函数"
   },
   "async-function-common": {
     "prefix": "Async Function Common  Style",
-    "body": [
-      "async function ${1:name} () {",
-      "$2",
-      "}",
-    ],
-    "description": "普通Async函数",
+    "body": ["async function ${1:name} () {", "$2", "}"],
+    "description": "普通Async函数"
   },
   "async-function-arrow": {
     "prefix": "Async Function Arrow Style",
-    "body": [
-      "const ${1:FuncName} = async () => {",
-      "$2",
-      "};"
-    ],
-    "description": "箭头Async函数",
+    "body": ["const ${1:FuncName} = async () => {", "$2", "};"],
+    "description": "箭头Async函数"
   },
   "array-from": {
     "prefix": "Array From Object Array",
     "body": "const values = Array.from(${2:array}, ({ ${1:key} }) => ${1:key});",
-    "description": "从二维数组中获取一维数组",
+    "description": "从二维数组中获取一维数组"
   },
   "array-map": {
     "prefix": "Array Map Function",
     "body": "${1:array}.map((item, index) => {$2})",
-    "description": "数组的map方法",
+    "description": "数组的map方法"
   },
   "array-forEach": {
     "prefix": "Array ForEach Function",
     "body": "${1:array}.forEach(item => {\n\tconst _item = item;\n})",
-    "description": "数组的forEach方法",
+    "description": "数组的forEach方法"
   },
   "request-get": {
     "prefix": "Request GET Method",
@@ -237,9 +225,9 @@
       "// Todo",
       "export async function ${1:funcName}() {",
       "\treturn request(`${${2:Api}}`);",
-      "}",
+      "}"
     ],
-    "description": "Get 方法请求",
+    "description": "Get 方法请求"
   },
   "request-post": {
     "prefix": "Request POST Method",
@@ -252,9 +240,9 @@
       "\t\t\t...params",
       "\t\t}",
       "\t})",
-      "}",
+      "}"
     ],
-    "description": "Post 方法请求",
+    "description": "Post 方法请求"
   },
   "modal-props": {
     "prefix": "Modal Props",
@@ -273,9 +261,9 @@
       "\t\t\tpayload: {\n\t\t\t\t${1:action}ModalVisible: false\n\t\t\t}",
       "\t\t})",
       "\t}",
-      "};",
+      "};"
     ],
-    "description": "Modal的Props配置",
+    "description": "Modal的Props配置"
   },
   "table-props": {
     "prefix": "Table Props",
@@ -288,9 +276,9 @@
       "\tonChange({ current, pageSize }) {\n\t\tconsole.log(current, pageSize)\n\t},",
       "\t// 操作",
       "\tonAction: async record => {\n\t\tconsole.log(record)\n\t},",
-      "};",
+      "};"
     ],
-    "description": "Table的Props配置",
+    "description": "Table的Props配置"
   },
   "useState": {
     "prefix": "useState React Hooks",
@@ -303,59 +291,59 @@
     "description": "阻止事件冒泡"
   },
   "taro-page": {
-		"prefix": "Taro Page",
-		"body": [
-			"import Taro from '@tarojs/taro';",
-			"import { useState, useEffect } from 'react';",
-			"import { connect } from 'react-redux';",
-			"import { View, Text, Image } from '@tarojs/components';",
-			"import './index.scss';",
-			"$2",
-			"/**",
-			"|--------------------------------------------------",
-			"| @${1:PageName}",
-			"| #Component",
-			"| 描述",
-			"|--------------------------------------------------",
-			"*/",
-			"$2",
-			"const ${1:PageName} = ({ dispatch }) => {",
-			"$2",
-			"\treturn (",
-			"\t\t<View>${1:PageName}</View>",
-			"\t)",
-			"};",
-			"$2",
-			"export default connect(({ common }) => ({ common })) (${1:PageName});"
-		],
-		"description": "Taro Page 模板",
-	},
-	"taro-compt": {
-		"prefix": "Taro Components",
-		"body": [
-			"import Taro from '@tarojs/taro';",
-			"import { useState, useEffect } from 'react';",
-			"import { View, Text, Image } from '@tarojs/components';",
-			"import './index.scss';",
-			"$2",
-			"/**",
-			"|--------------------------------------------------",
-			"| @${1:CompName}",
-			"| #Component",
-			"| 描述",
-			"|--------------------------------------------------",
-			"*/",
-			"$2",
-			"const ${1:CompName} = ({ ...props }) => {",
-			"$2",
-			"\treturn (",
-			"\t\t<View>${1:CompName}</View>",
-			"\t)",
-			"};",
-			"$2",
-			"export default ${1:CompName};"
-		],
-		"description": "Taro Component 模板"
-	}
+    "prefix": "Taro Page",
+    "body": [
+      "import Taro from '@tarojs/taro';",
+      "import { useState, useEffect } from 'react';",
+      "import { connect } from 'react-redux';",
+      "import { View, Text, Image } from '@tarojs/components';",
+      "import './index.scss';",
+      "$2",
+      "/**",
+      "|--------------------------------------------------",
+      "| @${1:PageName}",
+      "| #Component",
+      "| 描述",
+      "|--------------------------------------------------",
+      "*/",
+      "$2",
+      "const ${1:PageName} = ({ dispatch }) => {",
+      "$2",
+      "\treturn (",
+      "\t\t<View>${1:PageName}</View>",
+      "\t)",
+      "};",
+      "$2",
+      "export default connect(({ common }) => ({ common })) (${1:PageName});"
+    ],
+    "description": "Taro Page 模板"
+  },
+  "taro-compt": {
+    "prefix": "Taro Components",
+    "body": [
+      "import Taro from '@tarojs/taro';",
+      "import { useState, useEffect } from 'react';",
+      "import { View, Text, Image } from '@tarojs/components';",
+      "import './index.scss';",
+      "$2",
+      "/**",
+      "|--------------------------------------------------",
+      "| @${1:CompName}",
+      "| #Component",
+      "| 描述",
+      "|--------------------------------------------------",
+      "*/",
+      "$2",
+      "const ${1:CompName} = ({ ...props }) => {",
+      "$2",
+      "\treturn (",
+      "\t\t<View>${1:CompName}</View>",
+      "\t)",
+      "};",
+      "$2",
+      "export default ${1:CompName};"
+    ],
+    "description": "Taro Component 模板"
+  }
 }
 ```

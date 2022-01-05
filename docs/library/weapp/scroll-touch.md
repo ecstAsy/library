@@ -1,4 +1,8 @@
-<h2 align="center">小程序左滑删除组件封装</h2>
+---
+title: 小程序左滑删除组件封装
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ## 基本介绍
 

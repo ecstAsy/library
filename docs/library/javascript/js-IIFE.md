@@ -1,4 +1,8 @@
-<h2 align="center">IIFE(立即执行函数)随笔</h2>
+---
+title: IIFE(立即执行函数)
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ## IIFE
 

@@ -1,4 +1,8 @@
-<h2 align="center">获取操作系统信息</h2>
+---
+title: 获取操作系统信息
+author: ecstAsy
+date: "2022-01-04"
+---
 
 为记录用户登录的操作系统信息
 

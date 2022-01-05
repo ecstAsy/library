@@ -1,20 +1,29 @@
-<h2 align="center">node+express+mock</h2>
+---
+title: node+express+mock
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### 初始化项目 node-express-mock-demo
 
-__使用默认配置__
-> npm init -y 
+**使用默认配置**
+
+> npm init -y
 
 ### 依赖安装
- 用到的依赖
+
+用到的依赖
+
 - express
 - mockjs
 - supervisor
 
 本地开发需要的依赖安装
+
 > npm i express mockjs --save
 
 全局依赖安装
+
 > sudo npm i supervisor -g
 
 ### package.json
@@ -43,48 +52,48 @@ __使用默认配置__
 
 ### 创建文件
 
-在根目录下面新建server.js
+在根目录下面新建 server.js
 
 ```js
-const express = require('express');
+const express = require("express");
 const app = express();
-const { Book, Card } = require('./mock');
+const { Book, Card } = require("./mock");
 
-app.post('/api/book', (req, res) => res.json(Book))
+app.post("/api/book", (req, res) => res.json(Book));
 
-app.get('/api/card', (req, res) => res.json(Card))
+app.get("/api/card", (req, res) => res.json(Card));
 
-app.get('/api/get', (req, res) => {
+app.get("/api/get", (req, res) => {
   res.json({
-    method: 'GET',
+    method: "GET",
     stu: {
-      name: 'ddd'
-    }
-  })
-})
+      name: "ddd",
+    },
+  });
+});
 
-app.post('/api/post', (req, res) => {
+app.post("/api/post", (req, res) => {
   res.json({
-    method: 'POST',
+    method: "POST",
     car: {
-      brand: 'BWM',
-      price: 1900
-    }
-  })
-})
+      brand: "BWM",
+      price: 1900,
+    },
+  });
+});
 
 app.listen(5888, () => {
-  console.log('node 服务器已经启动！');
+  console.log("node 服务器已经启动！");
 });
 ```
 
-根目录下面创建mock文件夹，新建 index.js、book.js、card.js...(你需要的mock数据文件)
+根目录下面创建 mock 文件夹，新建 index.js、book.js、card.js...(你需要的 mock 数据文件)
 
-__book.js__
+**book.js**
 
 ```js
-const Mock = require('mockjs');
-const express = require('express');
+const Mock = require("mockjs");
+const express = require("express");
 const apiRoutes = express.Router();
 
 const Random = Mock.Random;
@@ -126,7 +135,7 @@ const titles = Random.shuffle([
   "人类简史",
   "时间简史",
   "心有林夕",
-  "麦田里的守望者"
+  "麦田里的守望者",
 ]);
 
 const images = [
@@ -149,7 +158,7 @@ const images = [
   "http://qiniu.library-online.cn/image6.jpeg",
   "http://qiniu.library-online.cn/image7.jpg",
   "http://qiniu.library-online.cn/image8.png",
-  "http://qiniu.library-online.cn/image9.jpg"
+  "http://qiniu.library-online.cn/image9.jpg",
 ];
 
 const authors = (function () {
@@ -160,7 +169,7 @@ const authors = (function () {
 
 const data = Mock.mock({
   data: {
-    'list|80-100': [
+    "list|80-100": [
       {
         id: "@increment",
         "userId|+1": [1, 2, 3, 4],
@@ -179,63 +188,63 @@ const data = Mock.mock({
         review_num: "@integer(60, 100)",
         "image|+1": images,
         introduction:
-          "12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。\n成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？\n故事如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。"
-      }
-    ]
+          "12岁的阿富汗富家少爷阿米尔与仆人哈桑情同手足。然而，在一场风筝比赛后，发生了一件悲惨不堪的事，阿米尔为自己的懦弱感到自责和痛苦，逼走了哈桑，不久，自己也跟随父亲逃往美国。\n成年后的阿米尔始终无法原谅自己当年对哈桑的背叛。为了赎罪，阿米尔再度踏上暌违二十多年的故乡，希望能为不幸的好友尽最后一点心力，却发现一个惊天谎言，儿时的噩梦再度重演，阿米尔该如何抉择？\n故事如此残忍而又美丽，作者以温暖细腻的笔法勾勒人性的本质与救赎，读来令人荡气回肠。",
+      },
+    ],
   },
-  errorMessage: '',
-  statusCode: '200'
-})
+  errorMessage: "",
+  statusCode: "200",
+});
 
 module.exports = data;
 ```
 
-__card.js__
+**card.js**
 
 ```js
-const Mock = require('mockjs');
+const Mock = require("mockjs");
 
 const data = Mock.mock({
   data: {
-    "list|1-10": [{
-      "orderId|1-10": /[a-zA-Z1-9]/,
-      "num|1-8": /[1-9]/,
-      "isReport": false,
-      "title": "样本接收",
-      "sendTime": "@date",
-      "userName": "@name",
-      "examname": "原溯450"
-    }]
+    "list|1-10": [
+      {
+        "orderId|1-10": /[a-zA-Z1-9]/,
+        "num|1-8": /[1-9]/,
+        isReport: false,
+        title: "样本接收",
+        sendTime: "@date",
+        userName: "@name",
+        examname: "原溯450",
+      },
+    ],
   },
-  errorMessage: '',
-  statusCode: '200'
-})
+  errorMessage: "",
+  statusCode: "200",
+});
 
-module.exports = data
+module.exports = data;
 ```
 
-__index.js__
+**index.js**
 
 ```js
-const Book = require('./book');
-const Card = require('./card');
+const Book = require("./book");
+const Card = require("./card");
 
 module.exports = {
   Book,
-  Card
-}
+  Card,
+};
 ```
 
 ### 运行项目
 
 > npm start
 
+打开浏览器：http://localhost:5888/api/book 你就会看到我们 mock 的数据了，在其他地方调用的话就像平时调后台接口一样的方法就好了。
 
-打开浏览器：http://localhost:5888/api/book 你就会看到我们mock的数据了，在其他地方调用的话就像平时调后台接口一样的方法就好了。
+源代码已上传 github、gitee
 
-源代码已上传github、gitee
-
-
-- [github代码仓库](https://github.com/ecstAsy/node-express-mock.git)
-- [gitee代码仓库](https://gitee.com/ecst/node-express-mock.git)
+- [github 代码仓库](https://github.com/ecstAsy/node-express-mock.git)
+- [gitee 代码仓库](https://gitee.com/ecst/node-express-mock.git)
 - [Mock 开发文档](https://github.com/nuysoft/Mock/wiki/Getting-Started)

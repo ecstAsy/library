@@ -1,8 +1,12 @@
-<h2 align="center">Taro 请求模板</h2>
+---
+title: Taro 请求模板
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### 目录结构
 
-__src__
+**src**
 
     ├── components         // 组件
     ├── http               // 请求
@@ -12,10 +16,9 @@ __src__
     │   └── request.js     // 请求方法封装
     ├── images             // 图片资源
     ├── pages              // 页面
-    ├── models             
-    ├── styles             
+    ├── models
+    ├── styles
     ├── utils              // 工具
-
 
 ### 代码
 

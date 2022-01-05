@@ -1,4 +1,8 @@
-<h2 align="center">Taro 小程序渲染富文本内容</h2>
+---
+title: Taro 小程序渲染富文本内容
+author: ecstAsy
+date: "2022-01-04"
+---
 
 #### **RichText**
 

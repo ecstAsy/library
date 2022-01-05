@@ -1,4 +1,8 @@
-<h2 align="center">Taro 项目里面添加 Mock 数据</h2>
+---
+title: Taro 项目里面添加 Mock 数据
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### 安装 Mock 依赖库
 

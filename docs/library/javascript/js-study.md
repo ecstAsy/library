@@ -1,4 +1,8 @@
-<h2 align="center">javaScript 零散知识点</h2>
+---
+title: javaScript 零散知识点
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ## Js 的数据类型
 

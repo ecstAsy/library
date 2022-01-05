@@ -1,4 +1,8 @@
-<h2 align="center">Vue 自动化全局注册组件</h2>
+---
+title: Vue 自动化全局注册组件
+author: ecstAsy
+date: "2022-01-04"
+---
 
 > src 目录下新建 components 文件夹，里面写入你的全局组件，并新建 index.js 文件
 

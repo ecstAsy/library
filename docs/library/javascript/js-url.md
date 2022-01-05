@@ -1,4 +1,8 @@
-<h2 align="center">获取URL参数</h2>
+---
+title: 获取URL参数
+author: ecstAsy
+date: "2022-01-05"
+---
 
 #### URL 传参
 

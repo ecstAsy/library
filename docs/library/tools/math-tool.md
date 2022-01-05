@@ -1,6 +1,11 @@
-<h2 align="center">JS + - × ÷ 浮点计算</h2>
+---
+title: JS + - × ÷ 浮点计算
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ### 代码部分
+
 ```js
 /*
  * 判断obj是否为一个整数
@@ -18,14 +23,14 @@ function isInteger(obj) {
 function toInteger(floatNum) {
   var ret = {
     times: 1,
-    num: 0
+    num: 0,
   };
   if (isInteger(floatNum)) {
     ret.num = floatNum;
     return ret;
   }
-  var strfi = floatNum + '';
-  var dotPos = strfi.indexOf('.');
+  var strfi = floatNum + "";
+  var dotPos = strfi.indexOf(".");
   var len = strfi.substr(dotPos + 1).length;
   var times = Math.pow(10, len);
   var intNum = parseInt(floatNum * times + 0.5, 10);
@@ -55,7 +60,7 @@ function operation(a, b, op) {
   var max = t1 > t2 ? t1 : t2;
   var result = null;
   switch (op) {
-    case 'add':
+    case "add":
       if (t1 === t2) {
         // 两个小数位数相同
         result = n1 + n2;
@@ -67,7 +72,7 @@ function operation(a, b, op) {
         result = n1 * (t2 / t1) + n2;
       }
       return result / max;
-    case 'subtract':
+    case "subtract":
       if (t1 === t2) {
         result = n1 - n2;
       } else if (t1 > t2) {
@@ -76,14 +81,14 @@ function operation(a, b, op) {
         result = n1 * (t2 / t1) - n2;
       }
       return result / max;
-    case 'multiply':
+    case "multiply":
       result = (n1 * n2) / (t1 * t2);
       return result;
-    case 'divide':
+    case "divide":
       return (result = (function () {
         var r1 = n1 / n2;
         var r2 = t2 / t1;
-        return operation(r1, r2, 'multiply');
+        return operation(r1, r2, "multiply");
       })());
   }
 }
@@ -91,20 +96,20 @@ function operation(a, b, op) {
 const MathTool = {
   // 加减乘除的四个接口
   add(a, b) {
-    return operation(a, b, 'add');
+    return operation(a, b, "add");
   },
   subtract(a, b) {
-    return operation(a, b, 'subtract');
+    return operation(a, b, "subtract");
   },
   multiply(a, b) {
-    return operation(a, b, 'multiply');
+    return operation(a, b, "multiply");
   },
   divide(a, b) {
-    return operation(a, b, 'divide');
+    return operation(a, b, "divide");
   },
-}
+};
 
-export default MathTool
+export default MathTool;
 ```
 
 ### 使用方法
@@ -112,7 +117,7 @@ export default MathTool
 在工具函数里面写入此函数，在需要使用的地方引入该方法就可以。
 
 ```js
-import MathTool from 'utils';
+import MathTool from "utils";
 
 // 加 +
 MathTool.add(2, 5); // 7
@@ -122,5 +127,4 @@ MathTool.subtract(10, 5); // 5
 MathTool.multiply(2, 5); // 10
 // 除 ÷
 MathTool.divide(10, 5); // 2
-
 ```

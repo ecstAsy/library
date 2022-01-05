@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-05 12:16:05
+ * @LastEditTime: 2022-01-05 13:27:31
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -28,23 +28,13 @@ module.exports = {
     }
     ],
     sidebar: [{
-      title: '欢迎学习',
+      title: '前言',
       path: '/',
       collapsable: false, // 不折叠
-      children: [{
-        title: '学前必读',
-        path: '/'
-      }]
     }, {
       title: 'Share',
-      path: '/library/share/vue&react',
-      collapsable: true,
-      children: [
-        {
-          title: 'Vue React',
-          path: '/library/share/vue&react',
-        }
-      ]
+      path: '/library/share/share',
+      collapsable: false
     }, {
       title: 'JavaScript',
       path: '/library/javascript/js-regular-function',

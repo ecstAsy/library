@@ -1,10 +1,10 @@
 ---
 title: Boolean
 author: ecstAsy
-date: "2021-12-12"
+date: "2022-01-04"
 ---
 
-###### 短路运算符
+## 短路运算符
 
 ```js
 // 满足条件赋值：取假运算，从左到右依次判断，遇到假值返回假值，后面不再执行，否则返回最后一个真值
@@ -17,7 +17,7 @@ const b = d || 1;
 const c = !d;
 ```
 
-###### 判断数据类型
+## 判断数据类型
 
 > _可判断类型：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、asyncfunction、arguments、set、map、weakset、weakmap_
 
@@ -41,7 +41,7 @@ DataType([], "array"); // true
 DataType({}, "array"); // false
 ```
 
-###### 是否为空数组
+## 是否为空数组
 
 ```js
 const arr = [];
@@ -51,7 +51,7 @@ const flag = Array.isArray(arr) && !arr.length;
 console.log(flag); // flag => true
 ```
 
-###### 是否为空对象
+## 是否为空对象
 
 ```js
 const obj = {};
@@ -61,7 +61,7 @@ const flag = DataType(obj, "object") && !Object.keys(obj).length;
 console.log(flag); // flag => true
 ```
 
-###### 满足条件时执行
+## 满足条件时执行
 
 ```js
 // 条件A
@@ -83,7 +83,7 @@ flagA && flagB && Func();
 flagA && !flagB && Func();
 ```
 
-###### 为非假值时执行
+## 为非假值时执行
 
 ```js
 // undefined、null、""、0、false、NaN
@@ -92,7 +92,7 @@ const flag = false;
 !flag && Func();
 ```
 
-###### 数组不为空时执行
+## 数组不为空时执行
 
 ```js
 const arr = [0, 1, 2];
@@ -100,7 +100,7 @@ const arr = [0, 1, 2];
 arr.length && Func();
 ```
 
-###### 对象不为空时执行
+## 对象不为空时执行
 
 ```js
 const obj = { a: 0, b: 1, c: 2 };
@@ -108,7 +108,7 @@ const obj = { a: 0, b: 1, c: 2 };
 Object.keys(obj).length && Func();
 ```
 
-###### 函数退出代替条件分支退出
+## 函数退出代替条件分支退出
 
 ```js
 if (flag) {
@@ -122,7 +122,7 @@ if (flag) {
 }
 ```
 
-###### switch/case 使用区间
+## switch/case 使用区间
 
 ```js
 const age = 26;

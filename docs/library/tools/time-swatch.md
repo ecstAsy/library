@@ -1,8 +1,12 @@
-<h2 align="center">对象中时间格式转换</h2>
+---
+title: 对象中时间格式转换
+author: ecstAsy
+date: "2022-01-04"
+---
 
 #### 时间转换
 
-***背景：*** 在antd-design中，当我们在使用表单时候，会遇到针对时间的处理，按照平常的做法就是
+**_背景：_** 在 antd-design 中，当我们在使用表单时候，会遇到针对时间的处理，按照平常的做法就是
 在每一次提交的时候都需要处理一下才能提交给后台。
 
 ```js
@@ -33,15 +37,14 @@ handleFieldsTime(object, arr) {
 在工具函数里面写入此函数，在需要使用的地方引入该方法就可以。
 
 ```js
-import { handleFieldsTime } from 'utils';
+import { handleFieldsTime } from "utils";
 
 const fields = {
-  name: 'Lily',
-  entryTime: '20191024171305' // 或者其他moment格式的时间都可以
+  name: "Lily",
+  entryTime: "20191024171305", // 或者其他moment格式的时间都可以
 };
 
-fields = handleFieldsTime(fields, ['entryTime']);
+fields = handleFieldsTime(fields, ["entryTime"]);
 
-console.log(fields);  // { name: 'Lily', entryTime: '2019-10-24' }
-
+console.log(fields); // { name: 'Lily', entryTime: '2019-10-24' }
 ```

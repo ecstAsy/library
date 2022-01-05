@@ -1,9 +1,8 @@
-<!--
- * @Author: ecstAsy
- * @Date: 2022-01-04 14:54:15
- * @LastEditTime: 2022-01-04 16:25:14
- * @LastEditors: ecstAsy
--->
+---
+title: 分享
+author: ecstAsy
+date: "2022-01-05"
+---
 
 ### Vue React 语法
 
@@ -341,4 +340,16 @@ setup(){
     ...toRefs(obj),
   }
 }
+```
+
+### Array.form
+
+```js
+const students = [
+  { name: "张三", age: 20 },
+  { name: "李四", age: 22 },
+];
+
+const ageMaps = Array.form(students, ({ age }) => age);
+console.log(ageMaps); // [20, 22]
 ```

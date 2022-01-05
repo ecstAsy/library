@@ -1,4 +1,8 @@
-<h2 align="center">在小程序中收集FormId</h2>
+---
+title: 在小程序中收集FormId
+author: ecstAsy
+date: "2022-01-04"
+---
 
 ## 收集 FormId 的原因
 
