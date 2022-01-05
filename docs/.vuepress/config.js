@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-05 09:48:06
+ * @LastEditTime: 2022-01-05 09:53:02
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
       collapsable: false, // 不折叠
       children: [{
         title: '学前必读',
-        path: '/README'
+        path: '/'
       }]
     },
     {
