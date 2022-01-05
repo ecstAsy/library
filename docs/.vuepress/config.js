@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-05 13:27:31
+ * @LastEditTime: 2022-01-05 17:55:03
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -264,7 +264,7 @@ module.exports = {
       ]
     }, {
       title: 'Git',
-      path: '/library/git/decimal',
+      path: '/library/git/git-command',
       collapsable: true,
       children: [
         {
