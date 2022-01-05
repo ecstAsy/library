@@ -26,7 +26,7 @@ git remote rename origin<old_name> gitee<new_name>
 
 // 关联名字的提交方式
 git push <origin_name> <branch_name>
-``` 
+```
 
 ## git 分支
 
@@ -47,8 +47,8 @@ git branch -d branch_name
 git branch -D branch_name
 
 // 删除远程分支
-git branch -r -d origin/branch-name  
-git push origin :branch-name 
+git branch -r -d origin/branch-name
+git push origin :branch-name
 
 // 自动跟踪远程分支，并拉取分支到本地
 git checkout --track origin/branch_name
@@ -62,36 +62,43 @@ git pull origin branch_name
 // 合并分支
 git merge branch_name
 
+// 查看分支关联关系
+git remote show origin
+
+// 删除本地远端分支缓存
+git remote prune origin
 ```
 
-## 撤销本地commit
+## 撤销本地 commit
 
-***如果执行完commit后，想撤回commit，怎么办？***
+**_如果执行完 commit 后，想撤回 commit，怎么办？_**
 
 ```js
 // 撤销了你的commit操作，仍然保留您写的代码
 git reset --soft HEAD^
 ```
 
-***HEAD^*** 的意思是上一个版本，也可以写成HEAD~1
+**_HEAD^_** 的意思是上一个版本，也可以写成 HEAD~1
 
-如果你进行了2次commit，想都撤回，可以使用HEAD~2
+如果你进行了 2 次 commit，想都撤回，可以使用 HEAD~2
 
-***--mixed*** 
-不删除工作空间改动代码，撤销 ***commit***，并且撤销 ***git add .*** 操作
+**_--mixed_**
+不删除工作空间改动代码，撤销 **_commit_**，并且撤销 **_git add ._** 操作
 
-***--soft*** 
-不删除工作空间改动代码，撤销 ***commit***，不撤销 ***git add .***
+**_--soft_**
+不删除工作空间改动代码，撤销 **_commit_**，不撤销 **_git add ._**
 
-***--hard*** 
-删除工作空间改动代码，撤销 ***commit***，撤销 ***git add .***
+**_--hard_**
+删除工作空间改动代码，撤销 **_commit_**，撤销 **_git add ._**
 
-***如果commit注释写错了***
+**_如果 commit 注释写错了_**
+
 ```
 git commit --amend
 ```
 
 ## 版本回退
+
 ```js
 // 版本回退到某一次commit
 git reset --hard <b3f881faae371ecf59363143b4216daedc0290ba>
@@ -104,7 +111,7 @@ git pull origin master --allow-unrelated-histories
 
 ```
 
-***注：***
+**_注：_**
 
 ```js
 // git 报错 1
@@ -128,7 +135,7 @@ fatal: refusing to merge unrelated histories
 git pull origin master --allow-unrelated-histories
 ```
 
-
 ##### --allow-unrelated-histories
-因为他们是两个不同的项目，要把两个不同的项目合并，git需要添加一句代码，在git pull，
-这句代码是在git 2.9.2版本发生的，最新的版本需要添加--allow-unrelated-histories。
+
+因为他们是两个不同的项目，要把两个不同的项目合并，git 需要添加一句代码，在 git pull，
+这句代码是在 git 2.9.2 版本发生的，最新的版本需要添加--allow-unrelated-histories。

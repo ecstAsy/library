@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+}
+
+.fire1 {
+  --left: 3%;
+  --top: 5%;
+  --delay: 0s;
+}
+
+.fire2 {
+  --left: 14%;
+  --top: 16%;
+  --delay: -0.4s;
+}
+
+.fire3 {
+  --left: 28%;
+  --top: 20%;
+  --delay: -1.7s;
+}
+
+.fire4 {
+  --left: 30%;
+  --top: 8%;
+  --delay: -3.1s;
+}
+
+.fire-works {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: #FFEFAD;
+  -webkit-mask: url(../assets/fireworks.png) no-repeat;
+  -webkit-mask-size: auto 150px;
+  animation: fireworks 1s steps(24) infinite,
+    random 4s steps(1) infinite,
+    random_color 1s infinite;
+}
+
+.fire1,
+.fire2,
+.fire3,
+.fire4 {
+  left: var(--left);
+  top: var(--top);
+  animation-delay: var(--delay);
+}
+
+@keyframes fireworks {
+  to {
+    -webkit-mask-position: 100%;
+  }
+}
+
+@keyframes random {
+  25% {
+    transform: translate(200%, 50%) scale(0.8);
+  }
+
+  50% {
+    transform: translate(80%, 80%) scale(1.2);
+  }
+
+  75% {
+    transform: translate(20%, 60%) scale(0.5);
+  }
+}
+
+@keyframes random_color {
+  0% {
+    background-color: #ffefad;
+  }
+
+  25% {
+    background-color: #ffadad;
+  }
+
+  50% {
+    background-color: #aeadff;
+  }
+
+  75% {
+    background-color: #adffd9;
+  }
+}

@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2f3141;
+}
+
+.container {
+  font-size: 10px;
+  width: 40em;
+  height: 40em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: white;
+  font-size: 60px;
+  font-family: Lobster, monospace;
+  font-weight: 100;
+}
+
+/* 日: linear-gradient(#fcd670, #f2784b);
+地: linear-gradient(#19b5fe, #7befb2);
+月: linear-gradient(#8d6e63, #ffe0b2); */
+
+
+.sun {
+  position: absolute;
+  width: 10em;
+  height: 10em;
+  background: linear-gradient(#fcd670, #f2784b);
+  border-radius: 50%;
+  box-shadow: 0 0 8px 8px rgba(242, 120, 75, 0.2);
+}
+
+.earth {
+  --diameter: 30;
+  --duration: 36.5;
+}
+
+.moon {
+  --diameter: 8;
+  --duration: 2.7;
+  top: 0.3em;
+  right: 0.3em;
+}
+
+.earth,
+.moon {
+  position: absolute;
+  width: calc(var(--diameter) * 1em);
+  height: calc(var(--diameter) * 1em);
+  border-width: 0.1em;
+  border-style: solid solid none none;
+  border-color: silver transparent transparent transparent;
+  border-radius: 50%;
+  animation: orbit linear infinite;
+  animation-duration: calc(var(--duration) * 1s);
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.earth::before {
+  --diameter: 3;
+  --color: linear-gradient(#19b5fe, #7befb2);
+  --top: 2.8;
+  --right: 2.8;
+}
+
+.moon::before {
+  --diameter: 1.2;
+  --color: linear-gradient(#8d6e63, #ffe0b2);
+  --top: 0.8;
+  --right: 0.2;
+}
+
+.earth::before,
+.moon::before {
+  content: "";
+  position: absolute;
+  width: calc(var(--diameter) * 1em);
+  height: calc(var(--diameter) * 1em);
+  background: var(--color);
+  border-radius: 50%;
+  top: calc(var(--top) * 1em);
+  right: calc(var(--right) * 1em);
+}
+
+
+
+
+
+
+
+/* @keyframes orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.earth::before {
+  --diameter: 3;
+  --color: linear-gradient(#19b5fe, #7befb2);
+  --top: 2.8;
+  --right: 2.8;
+}
+
+.moon::before {
+  --diameter: 1.2;
+  --color: linear-gradient(#8d6e63, #ffe0b2);
+  --top: 0.8;
+  --right: 0.2;
+}
+
+.earth::before,
+.moon::before {
+  content: "";
+  position: absolute;
+  width: calc(var(--diameter) * 1em);
+  height: calc(var(--diameter) * 1em);
+  background: var(--color);
+  border-radius: 50%;
+  top: calc(var(--top) * 1em);
+  right: calc(var(--right) * 1em);
+} */

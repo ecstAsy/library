@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>9种css动画</title>
+  <style>
+    @charset "utf-8";
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    figure {
+      width: 33.3%;
+      height: 365px;
+      float: left;
+      overflow: hidden;
+      position: relative;
+    }
+
+    img {
+      height: 100%;
+      transition: all 1s;
+    }
+
+    figure:hover img {
+      -webkit-transform: translateX(-10px);
+      -moz-transform: translateX(-10px);
+      -ms-transform: translateX(-10px);
+      -o-transform: translateX(-10px);
+      transform: translateX(-10px);
+      opacity: 0.5;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    h2,
+    p,
+    li,
+    div {
+      position: absolute;
+      transition: all 0.5s;
+      color: #000;
+    }
+
+    /* 动画1 */
+    .effect1 h2 {
+
+      left: 10%;
+      bottom: 30%;
+
+    }
+
+    .effect1 p {
+
+      left: 10%;
+      top: 100%;
+      color: #000;
+    }
+
+    .effect1:hover h2 {
+      -webkit-transform: translateY(-15px);
+      -moz-transform: translateY(-15px);
+      -ms-transform: translateY(-15px);
+      -o-transform: translateY(-15px);
+      transform: translateY(-15px);
+    }
+
+    .effect1:hover p {
+      /*-webkit-transform: translateY(-30px);
+				-moz-transform: translateY(-30px);
+				-ms-transform: translateY(-30px);
+				-o-transform: translateY(-30px);
+				transform: translateY(-30px);*/
+      top: 80%;
+    }
+
+    /* 动画2 */
+    .effect2 h2 {
+      top: 20%;
+      left: 15%;
+    }
+
+    .effect2 ul li {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .effect2 ul li:nth-child(1) {
+      top: 45%;
+      left: 15%;
+      -webkit-transform: translateX(-200px);
+      -moz-transform: translateX(-200px);
+      -ms-transform: translateX(-200px);
+      -o-transform: translateX(-200px);
+      transform: translateX(-200px);
+      ;
+    }
+
+    .effect2 ul li:nth-child(2) {
+      top: 55%;
+      left: 15%;
+      -webkit-transition-delay: 0.2s;
+      -moz-transition-delay: 0.2s;
+      -ms-transition-delay: 0.2s;
+      -o-transition-delay: 0.2s;
+      transition-delay: 0.2s;
+      -webkit-transform: translateX(-200px);
+      -moz-transform: translateX(-200px);
+      -ms-transform: translateX(-200px);
+      -o-transform: translateX(-200px);
+      transform: translateX(-200px);
+      ;
+    }
+
+    .effect2 ul li:nth-child(3) {
+      top: 65%;
+      left: 15%;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition-delay: 0.4s;
+      -ms-transition-delay: 0.4s;
+      -o-transition-delay: 0.4s;
+      transition-delay: 0.4s;
+      -webkit-transform: translateX(-300px);
+      -moz-transform: translateX(-300px);
+      -ms-transform: translateX(-300px);
+      -o-transform: translateX(-300px);
+      transform: translateX(-300px);
+      ;
+    }
+
+    .effect2:hover ul li {
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+      transform: translateX(0);
+    }
+
+    /* 动画3 */
+    .effect3 h2 {
+      top: 20%;
+      left: 15%;
+    }
+
+    .effect3 p {
+      width: 100%;
+      bottom: 0;
+      color: #000;
+      background-color: #fff;
+      line-height: 24px;
+      text-indent: 32px;
+      -webkit-transform: translateY(50px);
+      -moz-transform: translateY(50px);
+      -ms-transform: translateY(50px);
+      -o-transform: translateY(50px);
+      transform: translateY(50px);
+      ;
+    }
+
+    .effect3:hover p {
+      -webkit-transform: translateY(0);
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    /* 动画4 */
+    .effect4 div {
+      width: 150%;
+      height: 50%;
+      top: 100%;
+      background-color: #fff;
+      -webkit-transform-origin: 0% 0%;
+      -moz-transform-origin: 0% 0%;
+      -ms-transform-origin: 0% 0%;
+      -o-transform-origin: 0% 0%;
+      transform-origin: 0% 0%;
+      /*-webkit-transform: rotate(-15deg);
+				-moz-transform: rotate(-15deg);
+				-ms-transform: rotate(-15deg);
+				-o-transform: rotate(-15deg);
+				transform: rotate(-15deg);*/
+    }
+
+    .effect4:hover div {
+      -webkit-transform: rotate(-15deg);
+      -moz-transform: rotate(-15deg);
+      -ms-transform: rotate(-15deg);
+      -o-transform: rotate(-15deg);
+      transform: rotate(-15deg);
+    }
+
+    .effect4 ul li {
+      bottom: 25px;
+      color: #000;
+      font-size: 18px;
+      -webkit-transform: translateY(50px);
+      -moz-transform: translateY(50px);
+      -ms-transform: translateY(50px);
+      -o-transform: translateY(50px);
+      transform: translateY(50px);
+    }
+
+    .effect4 ul li:nth-child(2) {
+      right: 30px;
+      -webkit-transition-delay: 0.1s;
+      -moz-transition-delay: 0.1s;
+      -ms-transition-delay: 0.1s;
+      -o-transition-delay: 0.1s;
+      transition-delay: 0.1s;
+    }
+
+    .effect4 ul li:nth-child(1) {
+      right: 90px;
+    }
+
+    .effect4:hover ul li {
+      -webkit-transform: translateY(0);
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    /* 动画5 */
+    .effect5 h2 {
+      left: 20%;
+      top: 20%;
+      -webkit-transform: translateX(-50px);
+      -moz-transform: translateX(-50px);
+      -ms-transform: translateX(-50px);
+      -o-transform: translateX(-50px);
+      transform: translateX(-50px);
+    }
+
+    .effect5:hover h2 {
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+      transform: translateX(0);
+    }
+
+    .effect5 p {
+      left: 25%;
+      top: 30%;
+      -webkit-transform: translateY(50px);
+      -moz-transform: translateY(50px);
+      -ms-transform: translateY(50px);
+      -o-transform: translateY(50px);
+      transform: translateY(50px);
+    }
+
+    .effect5:hover p {
+      -webkit-transform: translateY(0);
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    .effect5 div {
+      width: 70%;
+      height: 70%;
+      left: 15%;
+      top: 15%;
+      border: 2px solid #f66;
+      -webkit-transform: translateY(-350px) rotate(0);
+      -moz-transform: translateY(-350px) rotate(0);
+      -ms-transform: translateY(-350px) rotate(0);
+      -o-transform: translateY(-350px) rotate(0);
+      transform: translateY(-350px) rotate(0);
+    }
+
+    .effect5:hover div {
+      -webkit-transform: translateY(0) rotate(360deg);
+      -moz-transform: translateY(0) rotate(360deg);
+      -ms-transform: translateY(0) rotate(360deg);
+      -o-transform: translateY(0) rotate(360deg);
+      transform: translateY(0) rotate(360deg);
+    }
+
+    /* 动画6 */
+    .effect6 h2 {
+      top: 20%;
+      left: 10%;
+      -webkit-transform: skew(90deg);
+      -moz-transform: skew(90deg);
+      -ms-transform: skew(90deg);
+      -o-transform: skew(90deg);
+      transform: skew(90deg);
+    }
+
+    .effect6 p {
+      left: 10%;
+      top: 30%;
+      -webkit-transform: skew(90deg);
+      -moz-transform: skew(90deg);
+      -ms-transform: skew(90deg);
+      -o-transform: skew(90deg);
+      transform: skew(90deg);
+    }
+
+    .effect6:hover h2,
+    .effect6:hover p {
+      -webkit-transform: skew(0);
+      -moz-transform: skew(0);
+      -ms-transform: skew(0);
+      -o-transform: skew(0);
+      transform: skew(0);
+    }
+
+    /* 动画7 */
+    .effect7 img {
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+
+    .effect7 div {
+      width: 70%;
+      height: 70%;
+      border: 2px solid #000;
+      left: 15%;
+      top: 15%;
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+
+    .effect7 h2 {
+      left: 20%;
+      top: 20%;
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+
+    .effect7 p {
+      left: 20%;
+      top: 40%;
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+
+    .effect7:hover * {
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+
+    /* 动画8 */
+    .effect8 h2 {
+      left: 20%;
+      top: 20%;
+      -webkit-transform: translateX(-50px);
+      -moz-transform: translateX(-50px);
+      -ms-transform: translateX(-50px);
+      -o-transform: translateX(-50px);
+      transform: translateX(-50px);
+    }
+
+    .effect8:hover h2 {
+      -webkit-transform: translateX(0);
+      -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+      -o-transform: translateX(0);
+      transform: translateX(0);
+    }
+
+    .effect8 p {
+      left: 25%;
+      top: 30%;
+      -webkit-transform: translateY(30px);
+      -moz-transform: translateY(30px);
+      -ms-transform: translateY(30px);
+      -o-transform: translateY(30px);
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    .effect8:hover p {
+      -webkit-transform: translateY(0);
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -o-transform: translateY(0);
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .effect8 #borderW {
+      /*width: 80%;
+				height:70%;
+				left: 10%;
+				top:15%;
+				border: 1px solid #fff;
+				border-left:0;
+				border-right: 0;
+				-webkit-transform: scale(0,1);
+				-moz-transform: scale(0,1);
+				-ms-transform: scale(0,1);
+				-o-transform: scale(0,1);
+				transform: scale(0,1);*/
+      width: 0;
+      left: 50%;
+      height: 70%;
+      top: 15%;
+      border: 1px solid #000;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .effect8:hover #borderW {
+      /*-webkit-transform: scale(1,1);
+				-moz-transform: scale(1,1);
+				-ms-transform: scale(1,1);
+				-o-transform: scale(1,1);
+				transform: scale(1,1);*/
+      left: 10%;
+      width: 80%;
+
+    }
+
+    .effect8 #borderH {
+      width: 70%;
+      height: 80%;
+      left: 15%;
+      top: 10%;
+      border: 1px solid #000;
+      border-top: 0;
+      border-bottom: 0;
+      -webkit-transform: scale(1, 0);
+      -moz-transform: scale(1, 0);
+      -ms-transform: scale(1, 0);
+      -o-transform: scale(1, 0);
+      transform: scale(1, 0);
+    }
+
+    .effect8:hover #borderH {
+      -webkit-transform: scale(1, 1);
+      -moz-transform: scale(1, 1);
+      -ms-transform: scale(1, 1);
+      -o-transform: scale(1, 1);
+      transform: scale(1, 1);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 动画1 -->
+  <figure class="effect1">
+    <img src="img/pic1.jpg" />
+    <h2>平移动画</h2>
+    <p>最简单的平移动画</p>
+  </figure>
+  <!-- 动画2 -->
+  <figure class="effect2">
+    <img src="img/pic2.jpg" />
+    <h2>平移动画</h2>
+    <ul>
+      <li>多条图片简介文字</li>
+      <li>逐一飞入动画</li>
+      <li> 利用动画延时达到效果</li>
+    </ul>
+  </figure>
+  <!-- 动画3 -->
+  <figure class="effect3">
+    <img src="img/pic3.jpg" />
+    <h2>底部滑出动画</h2>
+    <p>
+      translate属性可以制作多种动画，一个简单的位置移动可以制作出多种效果，重要看制作师们能否开动想象力。
+    </p>
+  </figure>
+  <!-- 动画4 -->
+  <figure class="effect4">
+    <img src="img/pic4.jpg" />
+    <div></div>
+    <ul>
+      <li>info1</li>
+      <li>info2</li>
+    </ul>
+  </figure>
+  <!-- 动画5 -->
+  <figure class="effect5">
+    <img src="img/pic5.jpg" />
+    <h2>旋转飞入</h2>
+    <p>通过旋转和位移</p>
+    <div></div>
+  </figure>
+  <!-- 动画6 -->
+  <figure class="effect6">
+    <img src="img/pic6.jpg" />
+    <h2>扭曲飞入飞</h2>
+    <p>去通过扭曲和位移，制作出飞入的效果。扭曲属到达90度。元素就看不见了</p>
+  </figure>
+  <!-- 动画7 -->
+  <figure class="effect7">
+    <img src="img/pic7.jpg" />
+    <div></div>
+    <h2>缩放</h2>
+    <p>缩放缩放缩放缩放缩放</p>
+  </figure>
+  <!-- 动画8 -->
+  <figure class="effect8">
+    <img src="img/pic8.jpg" />
+    <h2>绘制线条效果</h2>
+    <p>通过缩放属性绘制边框线条</p>
+    <div id="borderW"></div>
+    <div id="borderH"></div>
+  </figure>
+  <!-- 动画9 -->
+  <figure class="effect9">
+    <img src="img/pic9.jpg" />
+  </figure>
+
+</body>
+
+</html>

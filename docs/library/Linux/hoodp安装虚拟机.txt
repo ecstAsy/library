@@ -1,0 +1,197 @@
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
+
+
+IPADDR=192.168.66.102
+NETMASK=255.255.255.0
+GATEWAY=192.168.0.1
+DNS1=119.29.29.29
+
+
+service network restart
+
+vi /etc/hostname
+
+vi /etc/hosts
+
+192.168.66.101 master
+192.168.66.102 slave1
+192.168.66.103 slave2
+
+
+192.168.66.101 master
+192.168.66.102 slave1
+192.168.66.103 slave2
+
+setenforce 0
+
+vi /etc/selinux/config
+
+systemctl stop firewalld.service
+
+systemctl disable firewalld.service
+
+ssh-keygen -t rsa
+
+cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
+
+chmod 600 /root/.ssh/authorized_keys
+
+ssh slave1 cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+
+cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
+
+
+scp /root/.ssh/authorized_keys root@slave1:/root/.ssh/authorized_keys
+
+scp /root/.ssh/authorized_keys root@slave2:/root/.ssh/authorized_keys
+
+ssh slave1 ip addr
+
+cd /usr/local/src
+
+tar zxvf jdk-8u231-linux-x64.tar.gz
+
+vi ~/.bashrc
+
+export JAVA_HOME=/usr/local/src/jdk1.8.0_231
+export JRE_HOME=${JAVA_HOME}/jre 
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+
+scp ~/.bashrc root@slave1:~/
+
+scp -r /usr/local/src/jdk1.8.0_231 root@slave1:/usr/local/src/
+
+source ~/.bashrc
+
+java -version
+
+
+tar zxvf hadoop-2.9.2.tar.gz
+
+
+cd hadoop-2.9.2/etc/hadoop/
+
+vi hadoop-env.sh
+
+export JAVA_HOME=/usr/local/src/jdk1.8.0_231
+
+vi yarn-env.sh
+
+export JAVA_HOME=/usr/local/src/jdk1.8.0_231
+
+
+
+
+vi core-site.xml
+
+<configuration>
+ <property>
+<name>fs.defaultFS</name>
+<value>hdfs://master:9000</value>
+</property>
+<property>
+<name>hadoop.tmp.dir</name>
+<value>file:/usr/local/src/hadoop-2.9.2/tmp</value>
+</property>
+</configuration>
+
+
+vi hdfs-site.xml
+
+<configuration>
+<property>
+ <name>dfs.namenode.secondary.http-address</name> 
+<value>master:9001</value> 
+</property>
+ <property> 
+<name>dfs.namenode.name.dir</name>
+ <value>file:/usr/local/src/hadoop-2.9.2/dfs/name</value>
+ </property> 
+<property> 
+<name>dfs.datanode.data.dir</name> 
+<value>file:/usr/local/src/hadoop-2.9.2/dfs/data</value>
+ </property> 
+<property> 
+<name>dfs.replication</name>
+ <value>3</value> 
+</property>
+ </configuration>
+
+
+cp mapred-site.xml.template mapred-site.xml
+
+vi mapred-site.xml
+
+<configuration>
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+</configuration>
+
+
+vi yarn-site.xml
+
+<configuration> 
+<!--Reducer获取数据的方式-->
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+ </property>
+<property>
+ <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+ <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+ <property>
+<name>yarn.resourcemanager.address</name>
+<value>master:8032</value>
+ </property>
+<property>
+ <name>yarn.resourcemanager.scheduler.address</name>
+ <value>master:8030</value>
+</property> 
+<property>
+<name>yarn.resourcemanager.resource-tracker.address</name>
+<value>master:8035</value>
+ </property>
+<property>
+ <name>yarn.resourcemanager.admin.address</name>
+ <value>master:8033</value>
+</property>
+ <property>
+<name>yarn.resourcemanager.webapp.address</name>
+<value>master:8088</value>
+ </property>
+</configuration>
+
+
+
+mkdir -p /usr/local/src/hadoop-2.9.2/tmp 
+mkdir -p /usr/local/src/hadoop-2.9.2/dfs/name
+mkdir -p /usr/local/src/hadoop-2.9.2/dfs/data
+
+
+vi ~/.bashrc
+
+export HADOOP_HOME=/usr/local/src/hadoop-2.9.2
+export PATH=$PATH:$HADOOP_HOME/bin
+
+
+scp -r ~/.bashrc root@slave1:~/ 
+
+scp -r /usr/local/src/hadoop-2.9.2 root@slave1:/usr/local/src/
+
+source ~/.bashrc
+
+hfds namenode -format
+
+
+
+
+
+
+
+
+
+

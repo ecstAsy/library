@@ -1,0 +1,48 @@
+html,
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #ccc;
+}
+
+.camera {
+  perspective: 512px;
+  perspective-origin: 50% 50%;
+}
+
+.space {
+  width: 1024px;
+  height: 1024px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+
+.space img {
+  width: 1024px;
+  height: 1024px;
+  position: absolute;
+}
+
+.space .front {
+  transform: rotateZ(0) rotateY(0) rotateX(0) translateZ(-512px);
+}
+
+.space .back {
+  transform: rotateY(180deg) translateZ(-512px);
+}
+
+.space .left {
+  transform: rotateY(90deg) translateZ(-512px);
+}
+
+.space .right {
+  transform: rotateY(-90deg) translateZ(-512px);
+}
+
+.space .top {
+  transform: rotateX(90deg) translateZ(-512px);
+}
+
+.space .bottom {
+  transform: rotateX(-90deg) translateZ(-512px);
+}
