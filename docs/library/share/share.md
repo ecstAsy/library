@@ -9,6 +9,7 @@ date: "2022-01-06"
 - Array.form
 - Object.Keys Object.Values Object.entries
 - includes find filter reduce indexOf
+- lodash.pick
 
 ```js
 const students = [
@@ -18,6 +19,19 @@ const students = [
 
 const ageMaps = Array.form(students, ({ age }) => age);
 console.log(ageMaps); // [20, 22]
+
+const fields = ['name', 'age', 'sex', ...];
+
+const info = {
+  name: '张三',
+  age: 20,
+  sex: 1,
+  ...
+}
+
+this.form = pick(info, fields);
+
+console.log(this.form); // { name: '张三', age: 20, sex: 1, ... }
 ```
 
 ### Git 常用命令
