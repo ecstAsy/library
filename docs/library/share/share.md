@@ -1,116 +1,74 @@
 ---
 title: 分享
 author: ecstAsy
-date: "2022-01-05"
+date: "2022-01-06"
 ---
 
-### Vue React 语法
+### 常用数据处理方法
 
-> Vue
+- Array.form
+- Object.Keys Object.Values Object.entries
+- includes find filter reduce indexOf
 
 ```js
-// vue2
-<template>
-    ....
-</template>
+const students = [
+  { name: "张三", age: 20 },
+  { name: "李四", age: 22 },
+];
 
-<script>
-export default {
-  name: 'component-name',
-  props: {
-    ...
-  },
-  data () {
-    ....
-  },
-  methods: {
-    ....
-  }
-}
-</script>
-
-// vue3
-
-<template>
-...
-</template>
-
-<script>
-import { defineComponent, ref, watchEffect } from 'vue';
-export default defineComponent({
-  setup(){
-    const root = ref(null)
-
-    watchEffect(() => {
-      console.log(root.value) // => <div>This is a root element</div>
-    },
-    {
-      flush: 'post'
-    })
-
-    return {
-      root
-    }
-  }
-})
-</script>
-// setup 语法糖
-<script setup>
-import { ref, watchEffect } from 'vue';
-const root = ref(null)
-
-watchEffect(() => {
-  console.log(root.value) // => <div>This is a root element</div>
-},
-{
-  flush: 'post'
-})
-</script>
+const ageMaps = Array.form(students, ({ age }) => age);
+console.log(ageMaps); // [20, 22]
 ```
 
-> React
+### Git 常用命令
 
-```jsx
-// class组件
-import React, { Component } from 'react';
-export default class Demo extends Component {
-  state = {
-  };
+- 创建分支
 
-  componentDidMount() {
-    ...
-  }
+  > git branch <branch_name>
 
-  render() {
-    const { .... } = this.props;
-    return (
-      <div>
-        ....
-      </div>
-    );
-  }
-}
+- 把本地分支推送到远程分支，并跟踪该分支
 
-// 函数式组件
-import React, { useState, useEffect } from 'react';
+  > git push --set-upstream origin <branch_name>
 
-const copt = ({ ...props }) => {
+- 删除本地分支
 
-  const [state, setState] = useState(null)
+  > git branch -D <branch_name>
 
-  useEffect(()=>{
-    // to do
+- 查看本地分支
 
-    return ()=>{
-     // 消除副作用
-    }
-  },[])
+  > git branch
 
-  return <div> .... </div>
-}
+- 查看远程分支（包含线上存在的分支和本地缓存的远程分支）
 
-export default copt
-```
+  > git branch -a
+
+- 查看分支关联关系
+
+  > git remote show origin
+
+- 删除本地远端分支缓存
+
+  > git remote prune origin
+
+- 查看本地关联远程仓库
+
+  > git remote
+
+- 修改本地关联仓库名字
+
+  > git remote rename origin<old_name> gitee<new_name>
+
+- 关联名字的提交方式
+
+  > git push <origin_name> <branch_name>
+
+- 撤销了你的 commit 操作，仍然保留您写的代码
+
+  > git reset --soft HEAD^
+
+- 如果 commit 注释写错了
+
+  > git commit --amend
 
 ### 组件是如何分类的
 
@@ -142,7 +100,323 @@ export default copt
   - 优秀的 UI 和 API 设计
   - 易学和易用
 
-### Vue v-bind && React Props
+### Vue React 语法对比
+
+- 页面（组件）
+  - React 组件名必须大驼峰格式
+
+```js
+// vue2
+<template>
+    ....
+</template>
+
+<script>
+export default {
+  name: 'name',
+  props: {
+    ...
+  },
+  data () {
+    ....
+  },
+  mounted(){
+    // beforeCreate created
+    // beforeMount  mounted
+    // beforeUpdate updated
+    // activated deactivated
+    // beforeDestroy destroyed
+  },
+  methods: {
+    ....
+  }
+}
+</script>
+// Vue JSX
+new Vue({
+  el: '#demo',
+  render: function (h) {
+    return (
+      <AnchoredHeading level={1}>
+        <span>Hello</span> world!
+      </AnchoredHeading>
+    )
+  }
+})
+// React 16.8 之前
+// class组件
+import React, { Component } from 'react';
+export default class Demo extends Component {
+  constructor(props){
+    this.state = {
+      ...
+    };
+  }
+
+  componentDidMount() {
+    // 1. 挂载卸载过程
+    //   1.1.constructor()
+    //   1.2.componentWillMount()
+    //   1.3.componentDidMount()
+    //   1.4.componentWillUnmount ()
+    // 2. 更新过程
+    //   2.1. componentWillReceiveProps (nextProps)
+    //   2.2.shouldComponentUpdate(nextProps,nextState)
+    //   2.3.componentWillUpdate (nextProps,nextState)
+    //   2.4.componentDidUpdate(prevProps,prevState)
+    //   2.5.render()
+  }
+
+  render() {
+    const { .... } = this.props;
+    return (
+      <div>
+        ....
+      </div>
+    );
+  }
+}
+
+// 函数式组件
+import React from 'react';
+
+const copt = ({ ...props }) => {
+
+  return <div> .... </div>
+}
+
+export default copt
+
+// vue3
+<template>
+...
+</template>
+
+<script>
+import { defineComponent, ref, watchEffect, onMounted } from 'vue';
+export default defineComponent({
+  setup(){
+    const root = ref(null)
+
+    watchEffect(() => {
+      console.log(root.value) // => <div>This is a root element</div>
+    },
+    {
+      flush: 'post'
+    })
+
+    onMounted(()=>{
+      ...
+    })
+    return {
+      root
+    }
+  }
+})
+</script>
+// setup 语法糖
+<script setup>
+import { ref, watchEffect, onMounted } from 'vue';
+const root = ref(null)
+
+watchEffect(() => {
+  console.log(root.value) // => <div>This is a root element</div>
+},
+{
+  flush: 'post'
+})
+
+onMounted(()=>{
+  ...
+})
+
+const func = () => {
+  ...
+}
+</script>
+
+// React 16.8 Hooks
+import React, { useState, useEffect } from 'react';
+
+const copt = ({ ...props }) => {
+
+  const [state, setState] = useState(null)
+
+  useEffect(()=>{
+    // to do
+
+    return ()=>{
+     // 消除副作用
+    }
+  },[])
+
+  return <div> .... </div>
+}
+
+export default copt
+```
+
+- class className
+
+```js
+// vue
+<template>
+  <div class="demo">...</div>
+</template>
+// React
+<div className="demo">...</div>
+```
+
+- 事件
+
+```js
+// Vue
+<template>
+  <div @click="onClick">...</div>
+</template>
+// React
+<div onClick={this.onClick}>...</div>
+<div onClick={(event) => onClick(event)}>...</div>
+```
+
+- v-model && setState
+
+```js
+// Vue
+<template>
+  <input v-model="value" />
+</template>;
+// React
+import React, { useState } from "react";
+
+const Input = () => {
+  const [value, setValue] = useState(null);
+  const onChange = (e) => setValue(e.target.value);
+  return <input value={value} onChange={onChange} />;
+};
+
+import React, { Component } from "react";
+
+class Input extends Component {
+  state = {
+    value: null,
+  };
+  onChange(e) {
+    this.setState({
+      value: e.target.value,
+    });
+  }
+  render() {
+    return <input value={value} onChange={this.onChange} />;
+  }
+}
+```
+
+- 子组件调用父组件方法 **Props**
+
+```js
+// Vue
+...
+methods: {
+  onClick(){
+    this.$emit('click', payload)
+  }
+}
+
+// React
+render(){
+  const { onDrop } = this.props;
+  return (
+    <div
+      onClick={event => this.props.onClick(event)}
+      onDrop={event => onDrop(event)}
+    >
+      ...
+    </div>
+  )
+}
+```
+
+- 父组件子调用组件方法 **ref**
+
+```js
+// Vue
+methods: {
+  onClick(copname){
+    this.$refs[copname].onClick()
+  }
+}
+
+// React
+ handleChild = ()=> {
+    this.$Child.childConsole();    // this上有了子组件方法
+  }
+  render() {
+    return (
+      <div>
+        <Child onRef={(ref)=> {this.$Child=ref}} />
+        <button onClick={this.handleChild}>调用子组件方法</button>
+      </div>
+    )
+  }
+```
+
+- v-for && map (forEach)
+
+```js
+// Vue
+<template>
+  <ul>
+    <li v-for="item in Items" :key="item">
+      ...
+    </li>
+  </ul>
+</template>
+
+// React
+render(){
+  return (
+    <ul>
+      {
+        Items.map(item=>
+          <li key={item}>
+            ...
+          </li>
+        )
+      }
+    </ul>
+  )
+}
+```
+
+- v-if、v-show && if else
+
+```js
+// Vue
+<template>
+  <div v-if="isShow"></div>
+  <div v-show="isShow"></div>
+</template>
+
+// React
+render(){
+  return (
+    <div>
+     {
+       isShow ?
+       <div>1</div>
+       :
+       <div>2</div>
+     }
+     {
+       isShow && <div>3</div>
+     }
+    </div>
+  )
+}
+```
+
+- v-bind && props
 
 ```js
 const params = {
@@ -340,16 +614,4 @@ setup(){
     ...toRefs(obj),
   }
 }
-```
-
-### Array.form
-
-```js
-const students = [
-  { name: "张三", age: 20 },
-  { name: "李四", age: 22 },
-];
-
-const ageMaps = Array.form(students, ({ age }) => age);
-console.log(ageMaps); // [20, 22]
 ```
