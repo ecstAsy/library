@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-05 17:55:03
+ * @LastEditTime: 2022-01-06 08:53:49
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -284,19 +284,19 @@ module.exports = {
           title: '金钱计数格式化',
           path: '/library/tools/decimal'
         }, {
-          title: '金钱计数格式化',
+          title: '身份证号码信息解析',
           path: '/library/tools/id-card'
         }, {
-          title: '金钱计数格式化',
+          title: 'localStorage',
           path: '/library/tools/localstorage'
         }, {
-          title: '金钱计数格式化',
+          title: 'JS + - × ÷ 浮点计算',
           path: '/library/tools/math-tool'
         }, {
-          title: '金钱计数格式化',
+          title: '金钱小写转大写',
           path: '/library/tools/money-lowercase-to-uppercase'
         }, {
-          title: '金钱计数格式化',
+          title: '对象中时间格式转换',
           path: '/library/tools/time-swatch'
         },
       ]
