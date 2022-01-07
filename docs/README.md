@@ -13,7 +13,7 @@ Vue3 + TypeScipt + Vite + ElementPlus
 :book: [GitHub](https://github.com/ecstAsy/moko-vue-admin-element-plus)
 :books: [Gitee](https://gitee.com/ecst/moko-vue-elementplus-admin)
 
-Vue3 + TypeScipt + Vite + ElementPlus
+Vue3 + TypeScipt + Vite + Antd
 
 :earth_africa: [预览地址](http://ecst.gitee.io/moko-vue-antd-admin/#/user/login)
 

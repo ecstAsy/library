@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-06 08:53:49
+ * @LastEditTime: 2022-01-07 08:59:38
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -167,7 +167,10 @@ module.exports = {
         }, {
           title: 'Switch',
           path: '/library/react/switch',
-        },
+        }, {
+          title: '拖拽上传',
+          path:'/library/react/drop-upload'
+        }
       ]
     }, {
       title: 'Vue',
