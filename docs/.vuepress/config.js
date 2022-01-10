@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-07 08:59:38
+ * @LastEditTime: 2022-01-10 15:08:05
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -31,10 +31,6 @@ module.exports = {
       title: '前言',
       path: '/',
       collapsable: false, // 不折叠
-    }, {
-      title: 'Share',
-      path: '/library/share/share',
-      collapsable: false
     }, {
       title: 'JavaScript',
       path: '/library/javascript/js-regular-function',
