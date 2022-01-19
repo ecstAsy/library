@@ -1,14 +1,12 @@
 ---
 title: 拖拽上传获取文件目录
 author: ecstAsy
-date: "2022-01-07"
+date: "2022-01-19"
 ---
 
 ### 前言
 
 preact 在 PC 端实现拖拽上传文件夹、点击选择单文件上传
-
-[预览地址](http://172.16.0.139:8080)
 
 ### 实现功能
 
@@ -18,9 +16,9 @@ preact 在 PC 端实现拖拽上传文件夹、点击选择单文件上传
 - [x] 点击选择文件
 - [ ] 动态实现 拖拽和点击选择文件夹和文件
 
-### 获取文件夹目录方法
+### 核心代码
 
-- directory.js
+- directory.js (获取拖拽的文件夹和文件内容)
 
 ```js
 function toArray(list) {
@@ -30,7 +28,6 @@ function toArray(list) {
 function errorHandler(e) {
   console.log(`FileSystem API error code: ${e.code}`);
 }
-// 实例方法封装
 class Directory {
   constructor() {
     this.value = [];
@@ -45,15 +42,19 @@ class Directory {
   }
   // 读取文件夹内容
   readDirectory(entires) {
+    this.setValue(entires);
     entires.map((item) => {
       if (item.isDirectory) {
         let directoryReader = item.createReader();
         this.getAllEntries(directoryReader);
+      } else {
+        item.file((file) => {
+          file.fullPath = item.fullPath;
+          item.content = file;
+        });
       }
     });
-    this.setValue(entires);
   }
-  // 获取文件夹信息
   getAllEntries(directoryReader) {
     let entries = [];
     let that = this;
@@ -70,14 +71,20 @@ class Directory {
     };
     readEntries();
   }
-  // 暴露出去的方法
+
   getDirectoryInfo = (entries) => {
+    this.setValue(entries);
     entries.map((item) => {
       if (item.isDirectory) {
+        console.log(item);
         let directoryReader = item.createReader();
         this.getAllEntries(directoryReader);
+      } else {
+        item.file((file) => {
+          file.fullPath = item.fullPath;
+          item.content = file;
+        });
       }
-      this.setValue(entries);
     });
 
     return this.getValue();
@@ -87,182 +94,117 @@ class Directory {
 export default Directory;
 ```
 
-### 页面使用
+- tree.js (把获取的文件内容重新排版成树形结构)
 
-- index.js
-
-```jsx
-import { h } from "preact";
-import { useState } from "preact/hooks";
-import Directory from "../../utils/directory";
-import style from "./style.css";
-
-const Home = () => {
-  const [value, setValue] = useState([]);
-  const [isDrop, setIsDrop] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const drop = new Directory();
-  const onSubmit = () => {
-    console.log(value);
-  };
-  const onChange = (e) => {
-    return setValue(e.target.files);
-  };
-  const onDrop = async (e) => {
-    e.preventDefault();
-    const length = e.dataTransfer.items.length;
-    let entries = [];
-    for (let i = 0; i < length; i++) {
-      entries = [...entries, e.dataTransfer.items[i].webkitGetAsEntry()];
+```js
+const Videos = [
+  "wmv",
+  "asf",
+  "asx",
+  "rm",
+  "rmvb",
+  "mp4",
+  "3gp",
+  "mov",
+  "m4v",
+  "avi",
+  "dat",
+  "mkv",
+  "flv",
+  "vob",
+];
+const Images = ["png", "jpg", "jpeg"];
+const Icons = [
+  "vue",
+  "sass",
+  "scss",
+  "css",
+  "jsx",
+  "md",
+  "js",
+  "json",
+  "svg",
+  "excel",
+  "file",
+  "word",
+  "ppt",
+  "music",
+  "html",
+  "video",
+  "img",
+  "zip",
+  "gif",
+  "exe",
+  "pdf",
+  "txt",
+  "wps",
+];
+const findParent = (values) => {
+  values.map((item) => {
+    let parent = item.fullPath.split("/");
+    parent.pop();
+    item.parent = parent.join("/") || "/";
+    if (item.isDirectory) {
+      item.children = [];
+      item.icon = "file";
+    } else {
+      let itp = item.name.split(".").pop();
+      if (Videos.includes(itp)) {
+        itp = "video";
+      } else if (Images.includes(itp)) {
+        itp = "img";
+      } else if (itp.match(/htm/)) {
+        itp = "html";
+      }
+      item.icon = Icons.includes(itp) ? itp : "default";
     }
-    const directories = await drop.getDirectoryInfo(entries);
-    console.log(directories);
-    if (
-      directories.length > 1 &&
-      !directories.find((item) => item.name.match(/.html/))
-    ) {
-      return setIsError(true);
-    } else if (!directories[0].name.match(/.zip/)) {
-      return setIsError(true);
-    }
-
-    return setValue(directories);
-  };
-  const openFile = () => {
-    document.getElementById("upload-input").click();
-  };
-
-  return (
-    <div class={style.home}>
-      <h3>文件上传</h3>
-      <form class={style.form}>
-        <div
-          class={style.upload}
-          onClick={openFile}
-          onDrop={(e) => onDrop(e)}
-          onDragover={(e) => {
-            e.preventDefault();
-            setIsDrop(false);
-          }}
-          onDragStart={(e) => {
-            e.preventDefault();
-            setIsDrop(true);
-          }}
-        >
-          <p>将文件拖到此处上传</p>
-          <input
-            class={style.input}
-            value={value}
-            id="upload-input"
-            type="file"
-            accept="*"
-            onChange={onChange}
-            webkitdirectory={isDrop}
-            mozdirectort={isDrop}
-          />
-        </div>
-        <div class={style.error}>
-          <span>{isError && `请上传正确的文件类型！`}</span>
-        </div>
-      </form>
-
-      <button class={style.submit} onClick={onSubmit}>
-        提交
-      </button>
-    </div>
-  );
+  });
 };
 
-export default Home;
+const findChildren = (roots, values) => {
+  roots.map((item) => {
+    if (item.children) {
+      item.children = values.filter((file) => file.parent === item.fullPath);
+      findChildren(item.children, values);
+    }
+  });
+};
+
+const findType = (values) => {
+  values.map((item) => {
+    if (item.isDirectory) {
+      item.icon = "file";
+    } else {
+      let itp = item.name.split(".").pop();
+      if (Videos.includes(itp)) {
+        itp = "video";
+      } else if (Images.includes(itp)) {
+        itp = "img";
+      }
+      item.icon = itp;
+    }
+  });
+};
+
+const getTree = (values, type) => {
+  if (!values || !values.length) {
+    return false;
+  }
+  let root = [{ name: "/", fullPath: "/", children: [], icon: "file" }];
+  if (type === "drop") {
+    findParent(values);
+    findChildren(root, values);
+  } else {
+    findType(values);
+    root[0].children = values;
+  }
+
+  return root;
+};
+
+export default getTree;
 ```
 
-- index.css
-
-```css
-.home {
-  min-height: 100%;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-h3 {
-  text-align: center;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.upload {
-  width: 720px;
-  height: 360px;
-  border-radius: 6px;
-  border: 1px dashed #d9d9d9;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.upload p {
-  font-size: 14px;
-  font-weight: 600;
-  color: #606266;
-}
-
-.input {
-  display: none;
-  overflow: visible;
-  touch-action: manipulation;
-}
-
-.error {
-  width: 720px;
-  text-align: left;
-  height: 20px;
-  line-height: 20px;
-  font-size: 12px;
-}
-
-.error span {
-  color: red;
-  transition: ease-in-out 0.5s;
-}
-
-.submit {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-  height: 32px;
-  white-space: nowrap;
-  cursor: pointer;
-  background-color: #409eff;
-  border: 2px solid #409eff;
-  color: #fff;
-  -webkit-appearance: none;
-  text-align: center;
-  box-sizing: border-box;
-  outline: none;
-  margin: 24px;
-  transition: 0.1s;
-  font-weight: 500;
-  user-select: none;
-  padding: 8px 15px;
-  font-size: 14px;
-  border-radius: 4px;
-}
-
-.submit:hover {
-  background-color: rgb(102, 177, 255);
-  border-color: transparent;
-}
-```
+- 仓库地址 （全部代码）
+  :book: [GitHub](https://github.com/ecstAsy/drop-upload)
+  :books: [Gitee](https://gitee.com/ecst/drop-upload)
