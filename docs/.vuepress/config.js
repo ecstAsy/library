@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-10 15:08:05
+ * @LastEditTime: 2022-01-25 13:43:21
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -312,8 +312,17 @@ module.exports = {
           path: '/library/node/node-express-mock',
         }
       ]
+      }, {
+      title: 'Algorithm',
+      path: '/library/algorithm/array',
+      collapsable: true,
+      children: [
+        {
+          title: 'Array',
+          path:'/library/algorithm/array'
+       }
+     ]
     }
-
     ]
   },
   locales: {
