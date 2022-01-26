@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-26 11:36:08
+ * @LastEditTime: 2022-01-26 15:08:43
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -84,9 +84,6 @@ module.exports = {
         }, {
           title: '获取系统信息',
           path: '/library/javascript/js-systemInfo',
-        }, {
-          title: 'ThrowError',
-          path: '/library/javascript/js-throw-error',
         }, {
           title: '冷知识',
           path: '/library/javascript/js-study',
