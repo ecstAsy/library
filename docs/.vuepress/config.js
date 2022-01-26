@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-01-25 13:43:21
+ * @LastEditTime: 2022-01-26 11:36:08
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -137,6 +137,9 @@ module.exports = {
         }, {
           title: 'table 边框',
           path: '/library/css/table-border'
+        }, {
+          title: 'Loading',
+          path:'/library/css/loading-circle'
         }
       ]
     }, {

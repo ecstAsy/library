@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-24 17:14:09
- * @LastEditTime: 2022-01-25 13:52:00
+ * @LastEditTime: 2022-01-25 16:12:16
  * @LastEditors: ecstAsy
  */
 
@@ -56,19 +56,20 @@ function insertionSort(arry) {
 
 // 二分查找 Binary
 function sort(arry, dest, start, end) {
-  let ed = end || arry.length - 1,
-    st = start || 0,
-    ct = Math.floor((st + ed) / 2);
-  if (arry[ct] == dest) {
-    return ct
-  }
+
+  const st = start || 0,
+      ed = end || arry.length - 1,
+      ct = Math.floor((st + ed) / 2);
   if (arry[ct] < dest) {
     return sort(arry, dest, 0, ct - 1)
+  }else if (arry[ct] == dest) {
+    return ct
   } else {
-    return sort(arry, dest, ct + 1, arry.length)
+    return sort(arry, dest, ct + 1, ed)
   }
 }
-const arr = [2, 6, 13, 56, 45, 23, 45, 42, 1, 24, 45];
+// const arr = [2, 6, 13, 56, 45, 23, 45, 42, 1, 24, 45];
+const arr = [-2, 3, 4, 5, 6, 7, 9];
 
 sort(arr, 4);
 
