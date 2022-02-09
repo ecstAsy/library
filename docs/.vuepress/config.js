@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-02-07 16:38:28
+ * @LastEditTime: 2022-02-09 09:02:20
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -157,9 +157,6 @@ module.exports = {
       }, {
         title: '拖拽上传',
         path: '/library/react/drop-upload'
-      }, {
-        title: 'React 面试题',
-        path: '/library/react/interview'
       }]
     }, {
       title: 'Vue',
@@ -174,9 +171,6 @@ module.exports = {
       }, {
         title: '全局注册组件',
         path: '/library/vue/global-registry-component',
-      }, {
-        title: 'Vue 面试题',
-        path: '/library/vue/interview'
       }]
     }, {
       title: 'Plugin',
@@ -289,6 +283,20 @@ module.exports = {
       }, {
         title: 'node+express+mock',
         path: '/library/node/node-express-mock',
+      }]
+    }, {
+      title: '面试积累',
+      path: '/library/interview/index',
+      collapsable: true,
+      children: [{
+        title: '常用汇总',
+        path: '/library/interview/index',
+      }, {
+        title: 'Vue',
+        path: '/library/interview/vue',
+      }, {
+        title: 'React',
+        path: '/library/interview/react',
       }]
     }, {
       title: '3D',
