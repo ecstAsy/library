@@ -51,3 +51,7 @@ date: "2022-02-09"
 > - 场景： 表单提交，付款
 
 #### **Promise setTimeOut**
+
+> - 首先 Promise 构造函数会立即执行，而 Promise.then()内部的代码在当次事件循环的结尾立即执行(微任务)。
+> - promise 的状态一旦由等待 pending 变为成功 fulfilled 或者失败 rejected。那么当前 promise 被标记为完成，后面则不会再次改变该状态。
+> - resolve 函数和 reject 函数都将当前 Promise 状态改为完成，并将异步结果，或者错误结果当做参数返回。
