@@ -16,6 +16,11 @@ date: "2022-02-07"
 
 #### **Vue 响应式实现原理**
 
+> - 接收 **data** 对象并监听 **data** 变化，遍历此对象所有的 **property** ,并使用 **Object.defineProperty()** 把这些 **property** 全部转为 **getter/setter** 在内部 **getter/setter** 让 Vue 能够追踪依赖在 property 被访问和修改时通知变更
+> - 每一个 **Component** 实例都对应一个 **watcher** 实例，它会在组件渲染的过程中把“接触”过的数据 **property** 记录为依赖。之后当依赖项的 **setter** 触发时，会通知 **watcher**，从而使它关联的组件重新渲染
+>
+>   ![自动获取 input 框焦点](../../assets/data.png)
+
 #### **Vue 数据双向绑定实现**
 
 > - **Vue** 双向数据绑定是通过 数据劫持 结合 发布订阅模式的方式来实现的， 也就是说数据和视图同步，数据发生变化，视图跟着变化，视图变化，数据也随之发生改变；

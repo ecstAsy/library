@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-02-09 09:02:20
+ * @LastEditTime: 2022-02-09 09:06:57
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -285,12 +285,12 @@ module.exports = {
         path: '/library/node/node-express-mock',
       }]
     }, {
-      title: '面试积累',
-      path: '/library/interview/index',
+      title: 'Interview',
+      path: '/library/interview/common',
       collapsable: true,
       children: [{
-        title: '常用汇总',
-        path: '/library/interview/index',
+        title: 'Common',
+        path: '/library/interview/common',
       }, {
         title: 'Vue',
         path: '/library/interview/vue',
