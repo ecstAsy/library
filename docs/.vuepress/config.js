@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-04-07 14:05:34
+ * @LastEditTime: 2022-04-07 18:07:27
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -298,8 +298,8 @@ module.exports = {
         title: 'React',
         path: '/library/interview/react',
       },{
-        title: '基础293问',
-        path: '/library/interview/basis',
+        title: '基础CSS篇',
+        path: '/library/interview/css',
       }]
     }, {
       title: '3D',

@@ -66,4 +66,44 @@ body {
   width: 200px;
   height: 100px;
   background-image: linear-gradient(to left, red, green 50%, blue);
+  margin: 10px auto;
+}
+
+.mask {
+  margin: 10px auto;
+  /* width: 200px;
+  height: 100px;
+  background: url(../../../docs/assets/demo2.jpg);
+  mask-image: url(../../../docs/assets/demo3.jpg);
+  mask-position: 50% 50%;
+  mask-repeat: no-repeat; */
+  width: 100px;
+  height: 100px;
+  background-color: #8cffa0;
+  mask-image: url(../../../docs/assets/demo3.jpg);
+  -webkit-mask-image: url(../../../docs/assets/demo3.jpg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+div {
+  animation: fadeIn 2s ease-in-out;
 }
