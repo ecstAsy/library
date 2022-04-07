@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 800px;
+  margin: 100px auto;
+}
+
+.btn {
+  width: 100px;
+  text-align: center;
+}
+
+.merge {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+}
+
+img {
+  width: 500px;
+  height: 800px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+img:nth-child(1) {
+  transform: translateZ(1px);
+}
