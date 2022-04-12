@@ -449,3 +449,190 @@ div {
 ```
 
 ![box-shadow-inset](../../assets/box-shadow-inset.png)
+
+#### **29. link 和@import 有什么区别**
+
+- link 是 XHTML 标签，除了加载 CSS 外，还可以定义 RSS 等其他事务；@import 属于 CSS 范畴，只能加载 CSS。
+- link 引用 CSS 时，在页面载入时同时加载；@import 需要页面网页完全载入以后加载。所以会出现一开始没有 css 样式，闪烁一下出现样式后的页面(网速慢的情况下)
+- link 是 XHTML 标签，无兼容问题；@import 是在 CSS2.1 提出的，低版本的浏览器不支持。
+- link 支持使用 Javascript 控制 DOM 去改变样式；而@import 不支持。
+  :::warning
+
+  在 html 设计制作中，css 有四种引入方式。
+
+  - 内联样式
+  - 嵌入样式
+  - 链接样式
+  - 导入样式
+
+  :::
+
+#### **30. 清除浮动的方式有哪些及优缺点？**
+
+- 额外标签法（在最后一个浮动标签后，新加一个标签，给其设置 clear：both；）（**不推荐**）
+  :::danger
+
+  如果我们清除了浮动，父元素自动检测子盒子最高的高度，然后与其同高。
+
+  - **优点**：通俗易懂，方便
+  - **缺点**：添加无意义标签，语义化差
+
+        ```html
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <title>Document</title>
+            <style>
+              .fahter {
+                width: 400px;
+                border: 1px solid deeppink;
+              }
+              .big {
+                width: 200px;
+                height: 200px;
+                background: darkorange;
+                float: left;
+              }
+              .small {
+                width: 120px;
+                height: 120px;
+                background: darkmagenta;
+                float: left;
+              }
+              .footer {
+                width: 900px;
+                height: 100px;
+                background: darkslateblue;
+              }
+              /* 额外的标签 */
+              .clear {
+                clear: both;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="fahter">
+              <div class="big">big</div>
+              <div class="small">small</div>
+              <!-- 额外的标签 -->
+              <div class="clear">额外标签法</div>
+            </div>
+            <div class="footer"></div>
+          </body>
+        </html>
+        ```
+
+    :::
+
+- 父级添加 overflow 属性（父元素添加 overflow:hidden）（**不推荐**）
+
+  :::danger
+
+  通过触发 BFC 方式，实现清除浮动
+
+  - **优点**：代码简洁
+
+  - **缺点**：内容增多的时候容易造成不会自动换行导致内容被隐藏掉，无法显示要溢出的元素
+    ```css
+    .fahter {
+      width: 400px;
+      border: 1px solid deeppink;
+      overflow: hidden;
+    }
+    ```
+
+  :::
+
+- 使用 after 伪元素清除浮动（推荐使用）
+  :::tip
+
+  - **优点**：符合闭合浮动思想，结构语义化正确
+  - **缺点**：ie6-7 不支持伪元素：after，使用 zoom:1 触发 hasLayout.
+    ```css
+    .clearfix:after {
+      /*伪元素是行内元素 正常浏览器清除浮动方法*/
+      content: "";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
+    .clearfix {
+      *zoom: 1; /*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+    }
+    ```
+    ```html
+    <body>
+      <div class="fahter clearfix">
+        <div class="big">big</div>
+        <div class="small">small</div>
+      </div>
+      <div class="footer"></div>
+    </body>
+    ```
+
+  :::
+
+- 使用 before 和 after 双伪元素清除浮动
+  :::tip
+
+  - **优点**：代码更简洁
+  - **缺点**：用 zoom:1 触发 hasLayout.
+
+  ```css
+  .clearfix:after,
+  .clearfix:before {
+    content: "";
+    display: table;
+  }
+  .clearfix:after {
+    clear: both;
+  }
+  .clearfix {
+    *zoom: 1;
+  }
+  ```
+
+  ```html
+  <div class="fahter clearfix">
+    <div class="big">big</div>
+    <div class="small">small</div>
+  </div>
+  <div class="footer"></div>
+  ```
+
+  :::
+
+#### **31. ::before 和:after 中单冒号和双冒号的区别是什么**
+
+- 单冒号(:)用于 CSS3 伪类
+- 双冒号(::)用于 CSS3 伪元素。（伪元素由双冒号和伪元素名称组成）
+
+#### **32. css 的属性 content 有什么作用**
+
+- content 属性与 :before 及 :after 伪元素配合使用，在元素头或尾部来插入生成内容。
+  :::tip
+  **说明**： 该属性用于定义元素之前或之后放置的生成内容。默认地，这往往是行内内容，不过该内容创建的盒子类型可以用属性 display 控制。
+  :::
+
+#### **33. 对 line-height 是如何理解**
+
+- **line-height**【行高】顾名思意指一行文字的高度，用来指定行间的距离，具体来说是指两行文字间基线之间的最小距离。
+  :::tip
+  **line-height** 与 **font-size** 的计算值之差（在 CSS 中就是两行的“行间距”）分为两半，分别加到一个文本行内容的顶部和底部。可以包含这些内容的最小框就是行框。
+     原始数字值指定了一个缩放因子，后代元素会继承这个缩放因子而不是计算值。即，当子元素节点设置 **line-heihgt:inherit;** 的时候，继承的是父元素节点的缩放因子。
+  :::
+
+#### **34. 对 z-index 的理解**
+
+- z-index 属性是设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序
+  较低的元素的前面。
+- 元素可拥有负的 z-index 属性值。
+- Z-index 仅能在定位元素上奏效（例如 position:absolute;）。
+
+#### **35. BFC 是什么**
+
+[BFC 是什么](../../library/)

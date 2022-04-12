@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-04-07 18:07:27
+ * @LastEditTime: 2022-04-08 09:07:19
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -300,6 +300,9 @@ module.exports = {
       },{
         title: '基础CSS篇',
         path: '/library/interview/css',
+      },{
+        title: '基础JavaScript篇',
+        path: '/library/interview/javascript',
       }]
     }, {
       title: '3D',
