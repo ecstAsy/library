@@ -253,6 +253,7 @@ document.cookie = "user=icketang；expires =" + new Date(0);
 #### **28. 在 JavaScript 中有一个函数，执行直接对象查找时，它始终不会查找原型，这个函数是什么？**
 
 **hasOwnProperty**
+[hasOwnProperty](../javascript/js-hasOwnProperty.md)
 
 #### **29. documen.wrte 和 innerHTML 的区别是什么**
 
