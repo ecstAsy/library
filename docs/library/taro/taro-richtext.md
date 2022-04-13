@@ -46,7 +46,7 @@ date: "2022-01-04"
 
 ```js
 <mp-html
-  className="news-mp-html"
+  className="new-mp-html"
   content={content}
   tagStyle={{
     table: "border-collapse: collapse;",
