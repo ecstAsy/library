@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vscode 代码片段配置记录 | ecstAsy 前端记录</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    
+    <meta name="description" content="ecstAsy 前端记录">
+    
+    <link rel="preload" href="/library/assets/css/0.styles.e96e9fe6.css" as="style"><link rel="preload" href="/library/assets/js/app.ce5ab617.js" as="script"><link rel="preload" href="/library/assets/js/3.b69ada89.js" as="script"><link rel="preload" href="/library/assets/js/1.a9ff72de.js" as="script"><link rel="preload" href="/library/assets/js/85.b6ac5be5.js" as="script"><link rel="prefetch" href="/library/assets/js/10.46d1ef15.js"><link rel="prefetch" href="/library/assets/js/11.91832403.js"><link rel="prefetch" href="/library/assets/js/12.4863b5e9.js"><link rel="prefetch" href="/library/assets/js/13.7cf041ad.js"><link rel="prefetch" href="/library/assets/js/14.caafb8f7.js"><link rel="prefetch" href="/library/assets/js/15.8f846a05.js"><link rel="prefetch" href="/library/assets/js/16.a617f5f5.js"><link rel="prefetch" href="/library/assets/js/17.42b72844.js"><link rel="prefetch" href="/library/assets/js/18.c0be8a02.js"><link rel="prefetch" href="/library/assets/js/19.dd7f560f.js"><link rel="prefetch" href="/library/assets/js/20.230aae09.js"><link rel="prefetch" href="/library/assets/js/21.d93cb264.js"><link rel="prefetch" href="/library/assets/js/22.75b0a74f.js"><link rel="prefetch" href="/library/assets/js/23.8bf65947.js"><link rel="prefetch" href="/library/assets/js/24.110eee4f.js"><link rel="prefetch" href="/library/assets/js/25.170cf6cf.js"><link rel="prefetch" href="/library/assets/js/26.1eadfa4c.js"><link rel="prefetch" href="/library/assets/js/27.af6c3ee1.js"><link rel="prefetch" href="/library/assets/js/28.55624e7d.js"><link rel="prefetch" href="/library/assets/js/29.482c2066.js"><link rel="prefetch" href="/library/assets/js/30.2648dc68.js"><link rel="prefetch" href="/library/assets/js/31.1d022fac.js"><link rel="prefetch" href="/library/assets/js/32.3ec08432.js"><link rel="prefetch" href="/library/assets/js/33.7a30fc1b.js"><link rel="prefetch" href="/library/assets/js/34.59f8e2e2.js"><link rel="prefetch" href="/library/assets/js/35.1b19b5a8.js"><link rel="prefetch" href="/library/assets/js/36.ce7eb8e3.js"><link rel="prefetch" href="/library/assets/js/37.0dfc7d0b.js"><link rel="prefetch" href="/library/assets/js/38.49d6206b.js"><link rel="prefetch" href="/library/assets/js/39.10721c8b.js"><link rel="prefetch" href="/library/assets/js/4.7791e748.js"><link rel="prefetch" href="/library/assets/js/40.1ab8fc32.js"><link rel="prefetch" href="/library/assets/js/41.6468b08f.js"><link rel="prefetch" href="/library/assets/js/42.18f63cbc.js"><link rel="prefetch" href="/library/assets/js/43.e1db3192.js"><link rel="prefetch" href="/library/assets/js/44.7e1a3e6d.js"><link rel="prefetch" href="/library/assets/js/45.57ebc155.js"><link rel="prefetch" href="/library/assets/js/46.7e329351.js"><link rel="prefetch" href="/library/assets/js/47.22f893b6.js"><link rel="prefetch" href="/library/assets/js/48.33fe177f.js"><link rel="prefetch" href="/library/assets/js/49.e53198e9.js"><link rel="prefetch" href="/library/assets/js/5.a32e6d9f.js"><link rel="prefetch" href="/library/assets/js/50.32c40c27.js"><link rel="prefetch" href="/library/assets/js/51.06697d64.js"><link rel="prefetch" href="/library/assets/js/52.bbf03000.js"><link rel="prefetch" href="/library/assets/js/53.9bff1c80.js"><link rel="prefetch" href="/library/assets/js/54.15e5ecf1.js"><link rel="prefetch" href="/library/assets/js/55.69adbd8c.js"><link rel="prefetch" href="/library/assets/js/56.20b8c5dc.js"><link rel="prefetch" href="/library/assets/js/57.3f3582a9.js"><link rel="prefetch" href="/library/assets/js/58.2a1a7e23.js"><link rel="prefetch" href="/library/assets/js/59.55fa58bb.js"><link rel="prefetch" href="/library/assets/js/6.8dca72f9.js"><link rel="prefetch" href="/library/assets/js/60.9395bdce.js"><link rel="prefetch" href="/library/assets/js/61.d4f81a56.js"><link rel="prefetch" href="/library/assets/js/62.582a1051.js"><link rel="prefetch" href="/library/assets/js/63.61f47aad.js"><link rel="prefetch" href="/library/assets/js/64.5dd13561.js"><link rel="prefetch" href="/library/assets/js/65.e8717f9d.js"><link rel="prefetch" href="/library/assets/js/66.438ec69c.js"><link rel="prefetch" href="/library/assets/js/67.35def996.js"><link rel="prefetch" href="/library/assets/js/68.c8176e7d.js"><link rel="prefetch" href="/library/assets/js/69.ee548b25.js"><link rel="prefetch" href="/library/assets/js/7.b27705d8.js"><link rel="prefetch" href="/library/assets/js/70.00a9910a.js"><link rel="prefetch" href="/library/assets/js/71.5928faae.js"><link rel="prefetch" href="/library/assets/js/72.45976082.js"><link rel="prefetch" href="/library/assets/js/73.4e850ac5.js"><link rel="prefetch" href="/library/assets/js/74.5020ee32.js"><link rel="prefetch" href="/library/assets/js/75.36a98db0.js"><link rel="prefetch" href="/library/assets/js/76.0347aebe.js"><link rel="prefetch" href="/library/assets/js/77.b74178aa.js"><link rel="prefetch" href="/library/assets/js/78.fae32ec5.js"><link rel="prefetch" href="/library/assets/js/79.97e88c29.js"><link rel="prefetch" href="/library/assets/js/8.1ef104f0.js"><link rel="prefetch" href="/library/assets/js/80.4bcb82a6.js"><link rel="prefetch" href="/library/assets/js/81.47fc94b9.js"><link rel="prefetch" href="/library/assets/js/82.2f5d7100.js"><link rel="prefetch" href="/library/assets/js/83.183c0f0e.js"><link rel="prefetch" href="/library/assets/js/84.1b2e3b78.js"><link rel="prefetch" href="/library/assets/js/86.3e0df09f.js"><link rel="prefetch" href="/library/assets/js/87.6f3c5019.js"><link rel="prefetch" href="/library/assets/js/88.2ba3e59c.js"><link rel="prefetch" href="/library/assets/js/89.1d2ddec4.js"><link rel="prefetch" href="/library/assets/js/9.2b69f8b1.js"><link rel="prefetch" href="/library/assets/js/90.8f79dc62.js">
+    <link rel="stylesheet" href="/library/assets/css/0.styles.e96e9fe6.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-1aefc0b4><div data-v-1aefc0b4><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-1aefc0b4 data-v-1aefc0b4><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>ecstAsy 前端记录</h3> <p class="description" data-v-25ba6db2 data-v-25ba6db2>ecstAsy 前端记录</p> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><!---->
+            
+          <!---->
+          2022
+        </a></span></div></div> <div class="hide" data-v-1aefc0b4><header class="navbar" data-v-1aefc0b4><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/library/" class="home-link router-link-active"><!----> <span class="site-name">ecstAsy 前端记录</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/library/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      ecstAsy 的前端博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/ecstAsy/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ecst/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-1aefc0b4></div> <aside class="sidebar" data-v-1aefc0b4><div class="personal-info-wrapper" data-v-39576ba9 data-v-1aefc0b4><!----> <!----> <div class="num" data-v-39576ba9><div data-v-39576ba9><h3 data-v-39576ba9>72</h3> <h6 data-v-39576ba9>文章</h6></div> <div data-v-39576ba9><h3 data-v-39576ba9>0</h3> <h6 data-v-39576ba9>标签</h6></div></div> <ul class="social-links" data-v-39576ba9></ul> <hr data-v-39576ba9></div> <nav class="nav-links"><div class="nav-item"><a href="/library/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      ecstAsy 的前端博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/ecstAsy/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ecst/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/library/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/javascript/js-regular-function" class="sidebar-heading clickable"><span>JavaScript</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/js-skills/array" class="sidebar-heading clickable"><span>javascript技巧</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/css/flex" class="sidebar-heading clickable"><span>Css</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/es6/let-const" class="sidebar-heading clickable"><span>ES6</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/react/context" class="sidebar-heading clickable"><span>React</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/vue/antd-vue-pro" class="sidebar-heading clickable"><span>Vue</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/vs-code/library/plugin/web-excel" class="sidebar-heading clickable"><span>Plugin</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/taro/taro-api" class="sidebar-heading clickable"><span>Taro</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/uni-app/uni-app-request" class="sidebar-heading clickable"><span>Uni-App</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/weapp/formId-collect" class="sidebar-heading clickable"><span>Weapp</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/h5/webkit-line-clamp" class="sidebar-heading clickable"><span>H5</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/git/git-command" class="sidebar-heading clickable"><span>Git</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/tools/decimal" class="sidebar-heading clickable"><span>Tools</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/node/fast-file" class="sidebar-heading clickable"><span>Node</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/interview/common" class="sidebar-heading clickable"><span>Interview</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/3d/three" class="sidebar-heading clickable"><span>3D</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/algorithm/array" class="sidebar-heading clickable"><span>Algorithm</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>Vscode 代码片段配置记录</h3> <!----> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><!---->
+            
+          <!---->
+          2022
+        </a></span></div></div> <div data-v-1aefc0b4><main class="page"><section><div class="page-title"><h1 class="title">Vscode 代码片段配置记录</h1> <div data-v-f875f3fc><i class="iconfont reco-account" data-v-f875f3fc><span data-v-f875f3fc>ecstAsy</span></i> <i class="iconfont reco-date" data-v-f875f3fc><span data-v-f875f3fc>2022/1/4</span></i> <!----> <!----></div></div> <div class="theme-reco-content content__default"><h3 id="配置流程"><a href="#配置流程" class="header-anchor">#</a> 配置流程</h3> <p><strong><em>汉化版本：（zh-cn）</em></strong></p> <ul><li>=&gt; 文件</li> <li>=&gt; 首选项</li> <li>=&gt; 用户代码片段</li> <li>=&gt; javascript.json</li></ul> <p><strong><em>English：（en-us）</em></strong></p> <ul><li>=&gt; File</li> <li>=&gt; Preferences</li> <li>=&gt; User Snippets</li> <li>=&gt; javascript.json</li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token comment">// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and</span>
+  <span class="token comment">// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span>
+  <span class="token comment">// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the</span>
+  <span class="token comment">// same ids are connected.</span>
+  <span class="token property">&quot;import&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;import 导入资源&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;import Name from '';&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;react-class-comp&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;React Class Component&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;import React, { Component } from 'react';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;/**&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| @${1:CompName}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| #Component&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| 描述&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;*/&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;class ${1:CompName} extends Component {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\trender() {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\treturn (&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t&lt;div&gt;page${1:CompName}&lt;/div&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export default ${1:Compname}&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;React Class 类组件&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;react-function-comp&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;React Function Component&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;import React from 'react';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;/**&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| @${1:CompName}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| #Component&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| 描述&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;*/&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;const ${1:CompName} = ({ ...props }) =&gt; {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\treturn (&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t&lt;div&gt;${1:CompName}&lt;/div&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export default ${1:CompName}&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;React 函数式组件&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;react-html-func-comp&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;React Html Function Component&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;// Todo&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;const ${1:CompName} = (props) =&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t&lt;div&gt;${1:CompName}&lt;/div&gt;&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;React 函数式组件&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dva-connect-store&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Dva Connect Store&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;@connect(({ ${1:StoreName}, loading }) =&gt; ({&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t...${1:StoreName},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tloading: loading.models.${1:StoreName},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}))&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dva 关联 store&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dva-dispatch-store&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Dva Dispatch Store&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;dispatch({&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\ttype: '${1:StorName}',&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tpayload: {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;})&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dva 调用 store&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dva-model-js&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Dva Model Js&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;// import { Api } from './service';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export default {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tnamespace: '${1:modelName}',&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tstate: {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tsubscriptions: {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\tsetup({ dispatch, history }) {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\thistory.listen(async location =&gt; {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t\tconst { pathname } = location;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t\tif (pathname === '/${1:modelName}') {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t\t\tconsole.log(pathname);&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t})&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\teffects: {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t// Todo&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t* list({ payload ={} }, { call }) {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\tconst { data } = yield call(list, payload);&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\tconsole.log(data)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\treducers: {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\tsave(state, { payload }) {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\treturn { ...state, ...payload }&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dva 新建 model.js&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dva-effects-action&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Dva Effects Action&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;* ${1:action_name}({ payload ={} }, { call }) {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tconst { data } = yield call(Api.${2:actionName}, payload);&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tconsole.log(data);&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\treturn data;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;},&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dva 新建 action&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;form-props&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Form Props&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;form: { getFieldDecorator, validateFields, resetFields },&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Antd Form 表单配置&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;form-html&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Form Html&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;&lt;FormItem label='${1:Name}' {...formLayout}&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t{&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\tgetFieldDecorator('${2:key}', {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\tinitialValue: '初始值'&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t})(&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t&lt;Input placeholder='请输入' style={{ width: 240 }} /&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;&lt;/FormItem&gt;&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Antd Form 表单组件&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;form-rules&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Form Rules&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;rules: [{ required: true, message: '${1:Name}不能为空！' }],&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Antd Form 表单校验&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;function-common&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Function Common Style&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;function ${1:name} () {&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;}&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;普通函数&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;function-arrow&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Function Arrow Style&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;const ${1:FuncName} = () =&gt; {&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;};&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;箭头函数&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;async-function-common&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Async Function Common  Style&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;async function ${1:name} () {&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;}&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;普通Async函数&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;async-function-arrow&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Async Function Arrow Style&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;const ${1:FuncName} = async () =&gt; {&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;};&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;箭头Async函数&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;array-from&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Array From Object Array&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;const values = Array.from(${2:array}, ({ ${1:key} }) =&gt; ${1:key});&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;从二维数组中获取一维数组&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;array-map&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Array Map Function&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${1:array}.map((item, index) =&gt; {$2})&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;数组的map方法&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;array-forEach&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Array ForEach Function&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${1:array}.forEach(item =&gt; {\n\tconst _item = item;\n})&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;数组的forEach方法&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;request-get&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Request GET Method&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;// Todo&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export async function ${1:funcName}() {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\treturn request(`${${2:Api}}`);&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Get 方法请求&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;request-post&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Request POST Method&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;// Todo&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export async function ${1:funcName}(params) {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\treturn request(`${${2:Api}}`, {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\tmethod: 'POST',&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\tbody: {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\t...params&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t})&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;}&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Post 方法请求&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;modal-props&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Modal Props&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;// Todo&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;const ${1:action}ModalProps = {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\ttitle: '弹窗名称',&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tvisible: ${1:action}ModalVisible,&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tclosable: false,\n\tkeyboard: false,\n\tmaskClosable: false,&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t// 确认&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tonConfirm: async payload =&gt; {\n\t\tconsole.log(payload)\n\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t// 取消&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tonCancel() {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\tdispatch({&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\ttype: '${2:StoreName}',&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t\tpayload: {\n\t\t\t\t${1:action}ModalVisible: false\n\t\t\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t})&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;};&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Modal的Props配置&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;table-props&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Table Props&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;// Todo&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;const ${1:action}TableProps = {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tloading,&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tdata: dataArray,&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t// 分页&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tonChange({ current, pageSize }) {\n\t\tconsole.log(current, pageSize)\n\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t// 操作&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\tonAction: async record =&gt; {\n\t\tconsole.log(record)\n\t},&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;};&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Table的Props配置&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;useState&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;useState React Hooks&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;const [${1:state}, set${1:state}] = useState(value);&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;React Hooks useState&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;preventDefault&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PreventDefault&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token string">&quot;e.preventDefault();&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;阻止事件冒泡&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;taro-page&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Taro Page&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;import Taro from '@tarojs/taro';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;import { useState, useEffect } from 'react';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;import { connect } from 'react-redux';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;import { View, Text, Image } from '@tarojs/components';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;import './index.scss';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;/**&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| @${1:PageName}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| #Component&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| 描述&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;*/&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;const ${1:PageName} = ({ dispatch }) =&gt; {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\treturn (&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t&lt;View&gt;${1:PageName}&lt;/View&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;};&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export default connect(({ common }) =&gt; ({ common })) (${1:PageName});&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Taro Page 模板&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;taro-compt&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prefix&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Taro Components&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;body&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;import Taro from '@tarojs/taro';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;import { useState, useEffect } from 'react';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;import { View, Text, Image } from '@tarojs/components';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;import './index.scss';&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;/**&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| @${1:CompName}&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| #Component&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;| 描述&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;|--------------------------------------------------&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;*/&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;const ${1:CompName} = ({ ...props }) =&gt; {&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\treturn (&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t\t&lt;View&gt;${1:CompName}&lt;/View&gt;&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;\t)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;};&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;$2&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;export default ${1:CompName};&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Taro Component 模板&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-cb1513f6><li class="level-3" data-v-cb1513f6><a href="/library/library/vs-code/snippets.html#配置流程" class="sidebar-link reco-side-配置流程" data-v-cb1513f6>配置流程</a></li></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/library/assets/js/app.ce5ab617.js" defer></script><script src="/library/assets/js/3.b69ada89.js" defer></script><script src="/library/assets/js/1.a9ff72de.js" defer></script><script src="/library/assets/js/85.b6ac5be5.js" defer></script>
+  </body>
+</html>
