@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-04-14 09:21:03
+ * @LastEditTime: 2022-04-14 21:21:34
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -92,8 +92,7 @@ module.exports = {
       children: [{
           title: '数组',
           path: '/library/js-skills/array'
-        },
-        {
+        }, {
           title: '布尔值',
           path: '/library/js-skills/boolean'
         }, {
@@ -205,10 +204,12 @@ module.exports = {
       }, {
         title: '请求模板',
         path: '/library/taro/taro-request'
-      }, {
-        title: '渲染富文本',
-        path: '/library/taro/taro-richtext'
-      }, {
+        },
+        // {
+        // title: '渲染富文本',
+        // path: '/library/taro/taro-richtext'
+        // },
+        {
         title: 'Weapp H5 踩坑',
         path: '/library/taro/taro-weapp-h5'
       }, ]
