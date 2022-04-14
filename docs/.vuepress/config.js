@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-04-14 21:24:20
+ * @LastEditTime: 2022-04-14 21:34:25
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -205,10 +205,10 @@ module.exports = {
         title: '请求模板',
         path: '/library/taro/taro-request'
         },
-        {
-        title: '渲染富文本',
-        path: '/library/taro/taro-richtext'
-        },
+        // {
+        // title: '渲染富文本',
+        // path: '/library/taro/taro-richtext'
+        // },
         {
         title: 'Weapp H5 踩坑',
         path: '/library/taro/taro-weapp-h5'
