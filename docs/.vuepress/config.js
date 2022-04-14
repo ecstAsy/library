@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-04-13 17:18:27
+ * @LastEditTime: 2022-04-14 09:21:03
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -115,9 +115,15 @@ module.exports = {
       ],
     }, {
       title: 'Css',
-      path: '/library/css/flex-ellipsis-more',
+      path: '/library/css/flex',
       collapsable: true,
       children: [{
+        title: 'Flex',
+        path: '/library/css/flex'
+      }, {
+        title: 'BFC',
+        path: '/library/css/bfc'
+      }, {
         title: 'Flex-Ellipsis 查看更多',
         path: '/library/css/flex-ellipsis-more'
       }, {
