@@ -635,4 +635,17 @@ div {
 
 #### **35. BFC 是什么**
 
-[BFC 是什么](../../library/)
+[BFC 是什么](../css/bfc.md)
+
+#### **36. Flex 布局**
+
+[Flex 布局](../css//flex.md)
+
+#### **37. 简述一下 Sass、Less，且说明区别？**
+
+他们是动态的样式语言，是 CSS 预处理器,CSS 上的一种抽象层。他们是一种特殊的语法/语
+言而编译成 CSS。
+
+- 变量符不一样，less 是@，而 Sass 是$;
+- Sass 支持条件语句，可以使用 **if{}else{},for{}**循环等等。而 Less 不支持;
+- Sass 是基于 Ruby 的，是在服务端处理的，而 Less 是需要引入 **less.js** 输出到 Css 浏览器。

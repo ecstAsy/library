@@ -559,3 +559,260 @@ for (let i of iterable) {
 - 服务器处理请求并返回 HTTP 报文
 - 浏览器解析渲染页面
 - 断开连接：TCP 四次挥手
+
+#### **58. 3 种强制类型转换和 2 种隐式类型转换**
+
+- 强制类型转换
+  - parseInt()
+  - parseFloat()
+  - Number()
+- 隐式类型转换
+  - 1 == '1' // true
+  - null == undefined // true
+
+#### **59. IE 和 DOM 事件流的区别**
+
+- 执行顺寻不一样
+- 参数不一样
+- 事件加不加 **on**
+- **this** 指向问题
+
+:::warning
+
+- IE9 之前： **attachEvent("onclick")、datachEvent("onclick")**
+- IE9 开始给 DOM 事件流是一样的，都是 **addEventListener**
+
+:::
+
+#### **60. IE 和 标准下有哪些兼容方法**
+
+```js
+var event = event || window.event;
+document.documentElement.clientWidth || document.body.clientWidth;
+var target = event.srcElement || evemt.target;
+```
+
+#### **61. JavaScript 的数据类型**
+
+- 基本数据类型 **String、Boolean、Number、undefined、object、null**
+- 引用数据类型 **Object(Array、Date、RegExp、Function)**
+
+#### **62. 获取 url 中 get 参数**
+
+```js
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  }
+  return false;
+}
+```
+
+#### **63. a++ 和 ++a 的区别**
+
+不管 a++ 还是 ++a ，都是要自身 + 1。
+**_a++:_** 先返回值，再执行语句。 （**先返回旧值，再计算，最后存储新值**）
+**_++a:_** 先执行语句，再返回值。 （**先计算，再存储新值，最后返回新值**）
+
+```js
+let a = 0;
+console.log(a++); // 0
+console.log(a); // 1
+console.log(++a); // 2
+console.log(a); // 2
+```
+
+#### **64. 浏览器对象模型以及 window 常用方法**
+
+- 浏览器对象模型 **window、document、location、screen、history、navigator**
+- window 常用方法 **alert()、confirm()、prompt()、open()、close()**
+
+#### 65. 创建函数的几种方式
+
+- 函数声明
+  ```js
+  function getSum(num1, num2) {
+    return num1 + num2;
+  }
+  ```
+- 函数表达式
+  ```js
+  var getSum = function (num1, num2) {
+    return num1 + num2;
+  };
+  ```
+  - 匿名函数 (**只能自己执行自己**)
+  ```js
+  function(num1,num2) {
+    return num1 + num2;
+  }
+  ```
+- 函数对象
+  ```js
+  var getSum = new Function("num1", "num2", "return num1 + num2");
+  ```
+
+#### **66. ifream 的优缺点**
+
+- 优点
+  - 解决加载缓慢的第三方内容如图标和广告等问题
+  - **Security sandbox**
+  - 并行加载脚本
+- 缺点
+  - ifream 会阻塞主页面的 **onload** 事件
+  - 即使内容为空，加载也需要时间
+  - 没有语义
+
+#### **67. 哪些操作会造成内存泄漏**
+
+**概念**: 内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。
+
+垃圾回收器定期扫描对象，并计算引用了每个对象的其他数量。如果一个对象的引用数量为 0（没有其他对象引用过该对象），或该对象的唯一引用是循环的，那么该对象的内存即可回收。
+
+- setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏
+- 闭包
+- 控制台日志
+- 循环（在两个对象彼此引用且彼此保留时，就会产生一个循环）
+
+#### 68. JavaScript 的 typeof 返回哪些数据类型
+
+**object、number、function、boolean、undefined**
+
+#### **69. 字符串反转 “1，2，3，4，5，6，7，8，9”变成“9，8，7，6，5，4，3，2，1”**
+
+```js
+var str = "123456789";
+str = str.split("").reverse().join("");
+```
+
+#### **70. console.log("11" + 2 - "1")**
+
+```js
+var str = "11" + 2 - "1";
+console.log("11" + 2 - "1");
+console.log(typeof str);
+```
+
+- 减法操作符在处理各种数据类型转换时
+  :::warning
+
+  - 如果两个操作符都是数值, 则执行常规的算术减法操作，并返回结果。
+  - 如果有一个操作数是 NAN， 则结果也是 NaN。
+  - 如果有一个操作数是字符串、布尔值、null、undefined 则先在后台调用 Number()方法将其转换为数值, 然后在根据根据前面的规则进行减法计算，如果转换的结果是 NaN, 则减法的结果就是 NaN。
+  - 如果有一个操作数是对象，则调用对象的 valueof() 方法以取得该方法返回后的值，如果得到的值是 NaN,则减法的结果就是 NaN, 如果对象没有 valueOf()方法，则调用其 toString()方法并将得到的字符串转为数值。
+
+  :::
+
+#### **71. HTTP 的三次握手四次挥手**
+
+[HTTP 的三次握手四次挥手](../javascript/js-HTTP-TCP.md)
+
+#### **72. HTTP 协议中，GET 和 POST 有什么区别？分别适用什么场景**
+
+| 请求方式 | 传送数据长度 | 传递方式                   | 用处           |
+| :------- | :----------- | :------------------------- | :------------- |
+| **GET**  | 有限制       | url 传递，浏览器地址栏可见 | 简单的数据查询 |
+| **POST** | 无限制       | 报文传递                   | 表单提交       |
+
+#### **73. 主流浏览器内核**
+
+| 名称           | 内核   |
+| :------------- | :----- |
+| IE             | tridet |
+| Fifre(火狐)    | gecko  |
+| Chrome、safari | webkit |
+
+#### **74. Ajax 是什么？如何创建一个 Ajax？**
+
+Ajax 并不算是一种新技术，全称是 **asynchronous javascript and xml**，可以说是已有技术的组合，主要用来实现客户端与服务端的异步通信效果，实现页面的局部刷新，早期的浏览器并不能原生支持 ajax，可以使用隐藏帧（iframe）方式变相实现异步效果，后来的浏览器提供了对 ajax 的支持。
+
+使用 ajax 原生方式发送请求主要通过 XMLHttpRequest(标准浏览器)、ActiveXObject(IE 浏览器)对象实现异步通信效果。
+
+基本步骤：
+
+```js
+var xhr = null;
+if (window.XMLHttpRequest) {
+  //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+  xhr = new HMLHttpRequest();
+} else {
+  // IE6, IE5 浏览器执行代码
+  xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+xhr.onreadystatechange = function () {
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    return xhr.responseText;
+  }
+};
+xhr.open("GET", "/try/ajax/ajax_info.txt", true);
+xhr.send();
+```
+
+#### **75. 同步 & 异步**
+
+同步和异步关注的是消息通信机制。
+
+**同步**: 就是调用某个方法时，调用方得等待这个调用返回结果才能继续往后执行。
+
+- 同步方法调用一旦开始，调用者必须等到方法调用返回后，才能继续后续的行为。
+  ![同步导图](../../assets/await.png)
+
+**异步**: 和同步相反，调用方不会立即得到结果，而是在调用发出后调用者可用继续执行后续操作，被调用者通过状体来通知调用者，或者通过回掉函数来处理这个调用。
+
+- 异步方法调用更像一个消息传递，一旦开始，方法调用就会立即返回，调用者就可以继续后续的操作。而，异步方法通常会在另外一个线程中，“真实”地执行着。整个过程，不会阻碍调用者的工作
+  ![异步导图](../../assets/async.png)
+
+**解决方法**
+
+- Promise
+
+  ```js
+
+  ```
+
+- generator/yield
+
+  ```js
+  const getSum = (a, b) => a + b;
+
+  const getSubtract = (a, b) => a - b;
+
+  const getNums = function* () {
+    const num1 = yield getSum(a, b);
+    const num2 = yield getSubtract(num1, c);
+    return num2;
+  };
+  ```
+
+- async/await
+
+  ```js
+  const getSum = (a, b) => a + b;
+
+  const getSubtract = (a, b) => a - b;
+
+  const getNums = async (a, b, c) => {
+    const num1 = await getSum(a, b);
+    const num2 = await getSubtract(num1, c);
+    console.log(num2);
+  };
+
+  getNums(3, 2, 1); // 4
+  ```
+
+#### **76. 同步异步与阻塞非阻塞的区别**
+
+**同步和异步**: 强调的是消息通信机制，所谓同步，就是在发出一个"调用"时，在没有得到结果之前，该“调用”就不返回。但是一旦调用返回，就得到返回值了。换句话说，就是由“调用者”主动等待这个“调用”的结果。而异步则是相反，"调用"在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在"调用"发出后，"被调用者"通过状态、通知来通知调用者，或通过回调函数处理这个调用。
+
+**阻塞和非阻塞**: 强调的是程序在等待调用结果（消息，返回值）时的状态. 阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。 对于同步调用来说，很多时候当前线程还是激活的状态，只是从逻辑上当前函数没有返回而已，即同步等待时什么都不干，白白占用着资源。
+
+#### **77. 如何解决跨域问题?**
+
+**跨域概念**： **协议、域名、端口都相同才同域，否则都是跨域**
+
+处于安全考虑，服务器不允许 ajax 跨域请求数据，但是可以跨域获取文件内容，所以基于这一点，可以动态创建 script 标签，使用 src 属性访问 js 文件的形式获取 js 脚本，并且这个 js 脚本中的内容是函数调用，该函数调用的参数是服务器返回的数据，为了获取这里的参数数据，需要事先在页面定义回调函数，在回调函数中处理服务器返回的数据，这就是解决跨域问题的主流方案。
