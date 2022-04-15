@@ -893,3 +893,21 @@ xhr.send();
   - **--a**、**a--**
     - **--a**：先计算、后使用
     - **a--**：先使用、后计算
+
+#### **79. 箭头函数**
+
+- 更简短的函数
+
+  ```js
+  // ES5
+  const getSum = function (num1, num2) {
+    return num2 + num2;
+  };
+  // ES6
+  const getSum = (num1, num2) => num1 + num2;
+  ```
+
+- 箭头函数没有 prototype 属性
+- 箭头函数不绑定 **_this_**
+  - 如果该函数是一个构造函数，**_this_** 指针指向一个新的对象
+  - 在严格模式下的函数调用下，**_this_** 指向 **_undefined_**
