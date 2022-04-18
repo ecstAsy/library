@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-04-14 21:41:31
+ * @LastEditTime: 2022-04-18 19:52:19
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -288,6 +288,17 @@ module.exports = {
       }, {
         title: 'node+express+mock',
         path: '/library/node/node-express-mock',
+      }]
+      }, {
+      title: "Webpack",
+      path: "/library/webpack/config",
+      collapsable: true,
+      children: [{
+        title: 'Webpack基础配置',
+        path: '/library/webpack/config',
+      }, {
+        title: 'Webpack笔记',
+        path: '/library/webpack/note',
       }]
     }, {
       title: 'Interview',
