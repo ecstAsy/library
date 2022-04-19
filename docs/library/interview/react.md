@@ -497,6 +497,290 @@ export const connect =
 - **_getSnapshotBeforeUpdate_**
 - **_componentDidUpdate_**
 
+**（1）shouldComponentUpdate**
+
+```js
+shouldComponentUpdate(nextProps, nextState);
+```
+
+**注意 ⚠️**
+
+- **_setState_** 函数在任何情况下都会导致组件重新渲染吗？例如：
+
+```js
+this.setState({ number: this.state.number });
+```
+
+- 如果没有调用 **_setState_**，**props** 值也没有变化，是不是组件就不会重新渲染？
+
+第一个问题答案是 **会**，第二个问题如果是父组件重新渲染时，不管传入的 **props** 有没有变化，都会引起子组件的重现渲染。
+
+那么有没有什么方法解决在这两个场景下不让组件重新渲染而提升性能呢？ 这个时候 **_shouldComponentUpdate_** 就登场了，这个生命周期函数是用来提升速度的，它是在重现渲染组件开始前触发的，默认返回 **true**，可以比较 **this.props** 和 **nextProps**，**this.state** 和 **nextState** 值是否变化，来确认返回 **true** 或者 **false** 。当返回 **false** 时，组件的更新过程停止，后续的 **render\*** 、**_componentDidUpdate_** 也不会被调用。
+
+**注意 ⚠️**：添加 **_shouldComponentUpdate_** 方法时，不建议使用深度相等检查（如使用 **_JSON.stringify（）_** ），因为深比效率比较低，可能会比重新渲染组件效率还低。而且 gai 该方法维护比较困难，建议使用该方法会产生明显的性能提升时使用。
+
+**（2）getSnapshotBeforeUpdate**
+
+```js
+getSnapshotBeforeUpdate(prevProps, prevState);
+```
+
+这个方法在 **_render_** 之后，**_componentDidUpdate_** 之前调用，有两个参数 **prevProps** 和 **prevState** ，表示更新之前的 **props** 和 **state**，这个函数必须要和 **_componentDidUpdate_** 一起使用，并且要有一个返回值，默认是 **null**，这个返回值作为第三个参数传给 **_componentDidUpdate_**。
+
+**（3）componentDidUpdate**
+
+**_componentDidUpdate()_** 会在更新后会被立即调用，首次渲染不会执行此方法。 该阶段通常进行以下操作：
+
+- 当组件更新后，对 DOM 进行操作
+- 如果你对更新前后的 props 进行了比较，也可以选择在此处进行网络请求；（例如，当 props 未发生变化时，则不会执行网络请求）。
+
+```js
+componentDidUpdate(prevProps, prevState, snapshot){}
+```
+
+- **prevProps**: 更新前的 **props**
+- **prevState**: 更新前的 **state**
+- **snapshot**: **_getSnapshotBeforeUpdate()_** 生命周期的返回值
+
+**3）组件卸载阶段**
+
+卸载阶段只有一个生命周期函数，**_componentWillUnmount()_** 会在组件卸载及销毁之前直接调用。在此方法中执行必要的清理操作：
+
+- 清除 timer，取消网络请求或清除
+- 取消在 **_componentDidMount()_** 中创建的订阅等；
+
+这个生命周期在一个组件被卸载和销毁之前被调用，因此你不应该再这个方法中使用 setState，因为组件一旦被卸载，就不会再装载，也就不会重新渲染。
+
+**4）错误处理阶段**
+
+**_componentDidCatch(error, info)_**，此生命周期在后代组件抛出错误后被调用。 它接收两个参数 ∶
+
+- **error**：抛出的错误
+- **info**：带有 **componentStack key**的对象，其中包含有关组件引发错误的栈信息
+
+![React 常见生命周期](../../assets/react-error.png)
+
+**React 常见生命周期的过程大致如下：**
+
+- 挂载阶段，首先执行 constructor 构造方法，来创建组件
+- 创建完成之后，就会执行 render 方法，该方法会返回需要渲染的内容
+- 随后，React 会将需要渲染的内容挂载到 DOM 树上
+- **挂载完成之后就会执行 componentDidMount 生命周期函数**
+- 如果我们给组件创建一个 props（用于组件通信）、调用 setState（更改 state 中的数据）、调用 forceUpdate（强制更新组件）时，都会重新调用 render 函数
+- render 函数重新执行之后，就会重新进行 DOM 树的挂载
+- **挂载完成之后就会执行 componentDidUpdate 生命周期函数**
+- **当移除组件时，就会执行 componentWillUnmount 生命周期函数**
+
+**React 主要生命周期总结：**
+
+- **_getDefaultProps_** : 这个函数会在组件创建之前被调用一次（有且仅有一次），它被用来初始化组件的 Props
+- **_getInitialState_** : 用于初始化组件的 state 值
+- **_componentWillMount_** : 在组件创建后、render 之前，会走到 componentWillMount 阶段。这个阶段我个人一直没用过、非常鸡肋。后来 React 官方已经不推荐大家在 componentWillMount 里做任何事情、到现在 **React16 直接废弃了这个生命周期** ，足见其鸡肋程度了
+- **_render_** : 这是所有生命周期中唯一一个你必须要实现的方法。一般来说需要返回一个 jsx 元素，这时 React 会根据 props 和 state 来把组件渲染到界面上；不过有时，你可能不想渲染任何东西，这种情况下让它返回 null 或者 false 即可
+- **_componentDidMount_** : 会在组件挂载后（插入 DOM 树中后）立即调用，标志着组件挂载完成。一些操作如果依赖获取到 DOM 节点信息，我们就会放在这个阶段来做。此外，这还是 React 官方推荐的发起 ajax 请求的时机。该方法和 componentWillMount 一样，有且仅有一次调用
+
+#### **2. React 废弃了哪些生命周期？为什么？**
+
+被废弃的三个函数都是在 render 之前，因为 fber 的出现，很可能因为高优先级任务的出现而打断现有任务导致它们会被执行多次。另外的一个原因则是，React 想约束使用者，好的框架能够让人不得已写出容易维护和扩展的代码，这一点又是从何谈起，可以从新增加以及即将废弃的生命周期分析入手
+
+- **_componentWillMount_**
+
+首先这个函数的功能完全可以使用 componentDidMount 和 constructor 来代替，异步获取的数据的情况上面已经说明了，而如果抛去异步获取数据，其余的即是初始化而已，这些功能都可以在 constructor 中执行，除此之外，如果在 willMount 中订阅事件，但在服务端这并不会执行 willUnMount 事件，也就是说服务端会导致内存泄漏所以 componentWilIMount 完全可以不使用，但使用者有时候难免因为各 种各样的情况在 componentWilMount 中做一些操作，那么 React 为了约束开发者，干脆就抛掉了这个 API
+
+- **_componentWillReceiveProps_**
+
+在老版本的 React 中，如果组件自身的某个 state 跟其 props 密切相关的话，一直都没有一种很优雅的处理方式去更新 state，而是需要在 componentWilReceiveProps 中判断前后两个 props 是否相同，如果不同再将新的 props 更新到相应的 state 上去。这样做一来会破坏 state 数据的单一数据源，导致组件状态变得不可预测，另一方面也会增加组件的重绘次数。类似的业务需求也有很多，如一个可以横向滑动的列表，当前高亮的 Tab 显然隶属于列表自身的时，根据传入的某个值，直接定位到某个 Tab。为了解决这些问题，React 引入了第一个新的生命周期：getDerivedStateFromProps。
+:::tip
+**_getDerivedStateFromProps_** 有以下的优点 ∶
+
+- getDSFP 是静态方法，在这里不能使用 this，也就是一个纯函数，开发者不能写出副作用的代码
+- 开发者只能通过 prevState 而不是 prevProps 来做对比，保证了 state 和 props 之间的简单关系以及不需要处理第一次渲染时 prevProps 为空的情况
+- 基于第一点，将状态变化（setState）和昂贵操作（tabChange）区分开，更加便于 render 和 commit 阶段操作或者说优化
+
+:::
+
+- **_componentWillUpdate_**
+
+与 componentWillReceiveProps 类似，许多开发者也会在 componentWillUpdate 中根据 props 的变化去触发一些回调 。 但不论是 componentWilReceiveProps 还 是 componentWilUpdate，都有可能在一次更新中被调用多次，也就是说写在这里的回调函数也有可能会被调用多次，这显然是不可取的。与 componentDidMount 类 似， componentDidUpdate 也不存在这样的问题，一次更新中 componentDidUpdate 只会被调用一次，所以将原先写在 componentWillUpdate 中 的 回 调 迁 移 至 componentDidUpdate 就可以解决这个问题.
+
+另外一种情况则是需要获取 DOM 元素状态，但是由于在 fber 中，render 可打断，可能在 wilMount 中获取到的元素状态很可能与实际需要的不同，这个通常可以使用第二个新增的生命函数的解决 getSnapshotBeforeUpdate(prevProps, prevState)
+
+- **_getSnapshotBeforeUpdate(prevProps, prevState)_**
+
+返回的值作为 componentDidUpdate 的第三个参数。与 willMount 不同的是，getSnapshotBeforeUpdate 会在最终确定的 render 执行之前执行，也就是能保证其获取到的元素状态与 didUpdate 中获取到的元素状态相同。官方参考代码：
+
+```jsx
+class ScrollingList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // 我们是否在 list 中添加新的 items ？
+    // 捕获滚动​​位置以便我们稍后调整滚动位置。
+    if (prevProps.list.length < this.props.list.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // 如果我们 snapshot 有值，说明我们刚刚添加了新的 items，
+    // 调整滚动位置使得这些新 items 不会将旧的 items 推出视图。
+    //（这里的 snapshot 是 getSnapshotBeforeUpdate 的返回值）
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
+    }
+  }
+
+  render() {
+    return <div ref={this.listRef}>{/* ...contents... */}</div>;
+  }
+}
+```
+
+#### **3. React 16.X 中 props 改变后在哪个生命周期中处理**
+
+**在 getDerivedStateFromProps 中进行处理**
+
+这个生命周期函数是为了替代 componentWillReceiveProps 存在的，所以在需要使用 componentWillReceiveProps 时，就可以考虑使用 getDerivedStateFromProps 来进行替代。
+
+两者的参数是不相同的，而 getDerivedStateFromProps 是一个静态函数，也就是这个函数不能通过 this 访问到 class 的属性，也并不推荐直接访问属性。而是应该通过参数提供的 nextProps 以及 prevState 来进行判断，根据新传入的 props 来映射到 state。
+
+需要注意的是，**如果 props 传入的内容不需要影响到你的 state，那么就需要返回一个 null**，这个返回值是必须的，所以尽量将其写到函数的末尾：
+
+```jsx
+static getDerivedStateFromProps(nextProps, prevState) {
+    const {type} = nextProps;
+    // 当传入的type发生变化的时候，更新state
+    if (type !== prevState.type) {
+        return {
+            type,
+        };
+    }
+    // 否则，对于state不进行任何操作
+    return null;
+}
+```
+
+#### **4. React 性能优化在哪个生命周期？它优化的原理是什么？**
+
+react 的父级组件的 render 函数重新渲染会引起子组件的 render 方法的重新渲染。但是，有的时候子组件的接受父组件的数据没有变动。子组件 render 的执行会影响性能，这时就可以使用 shouldComponentUpdate 来解决这个问题。
+
+使用方法如下：
+
+```jsx
+shouldComponentUpdate(nexrProps) {
+    if (this.props.num === nexrProps.num) {
+        return false
+    }
+    return true;
+}
+```
+
+shouldComponentUpdate 提供了两个参数 nextProps 和 nextState，表示下一次 props 和一次 state 的值，当函数返回 false 时候，render()方法不执行，组件也就不会渲染，返回 true 时，组件照常重渲染。此方法就是拿当前 props 中值和下一次 props 中的值进行对比，数据相等时，返回 false，反之返回 true。
+
+需要注意，在进行新旧对比的时候，是浅对比，也就是说如果比较的数据时引用数据类型，只要数据的引用的地址没变，即使内容变了，也会被判定为 true。
+
+面对这个问题，可以使用如下方法进行解决：
+（1）使用 setState 改变数据之前，先采用 ES6 中 assgin 进行拷贝，但是 assgin 只深拷贝的数据的第一层，所以说不是最完美的解决办法：
+
+```js
+const o2 = Object.assign({}, this.state.obj);
+o2.student.count = "00000";
+this.setState({
+  obj: o2,
+});
+```
+
+（2）使用 JSON.parse(JSON.stringfy())进行深拷贝，但是遇到数据为 undefined 和函数时就会错。
+
+```js
+const o2 = JSON.parse(JSON.stringify(this.state.obj));
+o2.student.count = "00000";
+this.setState({
+  obj: o2,
+});
+```
+
+#### **4. state 和 props 触发更新的生命周期分别有什么区别？**
+
+- **state**
+  ![React state 更新流程](../../assets/react-state.png)
+
+  - **_shouldComponentUpdate_** : 当组件的 **state** 和 **props** 发生改变时，都会首先触发这个生命周期函数。它会接收两个参数 **nextState** 和 **nextProps** ，它们分别代表传入的新的 **state** 和 **props** 值。拿到这两个值以后，我们就可以通过一些逻辑来决定是否有 **re-render（重渲染）** 的必要了，如果该函数的返回值为 **false** ，则生命周期终止，反之继续
+    :::warning
+
+    **注意 ⚠️**
+
+    此方法仅作为性能优化的方式而存在。不要企图依靠此方法来“阻止”渲染，因为这可能会产生 bug。应该考虑使用内置的 **PureComponent** 组件，而不是手动编写 **_shouldComponentUpdate()_**
+
+    :::
+
+  - **_componentWillUpdate_**
+
+    当组件的 state 或 props 发生改变时，会在渲染之前调用 componentWillUpdate。componentWillUpdate 是 **React16 废弃的三个生命周期之一**。过去，我们可能希望能在这个阶段去收集一些必要的信息（比如更新前的 DOM 信息等等），现在我们完全可以在 React16 的 getSnapshotBeforeUpdate 中去做这些事；
+
+  - **_componentDidUpdate_**
+
+    componentDidUpdate() 会在 UI 更新后会被立即调用。它接收 prevProps（上一次的 props 值）作为入参，也就是说在此处我们仍然可以进行 props 值对比（再次说明 componentWillUpdate 确实鸡肋哈）。
+
+- **props**
+  ![React props 更新流程](../../assets/react-props.png)
+  相对于 state 更新，props 更新后唯一的区别是增加了对 **_componentWillReceiveProps_** 的调用。关于 componentWillReceiveProps，需要知道这些事情：
+
+  - **_componentWillReceiveProps_**
+
+  它在 Component 接受到新的 props 时被触发。componentWillReceiveProps 会接收一个名为 nextProps 的参数（对应新的 props 值）。该生命周期是 **React16 废弃掉的三个生命周期之一**。在它被废弃前，可以用它来比较 this.props 和 nextProps 来重新 setState。在 React16 中，用一个类似的新生命周期 getDerivedStateFromProps 来代替它。
+
+#### **6. React 中发起网络请求应该在哪个生命周期中进行？为什么？**
+
+对于**异步请求**，最好放在 **_componentDidMount_** 中去操作，对于**同步的状态改变**，可以放在 **componentWillMount** 中，一般用的比较少。
+
+如果认为在 **_componentWillMount_** 里发起请求能提早获得结果，这种想法其实是错误的，通常 **componentWillMount 比 componentDidMount 早不了多少微秒**，网络上任何一点延迟，这一点差异都可忽略不计。
+
+**react 的生命周期**：**_constructor()_** -> **_componentWillMount()_** -> **_render()_** -> **_componentDidMount()_**
+
+上面这些方法的调用是有次序的，由上而下依次调用
+
+- constructor 被调用是在组件准备要挂载的最开始，此时组件尚未挂载到网页上。
+- componentWillMount 方法的调用在 constructor 之后，在 render 之前，在这方法里的代码调用 setState 方法不会触发重新 render，所以它一般不会用来作加载数据之用。
+- componentDidMount 方法中的代码，是在组件已经完全挂载到网页上才会调用被执行，所以可以保证数据的加载。此外，在这方法中调用 setState 方法，会触发重新渲染。所以，官方设计这个方法就是用来加载外部数据用的，或处理其他的副作用代码。与组件上的数据无关的加载，也可以在 constructor 里做，但 constructor 是做组件 state 初绐化工作，并不是做加载数据这工作的，constructor 里也不能 setState，还有加载的时间太长或者出错，页面就无法加载出来。所以有副作用的代码都会集中在 componentDidMount 方法里。
+
+**总结：**
+
+- 跟服务器端渲染（同构）有关系，如果在 componentWillMount 里面获取数据，fetch data 会执行两次，一次在服务器端一次在客户端。在 componentDidMount 中可以解决这个问题，componentWillMount 同样也会 render 两次。
+- 在 componentWillMount 中 fetch data，数据一定在 render 后才能到达，如果忘记了设置初始状态，用户体验不好。
+- react16.0 以后，componentWillMount 可能会被执行多次。
+
+#### **7. React 16 中新生命周期有哪些**
+
+![React 16 中新生命周期](../../assets/react-new-szq.png)
+可以看出，React16 自上而下地对生命周期做了另一种维度的解读：
+
+- **Render 阶段** : 用于计算一些必要的状态信息。这个阶段可能会被 React 暂停，这一点和 React16 引入的 Fiber 架构（我们后面会重点讲解）是有关的
+- **Pre-commit 阶段** : 所谓“commit”，这里指的是“更新真正的 DOM 节点”这个动作。所谓 Pre-commit，就是说我在这个阶段其实还并没有去更新真实的 DOM，不过 DOM 信息已经是可以读取的了
+- **Commit 阶段** : 在这一步，React 会完成真实 DOM 的更新工作。Commit 阶段，我们可以拿到真实 DOM（包括 refs）
+
+与此同时，新的生命周期在流程方面，仍然遵循 **挂载**、**更新**、**卸载**这三个广义的划分方式。它们分别对应到：
+
+- 挂载过程
+  - **_constructor_**
+  - **_getDerivedStateFromProps_**
+  - **_render_**
+  - **_componentDidMount_**
+- 更新过程
+  - **_getDerivedStateFromProps_**
+  - **_shouldComponentUpdate_**
+  - **render**
+  - **_getSnapshotBeforeUpdate_**
+  - **_componentDidUpdate_**
+- 卸载过程
+  - **_componentWillUnmount_**
+
 ### **_四. 组件通信_**
 
 #### **1. 父子组件的通信方式**
