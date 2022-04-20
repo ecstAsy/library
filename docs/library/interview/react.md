@@ -1099,8 +1099,208 @@ import { Switch, Route } from "react-router-dom";
 
 ### **_六. Redux_**
 
+#### **1. 对 Redux 的理解，主要解决什么问题**
+
+**React 是视图层框架。**
+
+**Redux 是一个用来管理数据状态和 UI 状态的 JavaScript 应用工具**。随着 JavaScript 单页应用（SPA）开发日趋复杂， JavaScript 需要管理比任何时候都要多的 state（状态）， Redux 就是降低管理难度的。（Redux 支持 React、Angular、jQuery 甚至纯 JavaScript）。
+
+在 **React** 中， UI 以组件的形式来搭建，组件之间可以嵌套组合。但是 **React** 中组件通信的数据是单向的，顶层组件可以通过 **props** 属性向下层组件传递数据，而下层组件不能向上层组件传递数据，兄弟组件之间同样不能。这样简单的单向数据流支撑起了**React** 中的数据可控性。
+
+当项目越来越大的时候，管理数据的事件或回调函数越来越多，也将越来越不好管理。管理不断变化的 **state** 非常困难。如果一个 **model** 的变化会引起另一个 **model** 的变化，那么当 **view** 变化时，就可能引起 **model** 以及另一个 **model** 的变化，依次的可能引起另一个 **view** 的变化。甚至你搞不清楚到底发生了什么。**state** 在什么时候，由于什么原因，如何变化依然不受控制。当系统变的错综复杂的时候，想重现问题或者添加新的功能就会变的举步维艰。如果这还不够糟糕，考虑一些来自前端开发领域的新需求，如更新调优、服务端渲染、路由跳转前请求数据等。**state** 在大型项目中的管理相当复杂。
+
+**Redux** 提供了一个叫 **store** 的统一仓储库，组件通过 **dispatch** 将 **state** 直接传入 **store** ，不用通过其他的组件。并且组件通过 **subscribe** 从 **store** 获取到 **state** 的改变。使用了 **Redux**，所有的组件都可以从 **store** 中获取到 **state** 的改变。这比组件之间互相传递数据清晰明朗的多。
+
+**Redux 主要解决的问题**
+
+单纯的 **Redux** 只是一个状态机，是没有 UI 呈现的， **react-redux** 作用是将 **Redux** 的状态机和 **React** 的 UI 呈现绑定在一起，当你 **dispatch action** 改变 **state** 的时候，会自动更新页面。
+
+#### **2. Redux 原理及工作流程**
+
+**（1）原理**
+
+**Redux** 源码主要分为一下几个模块文件
+
+- **compose.js** 提供从 🈶 右到左进行函数式编程
+- **createStore.js** 提供作为生成唯一 `store` 的函数
+- **combineReducers.js** 提供合并多个 `reducer` 的函数，保证 `store` 的唯一性
+- **bindActionCreators.js** 可以让开发者在不直接接触 `dispacth` 的前提下进行更改 `state` 的操作
+- **applyMiddleware.js** 这个方法通过中间件来增强 `dispatch` 的功能
+
+```js
+const actionTypes = {
+    ADD: 'ADD',
+    CHANGEINFO: 'CHANGEINFO',
+}
+
+const initState = {
+    info: '初始化',
+}
+
+export default function initReducer(state=initState, action) {
+    switch(action.type) {
+        case actionTypes.CHANGEINFO:
+            return {
+                ...state,
+                info: action.preload.info || '',
+            }
+        default:
+            return { ...state };
+    }
+}
+
+export default function createStore(reducer, initialState, middleFunc) {
+
+    if (initialState && typeof initialState === 'function') {
+        middleFunc = initialState;
+        initialState = undefined;
+    }
+
+    let currentState = initialState;
+
+    const listeners = [];
+
+    if (middleFunc && typeof middleFunc === 'function') {
+        // 封装dispatch
+        return middleFunc(createStore)(reducer, initialState);
+    }
+
+    const getState = () => {
+        return currentState;
+    }
+
+    const dispatch = (action) => {
+        currentState = reducer(currentState, action);
+
+        listeners.forEach(listener => {
+            listener();
+        })
+    }
+
+    const subscribe = (listener) => {
+        listeners.push(listener);
+    }
+
+    return {
+        getState,
+        dispatch,
+        subscribe
+    }
+}
+```
+
+**（2）工作流程**
+
+- `const store= createStore（fn）` 生成数据
+- `action: {type: Symble('action01), payload:'payload' }` 定义行为
+- **_dispatch_** 发起 `action：store.dispatch(doSomething('action001'));`
+- **_reducer_**：处理 `action` ，返回新的 `state`
+
+通俗点解释：
+
+- 首先，用户（通过 `View`）发出 `Action`，发出方式就用到了 **_dispatch_** 方法
+- 然后，`Store` 自动调用 **_Reducer_**，并且传入两个参数：当前 `State` 和收到的 `Action`，`Reducer` 会返回新的 `State`
+- `State` —旦有变化，`Store` 就会调用监听函数，来更新 **View**
+
+以 **store** 为核心，可以把它看成数据存储中心，但是他要更改数据的时候不能直接修改，数据修改更新的角色由 **Reducers** 来担任，**store 只做存储**，中间人，当 **Reducers** 的更新完成以后会通过 **store** 的订阅来通知 **react component**，组件把新的状态重新获取渲染，组件中也能主动发送 **action**，创建 **action** 后这个动作是不会执行的，所以要 **dispatch** 这个 **action**，让 **store** 通过 **_reducers_** 去做更新 **React Component** 就是 **react** 的每个组件。
+
 ### **_七. Hooks_**
 
 ### **_八. 虚拟 DOM_**
 
 ### **_九. 其他_**
+
+#### **1. React 设计思路，它的理念是什么？**
+
+- **编写简单直观的代码**
+
+  React 最大的价值不是高性能的虚拟 DOM、封装的事件机制、服务器端渲染，而是声明式的直观的编码方式。react 文档第一条就是声明式，React 使创建交互式 UI 变得轻而易举。为应用的每一个状态设计简洁的视图，当数据改变时 React 能有效地更新并正确地渲染组件。 以声明式编写 UI，可以让代码更加可靠，且方便调试。
+
+- **简化可复用的组件**
+
+  React 框架里面使用了简化的组件模型，但更彻底地使用了组件化的概念。React 将整个 UI 上的每一个功能模块定义成组件，然后将小的组件通过组合或者嵌套的方式构成更大的组件。
+
+  React 的组件具有如下的特性 ∶
+
+  - **可组合**：简单组件可以组合为复杂的组件
+  - **可重用**：每个组件都是独立的，可以被多个组件使用
+  - **可维护**：和组件相关的逻辑和 UI 都封装在了组件的内部，方便维
+  - **可测试**：因为组件的独立性，测试组件就变得方便很多。
+
+- **Virtual DOM**
+
+  真实页面对应一个 DOM 树。在传统页面的开发模式中，每次需要更新页面时，都要手动操作 DOM 来进行更新。 DOM 操作非常昂贵。在前端开发中，性能消耗最大的就是 DOM 操作，而且这部分代码会让整体项目的代码变得难 以维护。React 把真实 DOM 树转换成 JavaScript 对象树，也就是 Virtual DOM，每次数据更新后，重新计算 Virtual DOM，并和上一次生成的 Virtual DOM 做对比，对发生变化的部分做批量更新。React 也提供了直观的 shouldComponentUpdate 生命周期回调，来减少数据变化后不必要的 Virtual DOM 对比过程，以保证性能。
+
+- **函数式编程**
+
+  React 把过去不断重复构建 UI 的过程抽象成了组件，且在给定参数的情况下约定渲染对应的 UI 界面。React 能充分利用很多函数式方法去减少冗余代码。此外，由于它本身就是简单函数，所以易于测试。
+
+- **一次学习，随处编写**
+
+  无论现在正在使用什么技术栈，都可以随时引入 React 来开发新特性，而不需要重写现有代码。
+  React 还可以使用 Node 进行服务器渲染，或使用 React Native 开发原生移动应用。因为 React 组件可以映射为对应的原生控件。在输出的时候，是输出 Web DOM，还是 Android 控件，还是 iOS 控件，就由平台本身决定了。所以，react 很方便和其他平台集成
+
+#### **2. React 的状态提升是什么？使用场景有哪些？**
+
+React 的状态提升就是用户对子组件操作，子组件不改变自己的状态，通过自己的 props 把这个操作改变的数据传递给父组件，改变父组件的状态，从而改变受父组件控制的所有子组件的状态，这也是 React 单项数据流的特性决定的。官方的原话是：共享 state(状态) 是通过将其移动到需要它的组件的最接近的共同祖先组件来实现的。 这被称为“状态提升(Lifting State Up)”。
+
+概括来说就是**将多个组件需要共享的状态提升到它们最近的父组件上，在父组件上改变这个状态然后通过 props 分发给子组件。**
+
+一个简单的例子，父组件中有两个 input 子组件，如果想在第一个输入框输入数据，来改变第二个输入框的值，这就需要用到状态提升。
+
+```jsx
+class Father extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Value1: "",
+      Value2: "",
+    };
+  }
+  value1Change(aa) {
+    this.setState({
+      Value1: aa,
+    });
+  }
+  value2Change(bb) {
+    this.setState({
+      Value2: bb,
+    });
+  }
+  render() {
+    return (
+      <div style={{ padding: "100px" }}>
+        <Child1
+          value1={this.state.Value1}
+          onvalue1Change={this.value1Change.bind(this)}
+        />
+        <br />
+        <Child2 value2={this.state.Value1} />
+      </div>
+    );
+  }
+}
+class Child1 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  changeValue(e) {
+    this.props.onvalue1Change(e.target.value);
+  }
+  render() {
+    return (
+      <input value={this.props.Value1} onChange={this.changeValue.bind(this)} />
+    );
+  }
+}
+class Child2 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <input value={this.props.value2} />;
+  }
+}
+
+ReactDOM.render(<Father />, document.getElementById("root"));
+```
