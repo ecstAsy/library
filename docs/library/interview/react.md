@@ -1304,3 +1304,115 @@ class Child2 extends React.Component {
 
 ReactDOM.render(<Father />, document.getElementById("root"));
 ```
+
+#### **3. props.children 和 React.Children 的区别**
+
+在 `React` 中，当设计组件嵌套，在父组件中使用 `props.children` 把所有子组件显示出来。
+
+```jsx
+function ParentComponent(props) {
+  return <div>{props.children}</div>;
+}
+```
+
+如果想把父组件中的属性传给所有的子组件，需要使用 `React.Chiidren` 方法。
+
+比如，把几个 `Radio` 组合起来,合成一个 `RadioGroup` , 这就要求所有的 `Radio` 具有同样的 `name` 属性值。可以这样： 把 `Radio` 看做子组件，`RadioGroup` 看做父组件，`name` 的属性值在 `RadioGroup` 这个父组件中设置。
+
+首先是子组件
+
+```jsx
+//子组件
+function RadioOption(props) {
+  return (
+    <label>
+      <input type="radio" value={props.value} name={props.name} />
+      {props.label}
+    </label>
+  );
+}
+```
+
+然后是父组件，不仅需要把它所有的子组件显示出来，还需要为每个子组件赋上 name 属性和值：
+
+```jsx
+//父组件用,props是指父组件的props
+function renderChildren(props) {
+  //遍历所有子组件
+  return React.Children.map(props.children, (child) => {
+    if (child.type === RadioOption)
+      return React.cloneElement(child, {
+        //把父组件的props.name赋值给每个子组件
+        name: props.name,
+      });
+    else return child;
+  });
+}
+//父组件
+function RadioGroup(props) {
+  return <div>{renderChildren(props)}</div>;
+}
+function App() {
+  return (
+    <RadioGroup name="hello">
+      <RadioOption label="选项一" value="1" />
+      <RadioOption label="选项二" value="2" />
+      <RadioOption label="选项三" value="3" />
+    </RadioGroup>
+  );
+}
+export default App;
+```
+
+以上，`React.Children.map` 让我们对父组件的所有子组件又更灵活的控制。
+
+#### **4. React 中 constructor 和 getInitialState 的区别?**
+
+两者都是初始化 **state** 的。 `constructor` 是 **ES6** 的语法，`getInitialState` 是 **ES5** 的语法，新版本的 **React** 已经废弃了 `getInitialState` 方法。
+
+`getInitialState` 是 **ES5** 中的方法，如果使用 **_createClass_** 方法创建一个 **Component** 组件，可以自动调用它的 `getInitialState` 方法来获取初始化的 **State** 对象，
+
+```jsx
+var APP = React.creatClass({
+  getInitialState() {
+    return {
+      userName: "hi",
+      userId: 0,
+    };
+  },
+});
+```
+
+**React** 在 **ES6** 的实现中去掉了 `getInitialState` 这个 **hook** 函数，规定 **state** 在 **constructor** 中实现，如下：
+
+```jsx
+Class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state={};
+    }
+  }
+```
+
+#### **4. React 页面重新加载时怎样保留数据？**
+
+这个问题就涉及到了 **数据持久化**，主要有以下几种方法：
+
+- **Redux** ： 将页面的数据存储在 redux 中，在重新加载页面时，获取 Redux 中的数据；s
+- **data.js** ： 使用 webpack 构建的项目，可以建一个文件，`data.js`，将数据保存 `data.js` 中，跳转页面后获取；
+- **sessionStorge** ： 在进入选择地址页面之前，**componentWillUnMount** 的时候，将数据存储到 `sessionStorage` 中，每次进入页面判断 `sessionStorage` 中有没有存储的那个值，有，则读取渲染数据；没有，则说明数据是初始化的状态。返回或进入除了选择地址以外的页面，清掉存储的 `sessionStorage`，保证下次进入是初始化的数据
+- **history API** ：**History API** 的 **_pushState_** 函数可以给历史记录关联一个任意的可序列化 **state**，所以可以在路由 **_push_** 的时候将当前页面的一些信息存到 **state** 中，下次返回到这个页面的时候就能从 **state** 里面取出离开前的数据重新渲染。`react-router` 直接可以支持。这个方法适合一些需要临时存储的场景。
+
+#### **5. 为什么使用 jsx 的组件中没有看到使用 react 却需要引入 react？**
+
+本质上来说 **JSX** 是 `React.createElement(component, props, ...children)`方法的语法糖。在 **React 17** 之前，如果使用了 **JSX**，其实就是在使用 **React**， `babel` 会把组件转换为 **CreateElement** 形式。在 **React 17** 之后，就不再需要引入，因为 `babel` 已经可以帮我们自动引入 **react**。
+
+#### **6. React.Children.map 和 js 的 map 有什么区别？**
+
+**JavaScript** 中的 **_map_** 不会对为 `null` 或者 `undefined` 的数据进行处理，而 **_React.Children.map_** 中的 **map** 可以处理 **React.Children** 为 `null` 或者 `undefined` 的情况。
+
+#### **7. 同时引用这三个库 react.js、react-dom.js 和 babel.js 它们都有什么作用？**
+
+- **react** ：包含 `react` 所必须的核心代码
+- **react-dom** ：`react` 渲染在不同平台所需要的核心代码
+- **babel** ：将 `jsx` 转换成 `React` 代码的工具
