@@ -256,3 +256,75 @@ module.export = {
 - **thread-loader** 开启多进程打包
   - 进程启动大概为 600ms，进程通信也有开销
   - 只有工作消耗时间比较长，才需要多进程打包
+  ```json
+  {
+    "loader": "thread-loader",
+    "options": {
+      "workers": 2 // 进程两个
+    }
+  }
+  ```
+
+### **externals**
+
+```json
+{
+  "externals": {
+    // 忽略库名 --- npm 包名
+    // 拒绝Jquery被打包进去
+    "jquery": "Jquery"
+  }
+}
+```
+
+### **dll**
+
+使用 `dll` 技术，对某些库（第三方库：jquery、react、vue...）进行单独打包
+
+**webpack.dll.js**
+
+```js
+const { resolve } = require("path");
+const webpack = require("webpack");
+module.exports = {
+  entry: {
+    // 最终打包生成的【name】 =》 jquery
+    // ['jquery'] --> 要打包的库是jquery
+    jquery: ["Jquery"],
+  },
+  output: {
+    filename: "[name].js",
+    path: resolve(__dirname, "dll"),
+    library: "[name]_[hash]",
+  },
+  plugins: [
+    // 打包生成一个 manifest.json ---> 提供和jquery 映射
+    new webpack.DllPlugin({
+      name: "[name_[hash]", // 映射库的暴露的内容名称
+      path: reslve(__dirname, "dll/manifest.json"), // 输出文件路径
+    }),
+  ],
+  mode: "production",
+};
+```
+
+当运行 `webpack` 时，默认查找的是 `webpack.config.js`
+
+需求：需要运行的是 `webpack.dll.js`
+
+> webpack --config webpack.dll.js
+
+**webpack.config.js**
+
+```js
+const webpack = require("webpack");
+
+module.exports = {
+  plugins: [
+    // 告诉 webpack 哪些库不参与打包，同时使用时的名称也要变更～
+    new webpack.DllReferencePlugin({
+      manifest: resolve(__dirname, "dll/manifest.json"),
+    }),
+  ],
+};
+```
