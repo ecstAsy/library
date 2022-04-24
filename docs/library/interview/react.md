@@ -6,6 +6,82 @@ date: "2022-04-15"
 
 ### **_一. 组件基础_**
 
+#### **1. React 事件机制**
+
+```jsx
+<div onClick={this.handleClick.bind(this)}>点我</div>
+```
+
+**React** 并不是将 `click` 事件绑定到了 `div` 的真实 **Dom** 上，而是在 **document** 处监听了所有的事件，当事件发生并且冒泡到了 **document** 的时候，**React** 将事件内容封装并交由真正的处理函数运行。这样的方式不仅减少了内存的消耗，还能在组件销毁时统一订阅和移除事件。
+
+另外，冒泡到 **document** 上的事件也不是原生的浏览器事件，而是由 **react** 自己实现合成的事件（`SyntheticEvent`）。因此不想要事件冒泡的话就调用 `event.preventDefault()` 方法，而不是调用 `event.stopProppagation()` 方法。
+![React 事件机制](../../assets/react-click.jpg)
+**实现合成事件的目的**
+
+- 合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力
+- 对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池是专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。
+
+#### **2. React 的事件和普通的 HTML 事件有什么不同？**
+
+| 分类                 | 原生事件        | react 事件                    |
+| :------------------- | :-------------- | :---------------------------- |
+| 事件名称命名方式     | 小写            | 小驼峰                        |
+| 事件函数处理语法     | 字符串          | 函数                          |
+| 阻止浏览器的默认行为 | `return false ` | 明确地调用 `preventDefault()` |
+
+**react** 合成事件是原生 **DOM** 事件所有能力的一个对象，优点：
+
+- 兼容所有浏览器，更好的跨平台
+- 将事件统一放在一个数组里面，避免频繁的新增和删除（回收）
+- 方便 `react` 统一管理和事务机制
+
+事件的执行顺序为原生事件先执行，合成事件后执行，合成事件会冒泡绑定到 **document** 上，所以尽量避免原生事件与合成事件混用，如果原生事件阻止冒泡可能会导致合成事件不执行，因为需要冒泡到 **document** 上合成事件才会执行。
+
+#### **3. React 组件中怎么做事件代理？它的原理是什么？**
+
+**React** 基于 **Virtual DOM** 实现了一个 `SyntheticEvent` 层（合成事件层），定义的事件处理器会接收到一个合成事件对象的实例，它符合 W3C 标准，且与原生的浏览器事件拥有同样的接口，支持冒泡机制，所有的事件都自动绑定在最外层上。
+
+在 React 底层，主要对合成事件做了两件事：
+
+- **事件委派** ：React 会把所有的事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部事件监听和处理函数。
+- **自动绑定** ：React 组件中，每个方法的上下文都会指向该组件的实例，即自动绑定 this 为当前组件。
+
+#### **4. React.Component 和 React.PureComponent 的区别**
+
+`PureComponent` 表示一个纯组件，可以用来优化 **React** 程序，减少 **_render_** 函数执行的次数，从而提高组件的性能。
+
+在 React 中，当 **prop** 或者 **state** 发生变化时，可以通过在 **_shouldComponentUpdate_** 生命周期函数中执行 `return false` 来阻止页面的更新，从而减少不必要的 **_render_** 执行。`React.PureComponent` 会自动执行 **_shouldComponentUpdate_**。
+
+不过，`pureComponent` 中的 **_shouldComponentUpdate()_** 进行的是浅比较，也就是说如果是引用数据类型的数据，只会比较不是同一个地址，而不会比较这个地址里面的数据是否一致。浅比较会忽略属性和或状态突变情况，其实也就是数据引用指针没有变化，而数据发生改变的时候 **_render_** 是不会执行的。如果需要重新渲染那么就需要重新开辟空间引用数据。`PureComponent` 一般会用在一些纯展示组件上。
+
+**使用 `pureComponent` 的好处**：当组件更新时，如果组件的 **props** 或者 **state** 都没有改变，**_render_** 函数就不会触发。省去虚拟 DOM 的生成和对比过程，达到提升性能的目的。这是因为 react 自动做了一层**浅**比较。
+
+#### **5. Component, Element, Instance 之间有什么区别和联系？**
+
+- **Element（元素）** ： 一个元素 `element` 是一个普通对象(`plain object`)，描述了对于一个 DOM 节点或者其他组件 `component`，你想让它在屏幕上呈现成什么样子。元素 `element` 可以在它的属性 **props** 中包含其他元素(译注:用于形成元素树)。创建一个 React 元素 `element` 成本很低。元素 `element` 创建之后是不可变的。
+- **Component（组件）** ： 一个组件 `component` 可以通过多种方式声明。可以是带有一个 **_render()_** 方法的类，简单点也可以定义为一个函数。这两种情况下，它都把属性 **props** 作为输入，把返回的一棵元素树作为输出。
+- **Instance（实例）** ： 一个实例 `instance` 是你在所写的组件类 `component class` 中使用关键字 `this` 所指向的东西(译注:组件实例)。它用来存储本地状态和响应生命周期事件很有用。
+
+**函数式组件**(**Functional component**)根本没有实例 `instance`。**类组件**(**Class component**)有实例 `instance`，但是永远也不需要直接创建一个组件的实例，因为 React 帮我们做了这些。
+
+#### **6. React.createClass 和 extends Component 的区别有哪些？**
+
+- **语法区别**
+  - `createClass` 本质是一个工厂函数，`extends` 的方式更加接近最新的 `ES6` 规范的 `class` 写法。两种方式在语法上的差别，主要体现在方法的定义和静态属性的声明上。
+  - `createClass` 方式的方法定义使用逗号隔开，因为 `createClass` 本质上是一个函数，传递给它的是一个 `object`; 而 `class` 的方式定义方法时无比谨记不要使用逗号隔开，这是 `ES6 class` 的语法。
+- **propType 和 getDefaultProps**
+  - `React.createClass`：通过 `proTypes` 对象和 **_getDefaultProps()_**方法来设置和获取 props.
+  - `React.Component`：通过设置两个属性 `propTypes` 和 `defaultProps`
+- **状态的区别**
+  - `React.createClass`：通过 **_getInitialState()_**方法返回一个包含初始值的对象
+  - `React.Component`：通过 `constructor` 设置初始状态
+- **this 区别**
+  - `React.createClass`：会正确绑定 this
+  - `React.Component`：由于使用了 ES6，这里会有些微不同，属性并不会自动绑定到 React 类的实例上。
+- **Mixins**
+  - `React.createClass`：使用 `React.createClass` 的话，可以在创建组件时添加一个叫做 **mixins** 的属性，并将可供混合的类的集合以数组的形式赋给 **mixins**。
+  - 如果使用 ES6 的方式来创建组件，那么 **React mixins** 的特性将不能被使用了。
+
 ### **_二. 数据管理_**
 
 #### **1. React setState 调用的原理**
