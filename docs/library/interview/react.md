@@ -82,6 +82,275 @@ date: "2022-04-15"
   - `React.createClass`：使用 `React.createClass` 的话，可以在创建组件时添加一个叫做 **mixins** 的属性，并将可供混合的类的集合以数组的形式赋给 **mixins**。
   - 如果使用 ES6 的方式来创建组件，那么 **React mixins** 的特性将不能被使用了。
 
+#### **7. React 高阶组件是什么，和普通组件有什么区别，适用什么场景**
+
+:::tip
+**高阶组件（HOC）** ： 是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。
+:::
+
+高阶组件（HOC）就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件，它只是一种组件的设计模式，这种设计模式是由 react 自身的组合性质必然产生的。我们将它们称为纯组件，因为它们可以接受任何动态提供的子组件，但它们不会修改或复制其输入组件中的任何行为。
+
+```jsx
+// hoc的定义
+function withSubscription(WrappedComponent, selectData) {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        data: selectData(DataSource, props)
+      };
+    }
+    // 一些通用的逻辑处理
+    render() {
+      // ... 并使用新数据渲染被包装的组件!
+      return <WrappedComponent data={this.state.data} {...this.props} />;
+    }
+  };
+
+// 使用
+const BlogPostWithSubscription = withSubscription(BlogPost,
+  (DataSource, props) => DataSource.getBlogPost(props.id));
+```
+
+**1）HOC 的优缺点**
+
+- 优点：逻辑复用，不影响被包裹组件的内部逻辑
+- 缺点：hoc 传递给包裹组件的 props 容易和被包裹后的组件重名，进而被覆盖
+
+**2）使用场景**
+
+- 代码复用，逻辑抽象
+- 渲染劫持
+- State 抽象更改
+- Props 更改
+
+**3）具体应用例子**
+
+- **权限控制**：利用高阶组件的 **条件渲染** 特性可以对页面进行权限控制，权限控制一般分为两个维度：**页面级别** 和 **页面元素级别**
+
+```jsx
+// HOC.js
+function withAdminAuth(WrappedComponent) {
+    return class extends React.Component {
+        state = {
+            isAdmin: false,
+        }
+        async UNSAFE_componentWillMount() {
+            const currentRole = await getCurrentUserRole();
+            this.setState({
+                isAdmin: currentRole === 'Admin',
+            });
+        }
+        render() {
+            if (this.state.isAdmin) {
+                return <WrappedComponent {...this.props} />;
+            } else {
+                return (<div>您没有权限查看该页面，请联系管理员！</div>);
+            }
+        }
+    };
+}
+
+// pages/page-a.js
+class PageA extends React.Component {
+    constructor(props) {
+        super(props);
+        // something here...
+    }
+    UNSAFE_componentWillMount() {
+        // fetching data
+    }
+    render() {
+        // render page with data
+    }
+}
+export default withAdminAuth(PageA);
+
+
+// pages/page-b.js
+class PageB extends React.Component {
+    constructor(props) {
+        super(props);
+    // something here...
+        }
+    UNSAFE_componentWillMount() {
+    // fetching data
+    }
+    render() {
+    // render page with data
+    }
+}
+export default withAdminAuth(PageB);
+```
+
+- **组件渲染性能追踪**：借助父组件子组件生命周期规则捕获子组件的生命周期，可以方便的对某个组件的渲染时间进行记录 ∶
+
+```jsx
+class Home extends React.Component {
+  render() {
+    return <h1>Hello World.</h1>;
+  }
+}
+function withTiming(WrappedComponent) {
+  return class extends WrappedComponent {
+    constructor(props) {
+      super(props);
+      this.start = 0;
+      this.end = 0;
+    }
+    UNSAFE_componentWillMount() {
+      super.componentWillMount && super.componentWillMount();
+      this.start = Date.now();
+    }
+    componentDidMount() {
+      super.componentDidMount && super.componentDidMount();
+      this.end = Date.now();
+      console.log(
+        `${WrappedComponent.name} 组件渲染时间为 ${this.end - this.start} ms`
+      );
+    }
+    render() {
+      return super.render();
+    }
+  };
+}
+
+export default withTiming(Home);
+```
+
+**注意 ⚠️**：**_withTiming_** 是利用 反向继承 实现的一个高阶组件，功能是计算被包裹组件（这里是 **Home** 组件）的渲染时间。
+
+- **页面复用**
+
+```jsx
+const withFetching = fetching => WrappedComponent => {
+    return class extends React.Component {
+        state = {
+            data: [],
+        }
+        async UNSAFE_componentWillMount() {
+            const data = await fetching();
+            this.setState({
+                data,
+            });
+        }
+        render() {
+            return <WrappedComponent data={this.state.data} {...this.props} />;
+        }
+    }
+}
+
+// pages/page-a.js
+export default withFetching(fetching('science-fiction'))(MovieList);
+// pages/page-b.js
+export default withFetching(fetching('action'))(MovieList);
+// pages/page-other.js
+export default withFetching(fetching('some-other-type'))(MovieList);
+```
+
+#### **8. 对 componentWillReceiveProps 的理解**
+
+该方法当 props 发生变化时执行，初始化 render 时不执行，在这个回调函数里面，你可以根据属性的变化，通过调用 `this.setState()`来更新你的组件状态，旧的属性还是可以通过 `this.props` 来获取,这里调用更新状态是安全的，并不会触发额外的 **_render_** 调用。
+
+**使用好处**：在这个生命周期中，可以在子组件的 **_render_** 函数执行前获取新的 **props**，从而更新子组件自己的 **state**。 可以将数据请求放在这里进行执行，需要传的参数则从 **_componentWillReceiveProps(nextProps)_** 中获取。s 而不必将所有的请求都放在父组件中。于是该请求只会在该组件渲染时才会发出，从而减轻请求负担。**_componentWillReceiveProps_** 在初始化 **_render_** 的时候不会执行，它会在 **Component** 接受到新的状态(**Props**)时被触发，一般用于父组件状态更新时子组件的重新渲染。
+
+#### **9. 哪些方法会触发 React 重新渲染？**
+
+- **_setState()_** **方法被调用**
+
+  `setState` 是 React 中最常用的命令，通常情况下，执行 `setState` 会触发 **_render_**。但是这里有个点值得关注，执行 `setState` 的时候不一定会重新渲染。当 `setState` 传入 `null` 时，并不会触发 **_render_**。
+
+  ```jsx
+  class App extends React.Component {
+    state = {
+      a: 1,
+    };
+
+    render() {
+      console.log("render");
+      return (
+        <React.Fragement>
+          <p>{this.state.a}</p>
+          <button
+            onClick={() => {
+              this.setState({ a: 1 }); // 这里并没有改变 a 的值
+            }}
+          >
+            Click me
+          </button>
+          <button onClick={() => this.setState(null)}>setState null</button>
+          <Child />
+        </React.Fragement>
+      );
+    }
+  }
+  ```
+
+- **父组件重新渲染**
+
+  只要父组件重新渲染了，即使传入子组件的 `props` 未发生变化，那么子组件也会重新渲染，进而触发 **_render_**
+
+#### **10. React 重新渲染 render 会做些什么？**
+
+- 会对新旧 `VNode` 进行对比，也就是我们所说的 **_Diff_** 算法。
+- 对新旧两棵树进行一个深度优先遍历，这样每一个节点都会一个标记，在到深度遍历的时候，每遍历到一和个节点，就把该节点和新的节点树进行对比，如果有差异就放到一个对象里面
+- 遍历差异对象，根据差异的类型，根据对应对规则更新 `VNode`
+
+React 的处理 render 的基本思维模式是每次一有变动就会去重新渲染整个应用。在 Virtual DOM 没有出现之前，最简单的方法就是直接调用 innerHTML。Virtual DOM 厉害的地方并不是说它比直接操作 DOM 快，而是说不管数据怎么变，都会尽量以最小的代价去更新 DOM。React 将 render 函数返回的虚拟 DOM 树与老的进行比较，从而确定 DOM 要不要更新、怎么更新。当 DOM 树很大时，遍历两棵树进行各种比对还是相当耗性能的，特别是在顶层 setState 一个微小的修改，默认会去遍历整棵树。尽管 React 使用高度优化的 Diff 算法，但是这个过程仍然会损耗性能.
+
+#### **11. React 如何判断什么时候重新渲染组件？**
+
+组件状态的改变可以因为 `props` 的改变，或者直接通过 `setState` 方法改变。组件获得新的状态，然后 React 决定是否应该重新渲染组件。只要组件的 `state` 发生变化，React 就会对组件进行重新渲染。这是因为 React 中的 `shouldComponentUpdate` 方法默认返回 true，这就是导致每次更新都重新渲染的原因。
+
+当 React 将要渲染组件时会执行 `shouldComponentUpdate` 方法来看它是否返回 `true`（组件应该更新，也就是重新渲染）。所以需要重写 `shouldComponentUpdate` 方法让它根据情况返回 `true` 或者 `false` 来告诉 React 什么时候重新渲染什么时候跳过重新渲染。
+
+#### **12. React 声明组件有哪几种方法，有什么不同？**
+
+React 声明组件的三种方式：
+
+- 函数式定义的无状态组件
+- `ES5` 原生方式 `React.createClass` 定义的组件
+- `ES6` 形式的 `extends React.Component` 定义的组件
+
+**（1）无状态函数式组件**
+
+它是为了创建纯展示组件，这种组件只负责根据传入的 props 来展示，不涉及到 state 状态的操作
+组件不会被实例化，整体渲染性能得到提升，不能访问 this 对象，不能访问生命周期的方法
+
+**（2）ES5 原生方式 React.createClass // RFC**
+
+React.createClass 会自绑定函数方法，导致不必要的性能开销，增加代码过时的可能性。
+
+**（3）E6 继承形式 React.Component // RCC**
+
+目前极为推荐的创建有状态组件的方式，最终会取代 React.createClass 形式；相对于 React.createClass 可以更好实现代码复用。
+
+**无状态组件相对于于后者的区别：**
+
+与无状态组件相比，`React.createClass` 和 `React.Component` 都是创建有状态的组件，这些组件是要被实例化的，并且可以访问组件的生命周期方法。
+
+**React.createClass 与 React.Component 区别：**
+
+- **函数 this 自绑定**
+  - `React.createClass` 创建的组件，其每一个成员函数的 **this** 都有 React 自动绑定，函数中的 **this** 会被正确设置。
+  - `React.Component` 创建的组件，其成员函数不会自动绑定 this，需要开发者手动绑定，否则 this 不能获取当前组件实例对象。
+- **组件属性类型 propTypes 及其默认 props 属性 defaultProps 配置不同**
+  - `React.createClass` 在创建组件时，有关组件 props 的属性类型及组件默认的属性会作为组件实例的属性来配置，其中 `defaultProps` 是使用 `getDefaultProps` 的方法来获取默认组件属性的
+  - `React.Component` 在创建组件时配置这两个对应信息时，他们是作为组件类的属性，不是组件实例的属性，也就是所谓的类的静态属性来配置的。
+- **组件初始状态 state 的配置不同**
+  - `React.createClass` 创建的组件，其状态 state 是通过 `getInitialState` 方法来配置组件相关的状态；
+  - `React.Component` 创建的组件，其状态 state 是在 `constructor` 中像初始化组件属性一样声明的。
+
+#### **13. 对有状态组件和无状态组件的理解及使用场景**
+
+| 名称     | 有状态组件                                                                                                                                                                                                                                                            | 无状态组件                                                                                                                                                                                                                                                                                                                                  |
+| :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 特点     | <ul><li>是类组件</li><li>有继承 </li><li>可以使用 this</li><li>可以使用 react 的生命周期</li><li>使用较多，容易频繁触发生命周期钩子函数，影响性能</li><li>内部使用 state，维护自身状态的变化，有状态组件根据外部组件传入的 props 和自身的 state 进行渲染。 </li></ul> | <ul><li>不依赖自身的状态 state</li><li>可以是类组件或者函数组件</li><li>可以完全避免使用 this 关键字。（由于使用的是箭头函数事件无需绑定）</li><li>有更高的性能。当不需要使用生命周期钩子时，应该首先使用无状态函数组件</li><li>组件内部不维护 state ，只根据外部组件传入的 props 进行渲染的组件，当 props 改变时，组件重新渲染。</li></ul> |
+| 使用场景 | <ul><li>需要使用到状态的</li><li>需要使用状态操作组件的（无状态组件的也可以实现新版本 react hooks 也可实现）</li></ul>                                                                                                                                                | <ul><li>组件不需要管理 state，纯展示</li></ul>                                                                                                                                                                                                                                                                                              |
+| 优点     |                                                                                                                                                                                                                                                                       | <ul><li>简化代码、专注于 render</li><li>组件不需要被实例化，无生命周期，提升性能。 输出（渲染）只取决于输入（属性），无副作用</li><li>视图和数据的解耦分离</li></ul>                                                                                                                                                                        |
+| 缺点     |                                                                                                                                                                                                                                                                       | <ul><li>无法使用 ref </li><li>无生命周期方法</li><li>无法控制组件的重渲染，因为无法使用 shouldComponentUpdate 方法，当组件接受到新的属性时则会重渲染</li></ul>                                                                                                                                                                              |
+| 总结     | 类组件可以维护自身的状态变量，即组件的 state ，类组件还有不同的生命周期方法，可以让开发者能够在组件的不同阶段（挂载、更新、卸载），对组件做更多的控制。类组件则既可以充当无状态组件，也可以充当有状态组件。当一个类组件不需要管理自身状态时，也可称为无状态组件。     | 组件内部状态且与外部无关的组件，可以考虑用状态组件，这样状态树就不会过于复杂，易于理解和管理。当一个组件不需要管理自身状态时，也就是无状态组件，应该优先设计为函数组件。比如自定义的 `<Button/>`、 `<Input />` 等组件。                                                                                                                     |
+
 ### **_二. 数据管理_**
 
 #### **1. React setState 调用的原理**
