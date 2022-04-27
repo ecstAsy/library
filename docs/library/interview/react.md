@@ -397,6 +397,80 @@ render() {
 
 #### **16. 可以在 render 访问 refs 吗？为什么？**
 
+```jsx
+<>
+  <span id="name" ref={this.spanRef}>
+    {this.state.title}
+  </span>
+  <span>{this.spanRef.current ? "有值" : "无值"}</span>
+</>
+```
+
+不可以，`render` 阶段 DOM 还没有生成，无法获取 DOM。DOM 的获取需要在 `pre-commit` 阶段和 `commit` 阶段
+![refs](../../assets/react-ref.png)
+
+#### **17. 对 React 的插槽(Portals)的理解，如何使用，有哪些使用场景**
+
+React 官方对 Portals 的定义：
+
+:::tip
+Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节点的优秀的方案
+:::
+
+Portals 是 React 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置。通俗来讲，就是我们 render 一个组件，但这个组件的 DOM 结构并不在本组件内。
+
+```jsx
+ReactDOM.createPortal(child, container);
+```
+
+- 第一个参数 child 是可渲染的 React 子项，比如元素，字符串或者片段等;
+- 第二个参数 container 是一个 DOM 元素。
+
+一般情况下，组件的 render 函数返回的元素会被挂载在它的父级组件上：
+
+```jsx
+import DemoComponent from './DemoComponent';
+render() {
+  // DemoComponent元素会被挂载在id为parent的div的元素上
+  return (
+    <div id="parent">
+        <DemoComponent />
+    </div>
+  );
+}
+```
+
+然而，有些元素需要被挂载在更高层级的位置。最典型的应用场景：当父组件具有 overflow: hidden 或者 z-index 的样式设置时，组件有可能被其他元素遮挡，这时就可以考虑要不要使用 Portal 使组件的挂载脱离父组件。例如：对话框，模态窗。
+
+```jsx
+import DemoComponent from './DemoComponent';
+render() {
+  // react会将DemoComponent组件直接挂载在真实的 dom 节点 domNode 上，生命周期还和16版本之前相同。
+  return ReactDOM.createPortal(
+    <DemoComponent />,
+    domNode,
+  );
+}
+```
+
+#### **18. 在 React 中如何避免不必要的 render？**
+
+React 基于虚拟 DOM 和高效 Diff 算法的完美配合，实现了对 DOM 最小粒度的更新。大多数情况下，React 对 DOM 的渲染效率足以业务日常。但在个别复杂业务场景下，性能问题依然会困扰我们。此时需要采取一些措施来提升运行性能，其很重要的一个方向，就是避免不必要的渲染（Render）。
+
+这里提下优化的点：
+
+- **shouldComponentUpdate 和 PureComponent**
+
+  在 React 类组件中，可以利用 shouldComponentUpdate 或者 PureComponent 来减少因父组件更新而触发子组件的 render，从而达到目的。shouldComponentUpdate 来决定是否组件是否重新渲染，如果不希望组件重新渲染，返回 false 即可。
+
+- **利用高阶组件**
+
+  在函数组件中，并没有 shouldComponentUpdate 这个生命周期，可以利用高阶组件，封装一个类似 PureComponet 的功能
+
+- **使用 React.memo**
+
+  React.memo 是 React 16.6 新的一个 API，用来缓存组件的渲染，避免不必要的更新，其实也是一个高阶组件，与 PureComponent 十分类似，但不同的是， React.memo 只能用于函数组件。
+
 ### **_二. 数据管理_**
 
 #### **1. React setState 调用的原理**
