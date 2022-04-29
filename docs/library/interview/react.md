@@ -498,6 +498,62 @@ JS 的代码块在执行期间，会创建一个相应的作用域链，这个�
 - 对于组件之间的数据通信或者状态管理，有效使用 props 或者 state 解决，然后再考虑使用第三方的成熟库进行解决，以上的方法都不是最佳的方案的时候，在考虑 context。
 - context 的更新需要通过 setState()触发，但是这并不是很可靠的，Context 支持跨组件的访问，但是如果中间的子组件通过一些方法不影响更新，比如 shouldComponentUpdate() 返回 false 那么不能保证 Context 的更新一定可以使用 Context 的子组件，因此，Context 的可靠性需要关注
 
+#### **22. React 中什么是受控组件和非控组件？**
+
+- **受控组件**
+
+  在使用表单来收集用户输入时，例如`<input><select><textearea>`等元素都要绑定一个 change 事件，当表单的状态发生变化，就会触发 onChange 事件，更新组件的 state。这种组件在 React 中被称为受控组件，在受控组件中，组件渲染出的状态与它的 value 或 checked 属性相对应，react 通过这种方式消除了组件的局部状态，使整个状态可控。react 官方推荐使用受控表单组件。
+
+  受控组件更新 state 的流程：
+
+  - 可以通过初始 state 中设置表单的默认值
+  - 每当表单的值发生变化时，调用 onChange 事件处理器
+  - 事件处理器通过事件对象 e 拿到改变后的状态，并更新组件的 state
+  - 一旦通过 setState 方法更新 state，就会触发视图的重新渲染，完成表单组件的更新
+
+  **受控组件缺陷：**
+
+  表单元素的值都是由 React 组件进行管理，当有多个输入框，或者多个这种组件时，如果想同时获取到全部的值就必须每个都要编写事件处理函数，这会让代码看着很臃肿，所以为了解决这种情况，出现了非受控组件。
+
+- **非受控组件**
+
+  如果一个表单组件没有 value props（单选和复选按钮对应的是 checked props）时，就可以称为非受控组件。在非受控组件中，可以使用一个 ref 来从 DOM 获得表单值。而不是为每个状态更新编写一个事件处理程序。
+
+  :::tip
+  **React 官方的解释：**
+  要编写一个非受控组件，而不是为每个状态更新都编写数据处理函数，你可以使用 ref 来从 DOM 节点中获取表单数据。
+
+  因为非受控组件将真实数据储存在 DOM 节点中，所以在使用非受控组件时，有时候反而更容易同时集成 React 和非 React 代码。如果你不介意代码美观性，并且希望快速编写代码，使用非受控组件往往可以减少你的代码量。否则，你应该使用受控组件。
+  :::
+
+  例如，下面的代码在非受控组件中接收单个属性：
+
+  ```jsx
+  class NameForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleSubmit(event) {
+      alert("A name was submitted: " + this.input.value);
+      event.preventDefault();
+    }
+    render() {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input type="text" ref={(input) => (this.input = input)} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      );
+    }
+  }
+  ```
+
+**总结：** 页面中所有输入类的 DOM 如果是现用现取的称为非受控组件，而通过 setState 将输入的值维护到了 state 中，需要时再从 state 中取出，这里的数据就受到了 state 的控制，称为受控组件。
+
 ### **_二. 数据管理_**
 
 #### **1. React setState 调用的原理**
