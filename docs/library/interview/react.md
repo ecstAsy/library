@@ -554,6 +554,150 @@ JS 的代码块在执行期间，会创建一个相应的作用域链，这个�
 
 **总结：** 页面中所有输入类的 DOM 如果是现用现取的称为非受控组件，而通过 setState 将输入的值维护到了 state 中，需要时再从 state 中取出，这里的数据就受到了 state 的控制，称为受控组件。
 
+#### **23. React 中 refs 的作用是什么？有哪些应用场景？**
+
+Refs 提供了一种方式，用于访问在 render 方法中创建的 React 元素或 DOM 节点。Refs 应该谨慎使用，如下场景使用 Refs 比较适合：
+
+- 处理焦点、文本选择或者媒体的控制
+- 触发必要的动画
+- 集成第三方 DOM 库
+
+Refs 是使用 `React.createRef()` 方法创建的，他通过 ref 属性附加到 React 元素上。要在整个组件中使用 Refs，需要将 ref 在构造函数中分配给其实例属性：
+
+```jsx
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+  render() {
+    return <div ref={this.myRef} />;
+  }
+}
+```
+
+由于函数组件没有实例，因此不能在函数组件上直接使用 `ref`:
+
+```jsx
+function MyFunctionalComponent() {
+  return <input />;
+}
+class Parent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
+  render() {
+    // 这将不会工作！
+    return <MyFunctionalComponent ref={this.textInput} />;
+  }
+}
+```
+
+但可以通过闭合的帮助在函数组件内部进行使用 Refs：
+
+```jsx
+function CustomTextInput(props) {
+  // 这里必须声明 textInput，这样 ref 回调才可以引用它
+  let textInput = null;
+  function handleClick() {
+    textInput.focus();
+  }
+  return (
+    <div>
+      <input
+        type="text"
+        ref={(input) => {
+          textInput = input;
+        }}
+      />
+      <input type="button" value="Focus the text input" onClick={handleClick} />
+    </div>
+  );
+}
+```
+
+**注意 ⚠️：**
+
+- 不应该过度的使用 `Refs`
+- `ref` 的返回值取决于节点的类型：
+  - 当 `ref` 属性被用于一个普通的 HTML 元素时，`React.createRef()` 将接收底层 DOM 元素作为他的 `current` 属性以创建 `ref`。
+  - 当 `ref` 属性被用于一个自定义的类组件时，`ref` 对象将接收该组件已挂载的实例作为他的 `current`。
+- 当在父组件中需要访问子组件中的 ref 时可使用传递 Refs 或回调 Refs。
+
+#### **24. React 中除了在构造函数中绑定 this，还有别的方式吗？**
+
+- **在构造函数中绑定 this**
+
+```jsx
+constructor(props){
+  super(props);
+    this.state={
+        msg:'hello world',
+    }
+    this.getMsg = this.getMsg.bind(this)
+  }
+}
+```
+
+- **函数定义的时候使用箭头函数**
+
+```jsx
+constructor(props){
+  super(props);
+  this.state={
+          msg:'hello world',
+  }
+}
+render(){
+  <button onClcik={()=>{alert(this.state.msg)}}>点我</button>
+}
+```
+
+- **函数调用是使用 bind 绑定 this**
+
+```jsx
+<button onClick={this.getMsg.bind(this)}>点我</button>
+```
+
+#### **25. React 组件的构造函数有什么作用？它是必须的吗？**
+
+构造函数主要用于两个目的：
+
+- 通过将对象分配给 `this.state` 来初始化本地状态
+- 将事件处理程序方法绑定到实例上
+
+所以，当在 React class 中需要设置 `state` 的初始值或者绑定事件时，需要加上构造函数，官方 Demo
+
+```jsx
+class LikeButton extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      liked: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState({ liked: !this.state.liked });
+  }
+  render() {
+    const text = this.state.liked ? "liked" : "haven't liked";
+    return (
+      <div onClick={this.handleClick}>You {text} this. Click to toggle.</div>
+    );
+  }
+}
+ReactDOM.render(<LikeButton />, document.getElementById("example"));
+```
+
+构造函数用来新建父类的 this 对象；子类必须在 constructor 方法中调用 super 方法；否则新建实例时会报错；因为子类没有自己的 this 对象，而是继承父类的 this 对象，然后对其进行加工。如果不调用 super 方法；子类就得不到 this 对象。
+
+**注意 ⚠️：**
+
+- **_constructor()_** 必须配上 **_super()_**, 如果要在 `constructor`内部使用 `this.prop`s 就要传入 props , 否则不用
+- JavaScript 中的 `bind` 每次都会返回一个新的函数, 为了性能等考虑, 尽量在 `constructo`r 中绑定事件
+
 ### **_二. 数据管理_**
 
 #### **1. React setState 调用的原理**
