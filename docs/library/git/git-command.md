@@ -69,6 +69,34 @@ git remote show origin
 git remote prune origin
 ```
 
+## 保存当前修改
+
+```js
+// 保存当前未commit的代码
+git stash
+
+// 保存当前未commit的代码并添加备注
+git stash save "备注的内容"
+
+// 列出stash的所有记录
+git stash list
+
+// 删除stash的所有记录
+git stash clear
+
+// 应用最近一次的stash
+git stash apply
+
+// 应用某一次的stash
+git stash apply stash@{1}
+
+// 应用最近一次的stash，随后删除该记录
+git stash pop
+
+// 删除最近的一次stash
+git stash drop
+```
+
 ## 撤销本地 commit
 
 **_如果执行完 commit 后，想撤回 commit，怎么办？_**
