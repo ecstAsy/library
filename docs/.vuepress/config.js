@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-05-18 11:31:07
+ * @LastEditTime: 2022-06-09 11:44:36
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -84,6 +84,9 @@ module.exports = {
       }, {
         title: '冷知识',
         path: '/library/javascript/js-study',
+      }, {
+        title: 'blob 导出文件',
+        path: '/library/javascript/js-blob',
       }]
     }, {
       title: 'javascript技巧',
