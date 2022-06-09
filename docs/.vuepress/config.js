@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-04-18 19:52:19
+ * @LastEditTime: 2022-05-18 11:31:07
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -145,6 +145,14 @@ module.exports = {
       children: [{
         title: 'let const',
         path: '/library/es6/let-const',
+      }]
+    }, {
+      title: "TS",
+      path: '/library/typescript/basic',
+      collapsable: true,
+      children: [{
+        title: 'ts 基础知识',
+        path: '/library/typescript/basic',
       }]
     }, {
       title: 'React',
