@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-06-09 11:44:36
+ * @LastEditTime: 2022-06-15 15:10:52
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -346,6 +346,13 @@ module.exports = {
       children: [{
         title: 'Array',
         path: '/library/algorithm/array'
+      }]}, {
+      title: '教程',
+      path: '/library/course/npm-package',
+      collapsable: true,
+      children: [{
+        title: 'NPM 包开发配置',
+        path: '/library/course/npm-package'
       }]
     }]
   },
