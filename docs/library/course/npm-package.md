@@ -259,3 +259,7 @@ module.exports = () => {
 > pnpm login
 > pnpm publish
 > pnpm version x.x.x
+
+
+
+ - https://www.apifox.cn/help/reference/install-java/

@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-06-15 15:10:52
+ * @LastEditTime: 2022-06-28 09:41:48
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -353,6 +353,9 @@ module.exports = {
       children: [{
         title: 'NPM 包开发配置',
         path: '/library/course/npm-package'
+      }, {
+        title: 'VuePress 搭建博客',
+        path: '/library/course/vuepress-gitpage'
       }]
     }]
   },
