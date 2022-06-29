@@ -257,5 +257,6 @@ module.exports = () => {
 > pnpm build 
 
 > pnpm login
-> pnpm publish
 > pnpm version x.x.x
+> pnpm publish
+
