@@ -192,6 +192,12 @@ webpack.config.js
 
 ```
 - 修改 **webpack.config.js** 文件
+  - **libraryTarget: 'umd'**
+  - **library: 'ecstasy-tools',**
+
+> libraryTarget：assign | var | window | global | this | commonjs | commonjs2 | amd | umd
+
+![libraryTarget](../../assets/libraryTarget.jpg)
 ```js
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
