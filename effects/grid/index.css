@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wraper {
+  width: 800px;
+  background-color: antiquewhite;
+  margin: 100px auto;
+
+  display: grid;
+  grid-template-columns: 500px 1fr 2fr;
+}
+
+.wraper div {
+  background: aquamarine;
+  height: 100px;
+}
+
+.wraper div:nth-of-type(2n+1) {
+  background-color: aqua;
+  height: 200px;
+}
