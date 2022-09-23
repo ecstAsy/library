@@ -241,3 +241,11 @@ Vue 3.0 对 **v-if** 和 **v-for** 做了权重比较，可以混合使用
   - **_replaceState()_** 可以读取历史记录栈,还可以对浏览器记录进行修改
 - 前面的 `hashchange`，你只能改变#后面的 url 片段。而 `pushState` 设置的新 URL 可以是与当前 URL 同源的任意 URL。
   history 模式则会将 URL 修改得就和正常请求后端的 URL 一样,如后端没有配置对应/user/id 的路由处理，则会返回 404 错误
+
+#### **36.  父子组件生命周期执行顺序**
+父beforecreate -> 父created -> 父beforeMount -> 子beforecreate -> 子created -> 子beforeMount -> 子mounted -> 父mounted
+
+- 1. 当父组件执行完 **beforeMount** 挂载开始后，会依次执行子组件的生命周期钩子，直到全部子组件 **mounted** 挂载到实例上，父组件才会进入 **mounted** 钩子。
+- 2. 子组件触发事件，会先触发父级 **beforeUpdate** 钩子，再去触发子级 **beforeUpdate** 钩子，下面又是先执行子级 **update** 钩子，后执行父级 **update** 钩子。
+
+**总结：** 父组件先于子组件 **created**，而子组件先于父组件 **mounted**
