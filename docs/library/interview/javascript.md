@@ -440,9 +440,9 @@ obj.class = 12;
 
 #### **49. 解释一下 window.onload 和 onDocumentReady。**
 
-在载入页面的所有信息之前，不运行 window. onload。这导致在执行任何代码之前会出现延迟。
+在载入页面的所有信息之前，不运行 window.onload。这导致在执行任何代码之前会出现延迟。
 
-window.onDocumentReady 在加载 DOM 之后加载代码。这允许代码更早地执行（早于 window. onload）。
+window.onDocumentReady 在加载 DOM 之后加载代码。这允许代码更早地执行（早于 window.onload）。
 
 #### **50. JavaScript 中的匿名函数。**
 
@@ -931,3 +931,54 @@ xhr.send();
 - 箭头函数不绑定 **_this_**
   - 如果该函数是一个构造函数，**_this_** 指针指向一个新的对象
   - 在严格模式下的函数调用下，**_this_** 指向 **_undefined_**
+
+#### **79. Symbol**
+**Symbol** ：除了表示完全唯一的值（防止对象以外名称冲突，例如当使用2个想要向同一对象添加属性的库时），你可以隐藏这种方式对象的属性。
+ - 类型是不可枚举的。
+ - 类型是不可见的。
+**Object.keys()** 方法返回对象上的所有可枚举的键属性。
+
+#### **80. JavaScript 组成部分**
+- **ECMAScript**(语法部分)：JavaScript 语言基础
+- **DOM**(文档对象模型)：规定了访问HTML和XML的方法
+- **BOM**(浏览器对象模型)：提供了浏览器窗口之间进行交互的对象和方法
+
+#### **81. JavaScript 有哪些内置对象**
+- 数据封装类对象：**Object、Array、Boolean、Number、String**
+- 其他对象：**Function、Arguments、Math、Date、RegExp、Error**
+- ES6新增对象：**Symbol、Map、Set、Promise、Proxy、Reflect**
+
+#### **82. 什么是标识符**
+- 在 JS 中，可以自定义命名的东西都属于标识符
+- 比如变量名、函数名、参数名都是标识符
+
+#### **83. DOM 元素e的 e.getAttribute(propName)和 e.propName 有什么区别和联系**
+- **e.getAttribute(propName**： 获取的是标签上属性
+- 可以通过 **e.setAttribute(propName, propValue)** 设置标签上属性
+- **e.propName** ：获取的是元素对象上属性
+
+#### **84. offsetWidth/offsetHeight,clientWidth/clientHeight,scrollWidth/scrollHeight 的区别?**
+- **offsetWidth/offsetHeight** ：返回值包含 **content + padding + border + 包含滚动条**，效果与 **e.getBoundingClientRect()** 相同
+- **clientWidth/clientHeight** ：返回值只包含 **content + padding**，如果有滚动条，也不包含滚动条
+- **scrollWidth/scrollHeight** ：返回值包含 **content + padding + 溢出内容的尺寸**
+
+#### **85. 检测浏览器版本有哪些方式**
+- **navigator.userAgent**
+- **UA.toLowerCase().indexOf('chrome'**)
+
+#### **86. ajax请求的时候get 和post方式的区别**
+- **GET**
+  - 参数要跟在 ***url*** 后面
+  - 安全性不高
+  - 传输数据比较小，但速度快
+  - 一般用于获取、删除
+- **POST** 
+  - 参数会放在请求体中
+  - 安全性相对高些
+  - 传输数据大，但是相对速度慢些
+  - **post** 一般用于修改或者添加
+
+#### **87. 什么是 JSON**
+- **JSON** 是一种轻量级的数据交换格式，一般用于数据传递
+- 里面只允许出现双引号
+- **JSON** 的语法表示三种类型值，**简单值（字符串，数值，布尔值，null）、数组、对象**
