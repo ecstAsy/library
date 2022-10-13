@@ -39,3 +39,16 @@ moment().startOf("month");
 ```js
 moment().endOf("month");
 ```
+
+#### 一步从时间中提取年月日时分秒
+
+```js
+function extract(date) {
+  const d = new Date(new Date(date).getTime() + 8 * 3600 * 1000);
+  return new Date(d)
+    .toISOString()
+    .split(/[^0-9]/)
+    .slice(0, -1);
+}
+console.log(extract(new Date())); // ['2022', '09', '19', '18', '06', '11', '187']
+```
