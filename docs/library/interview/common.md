@@ -512,3 +512,39 @@ eval()只有一个参数，如果传入的参数不是字符串，它直接返�
 - 创建一个新对象，新对象的隐式原型**proto**指向 new 的构造函数的显示原型 proptotype
 - 改变 this 指向，将构造函数的作用域给新的对象，并且执行构造函数的代码，为新的对象提阿加属性
 - 返回新的对象（return this）
+
+#### **43. 原生对象和宿主对象**
+
+原生对象是 ECMAScript 规定的对象，所有内置对象都是原生对象，比如 Array、Date、RegExp 等。
+
+宿主对象是宿主环境比如浏览器规定的对象，用于完善是 ECMAScript 的执行环境，比如 Document、Location、Navigator 等
+
+#### **44. Cookie、sessionStorage、localStorage 解释及其区别**
+
+- **Cookie**
+
+  Cookie 是一些数据，由服务器生成，发送给浏览器，一旦用户从该网站或服务器退出，Cookie 就存储在用户本地的磁盘上，下一次请求同一网站时会把该 cookie 发送给服务器。Cookie 的作用就是用于解决如何记录客户端的用户信息。
+
+  可以使用 document.cookie 属性来创建、读取、及删除 cookie.
+
+  Cookie 的内容主要包括： 名字 name，值 value，过期时间 expires，路径 path 和域 domain。路径和域一起构成 Cookie 的作用范围。一般 Cookie 存储在内存里，若设置了过期时间则存储在硬盘里，浏览器页面关闭也不会是小，直到设置的过期时间后才失效。若不设置 Cookie 过期时间，则有效期为浏览器窗口的会话期间，关闭浏览器就失效。
+
+- **sessionStorage**
+
+  sessionStorage 顾名思义，是在当前会话下有效，引入了一个浏览器窗口概念，sessionStorage 是在同源的同窗口中，始终存在数据，只要浏览器不关闭，即使刷新或者进入同源的另一个页面，数据仍在。同时打开独立的窗口，即使是同一个页面，sessionStorage 的对象也是不同的。关闭窗口后 sessionStorage 就会被销毁。
+
+  可以使用 **_sessionStorage.setItem_**、**_sessionStorage.getItem_**、**_sessionStorage.removeItem_** 来创建 、读取、及删除 sessionStorage。
+
+- **localStorage**
+
+  localStorage 的生命周期是永久，除非手动去清除，否则永远都存在，他的储存大小是 5MB，仅在客户端浏览器上储存，不参与服务器的通信。
+
+  可以使用 **_localStorage.setItem_**、**_localStorage.getItem_**、**_localStorage.removeItem_** 来创建 、读取、及删除 localStorage。
+
+- **Cookie，sessionStorage，localStorage 的区别：**
+  - 存储大小：Cookie 是 4KB，Storage 是 5M；
+  - 有效期：Cookie 可以设置有效期，超过有效期自动清除；localStorage 永久存储，除非手动清除；sessionStorage 是会话缓存，关闭浏览器就会清除；
+  - 存储位置：Cookie 会发送到服务器端，存储在内存中，Storage 只存储在浏览器端；
+  - 作用域不同：sessionStorage 不在不同的浏览器窗口中共享，即使是同一个页面；localstorage 在所有同源窗口中都是共享的；Cookie 也是在所有同源窗口中都是共享的
+  - 存储内容： Cookie 只能保存字符串类型，以文本的方式。Storage 通过能支持任何类型的对象（Storage 中可含有多个对象）
+  - API：Storage 的 API 接口使用更方便
