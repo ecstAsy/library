@@ -486,19 +486,21 @@ CSS 本来是可以并行加载的，但是当 CSS 后面跟着嵌入的 JavaScr
 
 #### **55. forEach、 for of 、 for in 的区别**
 
-ES6规定，有所部署了载了**Iterator**接口的对象(可遍历对象)都可以通过**for...of**去遍历，而**for..in**仅仅可以遍历对象。
+ES6 规定，有所部署了载了**Iterator**接口的对象(可遍历对象)都可以通过**for...of**去遍历，而**for..in**仅仅可以遍历对象。
 
 这也就意味着，数组也可以用**for...of**遍历，这极大地方便了数组的取值，且避免了很多程序用**for..in**去遍历数组的恶习。
+
 - **forEach** : 更多的用来遍历数组
-- **for in** : 任意顺序迭代对象的 **可枚举属性** 遍历对象或者json
-- **for of** : 遍历可迭代对象定义要迭代的值   
+- **for in** : 任意顺序迭代对象的 **可枚举属性** 遍历对象或者 json
+- **for of** : 遍历可迭代对象定义要迭代的值
 
 **for of** 不能直接的去遍历对象，因为对象不是一个可迭代数据，遍历对象通过 **Object.keys()** 获取到对象的属性名，然后再遍历
 
 :::tip
-- **for in** 循环出的是 ***key***
-- **for of** 循环出的是 ***value*** (循环时没有下标)
-:::
+
+- **for in** 循环出的是 **_key_**
+- **for of** 循环出的是 **_value_** (循环时没有下标)
+  :::
 
 ```js
 Object.prototype.objCustom = function () {};
@@ -907,21 +909,23 @@ xhr.send();
 
 #### **79. 箭头函数**
 
-**箭头函数与普通函数的区别**： 
-- 1、箭头函数没有this，所以需要通过查找作用域链来确定this的值，这就意味着如果箭头函数被非箭头函数包含，this绑定的就是最近一层非箭头函数的this。
-- 2、箭头函数没有自己的arguments对象，但是可以访问外围函数的arguments对象 
-- 3、不能通过new关键字调用，同样也没有new.target值和原型
+**箭头函数与普通函数的区别**：
+
+- 1、箭头函数没有 this，所以需要通过查找作用域链来确定 this 的值，这就意味着如果箭头函数被非箭头函数包含，this 绑定的就是最近一层非箭头函数的 this。
+- 2、箭头函数没有自己的 arguments 对象，但是可以访问外围函数的 arguments 对象
+- 3、不能通过 new 关键字调用，同样也没有 new.target 值和原型
 
 **箭头函数特点**：
+
 - 1、语法更加简洁、清晰
-- 2、箭头函数不会创建自己的this，它只会从自己的作用域链的上一层继承this。
-- 3、箭头函数继承而来的this指向永远不变
-- 4、.call()/.apply()/.bind()无法改变箭头函数中this的指向
+- 2、箭头函数不会创建自己的 this，它只会从自己的作用域链的上一层继承 this。
+- 3、箭头函数继承而来的 this 指向永远不变
+- 4、.call()/.apply()/.bind()无法改变箭头函数中 this 的指向
 - 5、箭头函数不能作为构造函数使用
-- 6、箭头函数没有自己的arguments，可以在箭头函数中使用rest参数代替arguments对象，来访问箭头函数的参数列表
-- 7、箭头函数没有原型prototype
-- 8、箭头函数不能用作Generator函数，不能使用yeild关键字
-- 9、箭头函数不具有super，不具有new.target
+- 6、箭头函数没有自己的 arguments，可以在箭头函数中使用 rest 参数代替 arguments 对象，来访问箭头函数的参数列表
+- 7、箭头函数没有原型 prototype
+- 8、箭头函数不能用作 Generator 函数，不能使用 yeild 关键字
+- 9、箭头函数不具有 super，不具有 new.target
 
 - 更简短的函数
 
@@ -940,60 +944,71 @@ xhr.send();
   - 在严格模式下的函数调用下，**_this_** 指向 **_undefined_**
 
 #### **79. Symbol**
-**Symbol** ：除了表示完全唯一的值（防止对象以外名称冲突，例如当使用2个想要向同一对象添加属性的库时），你可以隐藏这种方式对象的属性。
- - 类型是不可枚举的。
- - 类型是不可见的。
-**Object.keys()** 方法返回对象上的所有可枚举的键属性。
+
+**Symbol** ：除了表示完全唯一的值（防止对象以外名称冲突，例如当使用 2 个想要向同一对象添加属性的库时），你可以隐藏这种方式对象的属性。
+
+- 类型是不可枚举的。
+- 类型是不可见的。
+  **Object.keys()** 方法返回对象上的所有可枚举的键属性。
 
 #### **80. JavaScript 组成部分**
+
 - **ECMAScript**(语法部分)：JavaScript 语言基础
-- **DOM**(文档对象模型)：规定了访问HTML和XML的方法
+- **DOM**(文档对象模型)：规定了访问 HTML 和 XML 的方法
 - **BOM**(浏览器对象模型)：提供了浏览器窗口之间进行交互的对象和方法
 
 #### **81. JavaScript 有哪些内置对象**
+
 - 数据封装类对象：**Object、Array、Boolean、Number、String**
 - 其他对象：**Function、Arguments、Math、Date、RegExp、Error**
-- ES6新增对象：**Symbol、Map、Set、Promise、Proxy、Reflect**
+- ES6 新增对象：**Symbol、Map、Set、Promise、Proxy、Reflect**
 
 #### **82. 什么是标识符**
+
 - 在 JS 中，可以自定义命名的东西都属于标识符
 - 比如变量名、函数名、参数名都是标识符
 
-#### **83. DOM 元素e的 e.getAttribute(propName)和 e.propName 有什么区别和联系**
+#### **83. DOM 元素 e 的 e.getAttribute(propName)和 e.propName 有什么区别和联系**
+
 - **e.getAttribute(propName**： 获取的是标签上属性
 - 可以通过 **e.setAttribute(propName, propValue)** 设置标签上属性
 - **e.propName** ：获取的是元素对象上属性
 
 #### **84. offsetWidth/offsetHeight,clientWidth/clientHeight,scrollWidth/scrollHeight 的区别?**
+
 - **offsetWidth/offsetHeight** ：返回值包含 **content + padding + border + 包含滚动条**，效果与 **e.getBoundingClientRect()** 相同
 - **clientWidth/clientHeight** ：返回值只包含 **content + padding**，如果有滚动条，也不包含滚动条
 - **scrollWidth/scrollHeight** ：返回值包含 **content + padding + 溢出内容的尺寸**
 
 #### **85. 检测浏览器版本有哪些方式**
+
 - **navigator.userAgent**
 - **UA.toLowerCase().indexOf('chrome'**)
 
-#### **86. ajax请求的时候get 和post方式的区别**
+#### **86. ajax 请求的时候 get 和 post 方式的区别**
+
 - **GET**
-  - 参数要跟在 ***url*** 后面
+  - 参数要跟在 **_url_** 后面
   - 安全性不高
   - 传输数据比较小，但速度快
   - 一般用于获取、删除
-- **POST** 
+- **POST**
   - 参数会放在请求体中
   - 安全性相对高些
   - 传输数据大，但是相对速度慢些
   - **post** 一般用于修改或者添加
 
 #### **87. 什么是 JSON**
+
 - **JSON** 是一种轻量级的数据交换格式，一般用于数据传递
 - 里面只允许出现双引号
 - **JSON** 的语法表示三种类型值，**简单值（字符串，数值，布尔值，null）、数组、对象**
 
-#### **88. jquery的ajax 和 axios区别**
+#### **88. jquery 的 ajax 和 axios 区别**
+
 - 两者其实没多大区别，在写法上大致一致
 - **axios** : 通过 **Promise** 实现对 **ajax** 技术的一种封装
-- jQuery对原生ajax封装
+- jQuery 对原生 ajax 封装
 
 :::tip
 **jQuery** 将请求技术进行了封装 变成了 **ajax** ,
@@ -1001,10 +1016,12 @@ xhr.send();
 :::
 
 #### **89. JS 中如何将页面重定向到另一个页面**
+
 - **location.replace()**
 - **location.href = 'url'**
 
 #### **90. 什么是重写，什么是重载**
+
 - 重写： 子类覆盖掉从父类继承过来的方法
 - 重载： 有多个同名方法，但是参数列表不一样
 
