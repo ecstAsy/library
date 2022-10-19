@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>前端发布 NPM 包 | ecstAsy 前端记录</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    
+    <meta name="description" content="ecstAsy 前端记录">
+    
+    <link rel="preload" href="/library/assets/css/0.styles.e96e9fe6.css" as="style"><link rel="preload" href="/library/assets/js/app.ac58e71a.js" as="script"><link rel="preload" href="/library/assets/js/3.8674aa59.js" as="script"><link rel="preload" href="/library/assets/js/1.a9ff72de.js" as="script"><link rel="preload" href="/library/assets/js/14.65b0917f.js" as="script"><link rel="prefetch" href="/library/assets/js/10.b2d1b810.js"><link rel="prefetch" href="/library/assets/js/11.56a460e4.js"><link rel="prefetch" href="/library/assets/js/12.2d8eb918.js"><link rel="prefetch" href="/library/assets/js/13.f3574028.js"><link rel="prefetch" href="/library/assets/js/15.d55e52a2.js"><link rel="prefetch" href="/library/assets/js/16.e69dbcd2.js"><link rel="prefetch" href="/library/assets/js/17.2d3e429b.js"><link rel="prefetch" href="/library/assets/js/18.554673a7.js"><link rel="prefetch" href="/library/assets/js/19.de0a2393.js"><link rel="prefetch" href="/library/assets/js/20.26296d6f.js"><link rel="prefetch" href="/library/assets/js/21.ba93935c.js"><link rel="prefetch" href="/library/assets/js/22.2ceef458.js"><link rel="prefetch" href="/library/assets/js/23.dbb32045.js"><link rel="prefetch" href="/library/assets/js/24.438b25fe.js"><link rel="prefetch" href="/library/assets/js/25.2469da45.js"><link rel="prefetch" href="/library/assets/js/26.e177ec67.js"><link rel="prefetch" href="/library/assets/js/27.5d80ed02.js"><link rel="prefetch" href="/library/assets/js/28.2fbc94da.js"><link rel="prefetch" href="/library/assets/js/29.729c4bee.js"><link rel="prefetch" href="/library/assets/js/30.bba94f63.js"><link rel="prefetch" href="/library/assets/js/31.4b18899c.js"><link rel="prefetch" href="/library/assets/js/32.217d364b.js"><link rel="prefetch" href="/library/assets/js/33.8dd10dd5.js"><link rel="prefetch" href="/library/assets/js/34.0f19fa7d.js"><link rel="prefetch" href="/library/assets/js/35.5912bd48.js"><link rel="prefetch" href="/library/assets/js/36.af6c6bfa.js"><link rel="prefetch" href="/library/assets/js/37.47ee1610.js"><link rel="prefetch" href="/library/assets/js/38.ad3c1469.js"><link rel="prefetch" href="/library/assets/js/39.ff3e656e.js"><link rel="prefetch" href="/library/assets/js/4.dbb53157.js"><link rel="prefetch" href="/library/assets/js/40.028410df.js"><link rel="prefetch" href="/library/assets/js/41.9d1091cd.js"><link rel="prefetch" href="/library/assets/js/42.9b9a05f1.js"><link rel="prefetch" href="/library/assets/js/43.58523d8c.js"><link rel="prefetch" href="/library/assets/js/44.0dabc9c7.js"><link rel="prefetch" href="/library/assets/js/45.1f7a87f3.js"><link rel="prefetch" href="/library/assets/js/46.d5392b55.js"><link rel="prefetch" href="/library/assets/js/47.bf90b876.js"><link rel="prefetch" href="/library/assets/js/48.2da2309d.js"><link rel="prefetch" href="/library/assets/js/49.99f74a82.js"><link rel="prefetch" href="/library/assets/js/5.857f819e.js"><link rel="prefetch" href="/library/assets/js/50.65f30e53.js"><link rel="prefetch" href="/library/assets/js/51.c3744f94.js"><link rel="prefetch" href="/library/assets/js/52.a7b7f3ea.js"><link rel="prefetch" href="/library/assets/js/53.7ea3b33e.js"><link rel="prefetch" href="/library/assets/js/54.1ab43ed9.js"><link rel="prefetch" href="/library/assets/js/55.6180db73.js"><link rel="prefetch" href="/library/assets/js/56.725ec696.js"><link rel="prefetch" href="/library/assets/js/57.73af41f1.js"><link rel="prefetch" href="/library/assets/js/58.c9a3d9e4.js"><link rel="prefetch" href="/library/assets/js/59.5288f787.js"><link rel="prefetch" href="/library/assets/js/6.529dcead.js"><link rel="prefetch" href="/library/assets/js/60.124d98c8.js"><link rel="prefetch" href="/library/assets/js/61.b6d11b6f.js"><link rel="prefetch" href="/library/assets/js/62.2d66c0a8.js"><link rel="prefetch" href="/library/assets/js/63.e2f515b2.js"><link rel="prefetch" href="/library/assets/js/64.a499169c.js"><link rel="prefetch" href="/library/assets/js/65.d2f014c2.js"><link rel="prefetch" href="/library/assets/js/66.96177cd2.js"><link rel="prefetch" href="/library/assets/js/67.2fc52cfc.js"><link rel="prefetch" href="/library/assets/js/68.ea9970b4.js"><link rel="prefetch" href="/library/assets/js/69.6251a83d.js"><link rel="prefetch" href="/library/assets/js/7.0f70d300.js"><link rel="prefetch" href="/library/assets/js/70.f38415c5.js"><link rel="prefetch" href="/library/assets/js/71.c6731af1.js"><link rel="prefetch" href="/library/assets/js/72.77061891.js"><link rel="prefetch" href="/library/assets/js/73.18ced6f5.js"><link rel="prefetch" href="/library/assets/js/74.84b56149.js"><link rel="prefetch" href="/library/assets/js/75.9554cdfb.js"><link rel="prefetch" href="/library/assets/js/76.505b7d84.js"><link rel="prefetch" href="/library/assets/js/77.0652f7a1.js"><link rel="prefetch" href="/library/assets/js/78.1a57476f.js"><link rel="prefetch" href="/library/assets/js/79.b8aec68a.js"><link rel="prefetch" href="/library/assets/js/8.9149e4f3.js"><link rel="prefetch" href="/library/assets/js/80.91d226a1.js"><link rel="prefetch" href="/library/assets/js/81.2769433a.js"><link rel="prefetch" href="/library/assets/js/82.40446f25.js"><link rel="prefetch" href="/library/assets/js/83.ce7f9517.js"><link rel="prefetch" href="/library/assets/js/84.366ecf59.js"><link rel="prefetch" href="/library/assets/js/85.1a06254f.js"><link rel="prefetch" href="/library/assets/js/86.f4914e40.js"><link rel="prefetch" href="/library/assets/js/87.471f26bc.js"><link rel="prefetch" href="/library/assets/js/88.ca34b077.js"><link rel="prefetch" href="/library/assets/js/89.d394e03c.js"><link rel="prefetch" href="/library/assets/js/9.ff6157d1.js"><link rel="prefetch" href="/library/assets/js/90.5a6af51d.js"><link rel="prefetch" href="/library/assets/js/91.ade0acbf.js"><link rel="prefetch" href="/library/assets/js/92.ac0743ab.js"><link rel="prefetch" href="/library/assets/js/93.c6a3babe.js"><link rel="prefetch" href="/library/assets/js/94.0abe1db5.js"><link rel="prefetch" href="/library/assets/js/95.a20a92e7.js"><link rel="prefetch" href="/library/assets/js/96.5ba2e72b.js">
+    <link rel="stylesheet" href="/library/assets/css/0.styles.e96e9fe6.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-1aefc0b4><div data-v-1aefc0b4><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-1aefc0b4 data-v-1aefc0b4><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>ecstAsy 前端记录</h3> <p class="description" data-v-25ba6db2 data-v-25ba6db2>ecstAsy 前端记录</p> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><!---->
+            
+          <!---->
+          2022
+        </a></span></div></div> <div class="hide" data-v-1aefc0b4><header class="navbar" data-v-1aefc0b4><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/library/" class="home-link router-link-active"><!----> <span class="site-name">ecstAsy 前端记录</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/library/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      ecstAsy 的前端博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/ecstAsy/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ecst/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-1aefc0b4></div> <aside class="sidebar" data-v-1aefc0b4><div class="personal-info-wrapper" data-v-39576ba9 data-v-1aefc0b4><!----> <!----> <div class="num" data-v-39576ba9><div data-v-39576ba9><h3 data-v-39576ba9>78</h3> <h6 data-v-39576ba9>文章</h6></div> <div data-v-39576ba9><h3 data-v-39576ba9>0</h3> <h6 data-v-39576ba9>标签</h6></div></div> <ul class="social-links" data-v-39576ba9></ul> <hr data-v-39576ba9></div> <nav class="nav-links"><div class="nav-item"><a href="/library/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      ecstAsy 的前端博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/ecstAsy/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ecst/library.git" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/library/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/javascript/js-regular-function" class="sidebar-heading clickable"><span>JavaScript</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/js-skills/array" class="sidebar-heading clickable"><span>javascript技巧</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/css/flex" class="sidebar-heading clickable"><span>Css</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/es6/let-const" class="sidebar-heading clickable"><span>ES6</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/typescript/basic" class="sidebar-heading clickable"><span>TS</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/react/context" class="sidebar-heading clickable"><span>React</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/vue/antd-vue-pro" class="sidebar-heading clickable"><span>Vue</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/course/library/plugin/web-excel" class="sidebar-heading clickable"><span>Plugin</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/taro/taro-api" class="sidebar-heading clickable"><span>Taro</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/uni-app/uni-app-request" class="sidebar-heading clickable"><span>Uni-App</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/weapp/formId-collect" class="sidebar-heading clickable"><span>Weapp</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/h5/webkit-line-clamp" class="sidebar-heading clickable"><span>H5</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/git/git-command" class="sidebar-heading clickable"><span>Git</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/tools/decimal" class="sidebar-heading clickable"><span>Tools</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/node/fast-file" class="sidebar-heading clickable"><span>Node</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/webpack/config" class="sidebar-heading clickable"><span>Webpack</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/interview/common" class="sidebar-heading clickable"><span>Interview</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/3d/three" class="sidebar-heading clickable"><span>3D</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/algorithm/array" class="sidebar-heading clickable"><span>Algorithm</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/library/library/course/npm-package" class="sidebar-heading clickable open active"><span>教程</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/library/library/course/npm-package.html" aria-current="page" class="active sidebar-link">NPM 包开发配置</a></li><li><a href="/library/library/course/vuepress-gitpage.html" class="sidebar-link">VuePress 搭建博客</a></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-25ba6db2 data-v-1aefc0b4><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>前端发布 NPM 包</h3> <!----> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><!---->
+            
+          <!---->
+          2022
+        </a></span></div></div> <div data-v-1aefc0b4><main class="page" style="padding-right:0;"><section><div class="page-title"><h1 class="title">前端发布 NPM 包</h1> <div data-v-f875f3fc><i class="iconfont reco-account" data-v-f875f3fc><span data-v-f875f3fc>ecstAsy</span></i> <i class="iconfont reco-date" data-v-f875f3fc><span data-v-f875f3fc>2022/6/15</span></i> <!----> <!----></div></div> <div class="theme-reco-content content__default"><h4 id="初始化项目"><a href="#初始化项目" class="header-anchor">#</a> 初始化项目</h4> <ul><li>新建文件夹</li></ul> <blockquote><p>pnpm init -y</p></blockquote> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ecstasy-tools&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;keywords&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>添加 <em><strong>webpack webpack-cli</strong></em></li></ul> <blockquote><p>pnpm add webpack webpack-cli -D</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>devDependencies<span class="token operator">:</span>
+<span class="token operator">+</span> webpack <span class="token number">5.73</span><span class="token number">.0</span>
+<span class="token operator">+</span> webpack<span class="token operator">-</span>cli <span class="token number">4.10</span><span class="token number">.0</span>
+</code></pre></div><ul><li>使用 <em><strong>webpack-cli</strong></em> 初始化配置</li></ul> <blockquote><p>pnpm webpack-cli init</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">?</span> Which <span class="token keyword">of</span> the following <span class="token constant">JS</span> solutions <span class="token keyword">do</span> you want to use<span class="token operator">?</span> Typescript
+<span class="token operator">?</span> Do you want to use webpack<span class="token operator">-</span>dev<span class="token operator">-</span>server<span class="token operator">?</span> Yes
+<span class="token operator">?</span> Do you want to simplify the creation <span class="token keyword">of</span> <span class="token constant">HTML</span> files <span class="token keyword">for</span> your bundle<span class="token operator">?</span> Yes
+<span class="token operator">?</span> Do you want to add <span class="token constant">PWA</span> support<span class="token operator">?</span> No
+<span class="token operator">?</span> Which <span class="token keyword">of</span> the following <span class="token constant">CSS</span> solutions <span class="token keyword">do</span> you want to use<span class="token operator">?</span> none
+<span class="token operator">?</span> Do you like to install prettier to format generated configuration<span class="token operator">?</span> Yes
+<span class="token operator">?</span> Pick a <span class="token keyword">package</span> manager<span class="token operator">:</span> pnpm
+<span class="token punctuation">[</span>webpack<span class="token operator">-</span>cli<span class="token punctuation">]</span> ℹ <span class="token constant">INFO</span>  Initialising project<span class="token operator">...</span>
+ conflict <span class="token keyword">package</span><span class="token punctuation">.</span>json
+<span class="token operator">?</span> Overwrite <span class="token keyword">package</span><span class="token punctuation">.</span>json<span class="token operator">?</span> overwrite
+    force <span class="token keyword">package</span><span class="token punctuation">.</span>json
+   create src\index<span class="token punctuation">.</span>ts
+   create <span class="token constant">README</span><span class="token punctuation">.</span>md
+   create index<span class="token punctuation">.</span>html
+   create webpack<span class="token punctuation">.</span>config<span class="token punctuation">.</span>js
+   create tsconfig<span class="token punctuation">.</span>json
+</code></pre></div><p>到这一步项目已经初始化好了。</p> <h4 id="测试例子"><a href="#测试例子" class="header-anchor">#</a> 测试例子</h4> <ul><li>快速生成一个React/Augular/Vue 空项目(以VUE 为例子)</li></ul> <blockquote><p>pnpm create vite example -- --template vue-ts
+cd example</p></blockquote> <ul><li>安装依赖</li></ul> <blockquote><p>pnpm i</p></blockquote> <ul><li>启动项目</li></ul> <blockquote><p>pnpm dev</p></blockquote> <ul><li>进入本地测试
+引入 package 中的 index 进行测试</li></ul> <h4 id="git-相关配置"><a href="#git-相关配置" class="header-anchor">#</a> GIT 相关配置</h4> <ul><li>新建 <strong>.gitignore</strong> 文件</li></ul> <blockquote><p>touch .gitignore</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code># Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+example/node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</code></pre></div><ul><li>新建 <strong>.npmignore</strong> 文件</li></ul> <blockquote><p>touch .npmignore</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>example
+
+node_modules
+
+.gitignore
+
+index.html
+src
+webpack.config.js
+</code></pre></div><h4 id="修改部分配置文件"><a href="#修改部分配置文件" class="header-anchor">#</a> 修改部分配置文件</h4> <ul><li>修改 <strong>src</strong> 为 <strong>package</strong></li> <li>修改 <strong>tsconfig.json</strong></li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;compileOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;compilerOptions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;outDir&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./dist/&quot;</span><span class="token punctuation">,</span><span class="token comment">// 打包到的目录</span>
+    <span class="token property">&quot;sourceMap&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span><span class="token comment">// 是否生成sourceMap（用于浏览器调试）</span>
+    <span class="token property">&quot;noImplicitAny&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;noUnusedLocals&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;noUnusedParameters&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;declaration&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">// 是否生成声明文件</span>
+    <span class="token property">&quot;declarationDir&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./dist/types/&quot;</span><span class="token punctuation">,</span><span class="token comment">// 声明文件打包的位置</span>
+    <span class="token property">&quot;declarationMap&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span><span class="token comment">// 是否生成声明文件map文件（便于调试）</span>
+    <span class="token property">&quot;moduleResolution&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;module&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esnext&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;target&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es5&quot;</span><span class="token punctuation">,</span><span class="token comment">// 转化成的目标语言</span>
+    <span class="token property">&quot;baseUrl&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;types&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;node&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;typeRoots&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;./node_modules/@types&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lib&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">&quot;dom&quot;</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;es2015&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;jsx&quot;</span><span class="token operator">:</span> <span class="token string">&quot;react&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;allowJs&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;include&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;package/**/*.ts&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;typings.d.ts&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token comment">// 要打包的文件</span>
+  <span class="token property">&quot;exclude&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;node_modules&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;*.test.ts&quot;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><ul><li>修改 <strong>package.json</strong> 文件</li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ecstasy-tools&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0.2&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ecstasy tool library!&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./dist/index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;types&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./dist/types/index.d.ts&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;files&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;dist&quot;</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack --mode=production --node-env=production&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build:dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack --mode=development&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;build:prod&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack --mode=production --node-env=production&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;watch&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack --watch&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;serve&quot;</span><span class="token operator">:</span> <span class="token string">&quot;webpack serve&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;keywords&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ecstAsy&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MIT&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;@webpack-cli/generators&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.5.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;clean-webpack-plugin&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;html-webpack-plugin&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.5.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;prettier&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.7.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;ts-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^9.3.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;typescript&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.7.3&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.73.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack-cli&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.10.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;webpack-dev-server&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.9.2&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><ul><li>修改 <strong>webpack.config.js</strong> 文件
+<ul><li><strong>libraryTarget: 'umd'</strong></li> <li><strong>library: 'ecstasy-tools',</strong></li></ul></li></ul> <blockquote><p>libraryTarget：assign | var | window | global | this | commonjs | commonjs2 | amd | umd</p></blockquote> <p><img src="/library/assets/img/libraryTarget.caad597a.jpg" alt="libraryTarget"></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Generated using webpack-cli https://github.com/webpack/webpack-cli</span>
+
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> HtmlWebpackPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;html-webpack-plugin&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> CleanWebpackPlugin <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'clean-webpack-plugin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> isProduction <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">==</span> <span class="token string">&quot;production&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
+  entry<span class="token operator">:</span> <span class="token string">&quot;./package/index.ts&quot;</span><span class="token punctuation">,</span>
+  output<span class="token operator">:</span> <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">&quot;dist&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    filename<span class="token operator">:</span> <span class="token string">'index.js'</span><span class="token punctuation">,</span>
+    libraryTarget<span class="token operator">:</span> <span class="token string">'umd'</span><span class="token punctuation">,</span>
+    library<span class="token operator">:</span> <span class="token string">'ecstasy-tools'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  devServer<span class="token operator">:</span> <span class="token punctuation">{</span>
+    open<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    host<span class="token operator">:</span> <span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      template<span class="token operator">:</span> <span class="token string">&quot;index.html&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">new</span> <span class="token class-name">CleanWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment">// Add your plugins here</span>
+    <span class="token comment">// Learn more about plugins from https://webpack.js.org/configuration/plugins/</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  module<span class="token operator">:</span> <span class="token punctuation">{</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(ts|tsx)$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
+        loader<span class="token operator">:</span> <span class="token string">&quot;ts-loader&quot;</span><span class="token punctuation">,</span>
+        exclude<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/node_modules/&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
+        type<span class="token operator">:</span> <span class="token string">&quot;asset&quot;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+      <span class="token comment">// Add your rules for custom modules here</span>
+      <span class="token comment">// Learn more about loaders from https://webpack.js.org/loaders/</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  resolve<span class="token operator">:</span> <span class="token punctuation">{</span>
+    extensions<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;.tsx&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;.ts&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;.jsx&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;.js&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;...&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isProduction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    config<span class="token punctuation">.</span>mode <span class="token operator">=</span> <span class="token string">&quot;production&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    config<span class="token punctuation">.</span>mode <span class="token operator">=</span> <span class="token string">&quot;development&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> config<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre></div><h4 id="发布"><a href="#发布" class="header-anchor">#</a> 发布</h4> <blockquote><p>pnpm build</p></blockquote> <blockquote><p>pnpm login
+pnpm version x.x.x
+pnpm publish</p></blockquote></div></section> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/library/library/algorithm/array.html" class="prev">
+            Array
+          </a></span> <span class="next"><a href="/library/library/course/vuepress-gitpage.html">
+            VuePress 搭建博客
+          </a></span></p></div> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:0;" data-v-cb1513f6></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/library/assets/js/app.ac58e71a.js" defer></script><script src="/library/assets/js/3.8674aa59.js" defer></script><script src="/library/assets/js/1.a9ff72de.js" defer></script><script src="/library/assets/js/14.65b0917f.js" defer></script>
+  </body>
+</html>
