@@ -328,9 +328,17 @@ Vue3.0 采用原生 **Proxy** 替换 **Object.defineProperty()**
 
   :::
 
-#### **45. Vuex 是通过什么方式提供响应式数据的？**
+#### **45. Vuex 是通过什么方式提供响应式数据的？原理是什么？**
 
 Vuex 的两大核心 State 和 Getters 都是响应的，即当 state 或 getters 的某一个状态改变时，它是能驱动视图发生相应的改变。
+
+**整体思路是数据劫持 + 观察者模式**
+
+对象内部通过 `difineReactive` 方法，使用 `Object.defineProperty` 将属性进行劫持（只会劫持已存在的属性），数组则是通过重写数组来实现。当页面使用对应属性时，每个属性都拥有自己的 `dep` 属性，存在它所依赖的`watcher` （收集依赖）get，当属性变化后子集对应的 `watcher` 去更新（派发更新） set。
+
+- `Object.defineProperty` 数据劫持
+- 使用`getter`收集依赖，`setter` 通知 `watcher`派发更新
+- `watcher` 发布订阅模式
 
 #### **46. diff 算法了解吗？**
 
@@ -426,3 +434,42 @@ Vue 的编译过程就是将 `template` 转化为 `render` 函数的过程，分
 #### **52. Vue.mixin 的使用场景和原理**
 
 在日常开发中，我们经常会遇到在不同组件中经常用到一些相同或者相似的代码，这些代码的功能相对独立，可以通过 vue 的 mixin 功能抽离公共的业务逻辑，原理类似对象的继承，当组件初始化时会调用 `mergeOptions` 方法进行合并，采用策略模式针对不同的属性进行合并。当组件和混入对象含有相同名选项时，这些选项将以恰当的方式进行合并。
+
+#### **53. Vue 框架怎么实现对象和数组的监听？**
+
+Vue 框架是通过遍历数组和递归遍历对象，从而达到利用 `Object.defineProperty()` 也能对对象和数组（部分方法的操作）进行监听。
+
+#### **54. Proxy 和 Object.defineProperty 优劣对比**
+
+- **Proxy 优势：**
+
+  - 可以直接监听对象而非属性
+  - 可以直接监听数组的变化
+  - 有多达 13 种拦截方法，不限于 `apply`、`ownKeys`、`deleteProperty` 、`has` 等等是 `Object.defineProperty` 不具备的。
+  - 返回的是一个新对象，我们可以只操作新的对象达到目的，而 `Object.defineProperty()`只能遍历对象属性直接修改
+  - 作为新标准将受到浏览器厂商重点持续的性能优化，也就是传说中的新标准性能红利
+
+- **Object.defineProperty 优势：**
+
+  - 兼容性好，支持 IE9，而 Proxy 存在浏览器兼容性问题，而且无法用 `polyfill` 磨平，因此 Vue 的作者才声明需要等到下个大版本（3.0）才能用 `Proxy` 重写。
+
+#### **55. 完整的导航解析流程**
+
+- 导航被触发
+- 在失活的组件里调用 `beforeRouterLeave` 守卫
+- 调用全局的 `beforeEach` 守卫
+- 在重用的组件调用 `beforeRouterUpdate` 守卫（2.2+）
+- 调用路由配置里面的 `beforeEnter` 守卫
+- 解析异步路由组件
+- 在被激活的组件里调用 `beforeRouterEnter`
+- 调用全局的 `beforeResolve` 守卫（2.5+）
+- 导航被确认
+- 调用全局的 `afterEach` 钩子
+- 触发 DOM 更新
+- 调用 `beforeRouterEnter` 守卫中传给 next 的回调函数，创建好的组件实例会作为回调函数的参数传入
+
+#### **56. Vuex 页面刷新数据丢失怎么解决**
+
+需要做 vuex 的数据持久化，一般使用本地储存的方案来保存数据，可以自己设计存储方案，也可以使用第三方插件。
+
+推荐使用 `vuex-persist` 插件，它是为 Vuex 持久化储存而生的一个插件。不需要你手动存取`storage`,而是直接将状态保存至`cookie` 或者 `localStorage` 中。
