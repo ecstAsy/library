@@ -133,7 +133,7 @@ Vue 3.0 对 **v-if** 和 **v-for** 做了权重比较，可以混合使用
   - 字体图标
   - 样式文件
 - **assets:** 存放的静态资源在进行 **npm run build** 打包时会将 **assets** 中存放的文件进行打包压缩，代码格式化，并且压缩后的文件都会放在 **static** 文件中跟随 **index.html** 上传至服务器
-- **static:** 存放的静态资源不会走打包压缩格式化流程，而是直接上传至服务器,对比 **assets** 文件，提价较大，上传至服务器会占据更大的空间
+- **static:** 存放的静态资源不会走打包压缩格式化流程，而是直接上传至服务器,对比 **assets** 文件，体积较大，上传至服务器会占据更大的空间
 - **建议：** 项目中 **template** 的 **css、js** 文件最好都放到 **assets** 中，进行压缩和格式化，减少体积。而对于第三方的资源文件或者 **iconfont** 这些都是经过压缩处理过的，可以直接放在 **static** 中
 
 #### **21. slot 的作用**
@@ -229,6 +229,7 @@ Vue 3.0 对 **v-if** 和 **v-for** 做了权重比较，可以混合使用
 - 主线程不断重复上面的两个（3，4）步骤
 
 **宏任务**：`同步代码`，`setTimeout`，`setInterval`，`requestAnimationFrame`，`I/O`，`UI rendering`
+
 **微任务**：`process.nextTick`，`promise callback`，`MutationObserver`
 
 #### **34. Vue 的 axios**
@@ -282,7 +283,7 @@ Vue3.0 采用原生 **Proxy** 替换 **Object.defineProperty()**
 #### **39. 为什么要替换 Object.defineProperty()**
 
 - **Object.defineProperty()** 只能遍历对象属性进行劫持
-- **Proxy** 直接可以劫持整个对象，并返回一个新对象，我么可以治操作心的对象达到响应式目的
+- **Proxy** 直接可以劫持整个对象，并返回一个新对象，我么可以直接操作新的对象达到响应式目的
 
 :::tip
 在 Vue 中 ，**Object.defineProperty()** 无法监控到数组下标的变化，导致直接通过数组下标给数组设置值，不能实时响应。
