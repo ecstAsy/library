@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-06-28 09:41:48
+ * @LastEditTime: 2022-10-26 15:40:48
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -87,6 +87,9 @@ module.exports = {
       }, {
         title: 'blob 导出文件',
         path: '/library/javascript/js-blob',
+      }, {
+        title: 'MVVM&MVC',
+        path:'/library/javascript/js-mvvm&mvc'
       }]
     }, {
       title: 'javascript技巧',
