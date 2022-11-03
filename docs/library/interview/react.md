@@ -1065,7 +1065,7 @@ export const connect =
 
   这是个静态方法，所以不能在这个函数里使用 **this**，有两个参数 **props** 和 **state**，分别指接收到的新参数和当前组件的 **state**对象，这个函数会返回一个对象用来更新当前的 **state** 对象，如果不需要更新可以返回 **null**。
 
-  该函数会在装载时，接收到新的 **props** 或者调用了 **setStat**e 和 **forceUpdate** 时被调用。如当接收到新的属性想修改 **state** ，就可以使用。
+  该函数会在装载时，接收到新的 **props** 或者调用了 **setState** 和 **forceUpdate** 时被调用。如当接收到新的属性想修改 **state** ，就可以使用。
 
   ```jsx
   // 当 props.counter 变化时，赋值给 state
@@ -1207,9 +1207,9 @@ this.setState({ number: this.state.number });
 
 第一个问题答案是 **会**，第二个问题如果是父组件重新渲染时，不管传入的 **props** 有没有变化，都会引起子组件的重现渲染。
 
-那么有没有什么方法解决在这两个场景下不让组件重新渲染而提升性能呢？ 这个时候 **_shouldComponentUpdate_** 就登场了，这个生命周期函数是用来提升速度的，它是在重现渲染组件开始前触发的，默认返回 **true**，可以比较 **this.props** 和 **nextProps**，**this.state** 和 **nextState** 值是否变化，来确认返回 **true** 或者 **false** 。当返回 **false** 时，组件的更新过程停止，后续的 **render\*** 、**_componentDidUpdate_** 也不会被调用。
+那么有没有什么方法解决在这两个场景下不让组件重新渲染而提升性能呢？ 这个时候 **_shouldComponentUpdate_** 就登场了，这个生命周期函数是用来提升速度的，它是在重现渲染组件开始前触发的，默认返回 **true**，可以比较 **this.props** 和 **nextProps**，**this.state** 和 **nextState** 值是否变化，来确认返回 **true** 或者 **false** 。当返回 **false** 时，组件的更新过程停止，后续的 **_render_** 、**_componentDidUpdate_** 也不会被调用。
 
-**注意 ⚠️**：添加 **_shouldComponentUpdate_** 方法时，不建议使用深度相等检查（如使用 **_JSON.stringify（）_** ），因为深比效率比较低，可能会比重新渲染组件效率还低。而且 gai 该方法维护比较困难，建议使用该方法会产生明显的性能提升时使用。
+**注意 ⚠️**：添加 **_shouldComponentUpdate_** 方法时，不建议使用深度相等检查（如使用 **_JSON.stringify（）_** ），因为深比效率比较低，可能会比重新渲染组件效率还低。而且该方法维护比较困难，建议使用该方法会产生明显的性能提升时使用。
 
 **（2）getSnapshotBeforeUpdate**
 
