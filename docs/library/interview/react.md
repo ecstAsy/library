@@ -1287,15 +1287,15 @@ componentDidUpdate(prevProps, prevState, snapshot){}
 
 - getDSFP 是静态方法，在这里不能使用 this，也就是一个纯函数，开发者不能写出副作用的代码
 - 开发者只能通过 prevState 而不是 prevProps 来做对比，保证了 state 和 props 之间的简单关系以及不需要处理第一次渲染时 prevProps 为空的情况
-- 基于第一点，将状态变化（setState）和昂贵操作（tabChange）区分开，更加便于 render 和 commit 阶段操作或者说优化
+- 基于第一点，将状态变化（setState）和昂贵操作（tabChange）区分开，更加便于 `render` 和 `commit` 阶段操作或者说优化
 
 :::
 
 - **_componentWillUpdate_**
 
-与 componentWillReceiveProps 类似，许多开发者也会在 componentWillUpdate 中根据 props 的变化去触发一些回调 。 但不论是 componentWilReceiveProps 还 是 componentWilUpdate，都有可能在一次更新中被调用多次，也就是说写在这里的回调函数也有可能会被调用多次，这显然是不可取的。与 componentDidMount 类 似， componentDidUpdate 也不存在这样的问题，一次更新中 componentDidUpdate 只会被调用一次，所以将原先写在 componentWillUpdate 中 的 回 调 迁 移 至 componentDidUpdate 就可以解决这个问题.
+与 `componentWillReceiveProps` 类似，许多开发者也会在 `componentWillUpdate` 中根据 props 的变化去触发一些回调 。 但不论是 `componentWilReceiveProps` 还 是 `componentWilUpdate`，都有可能在一次更新中被调用多次，也就是说写在这里的回调函数也有可能会被调用多次，这显然是不可取的。与 `componentDidMount` 类 似， `componentDidUpdate` 也不存在这样的问题，一次更新中 `componentDidUpdate` 只会被调用一次，所以将原先写在 `componentWillUpdate` 中 的 回 调 迁 移 至 `componentDidUpdate` 就可以解决这个问题.
 
-另外一种情况则是需要获取 DOM 元素状态，但是由于在 fber 中，render 可打断，可能在 wilMount 中获取到的元素状态很可能与实际需要的不同，这个通常可以使用第二个新增的生命函数的解决 getSnapshotBeforeUpdate(prevProps, prevState)
+另外一种情况则是需要获取 DOM 元素状态，但是由于在 fber 中，render 可打断，可能在 `wilMount` 中获取到的元素状态很可能与实际需要的不同，这个通常可以使用第二个新增的生命函数的解决 `getSnapshotBeforeUpdate(prevProps, prevState)`
 
 - **_getSnapshotBeforeUpdate(prevProps, prevState)_**
 
