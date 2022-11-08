@@ -4,6 +4,10 @@ author: ecstAsy
 date: "2022-01-04"
 ---
 
+### Gitee Pages
+
+:book: [地址](https://ecst.gitee.io/library)
+
 ### Vue3 项目
 
 Vue3 + TypeScipt + Vite + ElementPlus
