@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-10-26 15:40:48
+ * @LastEditTime: 2022-11-09 14:54:36
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -334,7 +334,15 @@ module.exports = {
         title: '基础JavaScript篇',
         path: '/library/interview/javascript',
       }]
-    }, {
+      }, {
+        title: 'Vue3源码学习',
+        path: '/library/source-vue/vue3-structure',
+        collapsable: true,
+        children: [{
+          title: '项目结构',
+          path: '/library/source-vue/vue3-structure'
+        }]
+      }, {
       title: '3D',
       path: '/library/3d/three',
       collapsable: true,
