@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2022-11-09 14:54:36
+ * @LastEditTime: 2023-01-05 11:36:30
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -190,6 +190,9 @@ module.exports = {
       }, {
         title: '全局注册组件',
         path: '/library/vue/global-registry-component',
+        }, {
+          title: '360浏览器inputNumber-BUG',
+          path: '/library/vue/input-number-360',
       }]
     }, {
       title: 'Plugin',

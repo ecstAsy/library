@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    canvas {
+      border: 1px solid;
+    }
+
+    .newcanvas {
+      width: 316px;
+      height: 316px;
+      margin: auto;
+    }
+
+    .newpohoto,
+    .download {
+      width: 300px;
+      height: 40px;
+      line-height: 40px;
+      margin: auto;
+      background-color: cornflowerblue;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px auto;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>使用canvas实现九宫格切图的效果</h3>
+  <div class="mycanvas">
+    <canvas width="300" height="300" id="mycnavas"></canvas>
+  </div>
+  <div class="newpohoto">
+    开始切图
+  </div>
+  <div class="newcanvas">
+    <canvas width="100" height="100" id="img1"></canvas>
+    <canvas width="100" height="100" id="img2"></canvas>
+    <canvas width="100" height="100" id="img3"></canvas>
+    <canvas width="100" height="100" id="img4"></canvas>
+    <canvas width="100" height="100" id="img5"></canvas>
+    <canvas width="100" height="100" id="img6"></canvas>
+    <canvas width="100" height="100" id="img7"></canvas>
+    <canvas width="100" height="100" id="img8"></canvas>
+    <canvas width="100" height="100" id="img9"></canvas>
+  </div>
+  <div class="download">
+    下载图片
+  </div>
+  <script>
+    var canvas = document.getElementById("mycnavas");      //现将图片放上去
+    var cxt = mycnavas.getContext("2d");
+    var img = new Image();
+    img.src = "./assets/back.jpg";
+    window.onload = function ()
+    {
+      cxt.drawImage(img, 0, 0, 400, 300);             //画好图片的位置
+    }
+    var arr = [];        //将切的图片存到数组里面
+    document.getElementsByClassName("newpohoto")[0].onclick = function ()
+    {
+      var q = 1;
+      for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+          var data = cxt.getImageData(j * 100, i * 100, 400, 100);      //类似于“复制”功能
+          var img = document.getElementById("img" + q)
+          var newcxt = img.getContext("2d");
+          newcxt.putImageData(data, 0, 0);    //类似“粘贴”功能
+          arr.push(console.log(img.toDataURL(q + ".png")))     //toDataURL()方法的两个参数：DataURL(type, encoderOptions) type指定转换为base64编码后图片的格式，如：image/png、image/jpeg、image/webp等等，默认为image/png格式；                                     
+          q++;
+          console.log(arr)
+        }
+      }
+
+    }
+    //下载切的图片
+    var arr = [];
+    document.getElementsByClassName('download')[0].onclick = function ()
+    {
+      for (var i = 0; i < 9; i++) {
+        var a = document.createElement('a');
+        a.download = 'img' + (i + 1);
+        a.href = arr[i];
+        document.body.appendChild(a);
+        a.click();
+      }
+    }
+  </script>
+
+</body>
+
+</html>
