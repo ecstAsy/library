@@ -14,3 +14,13 @@ function todo() {
   console.log(a);
 }
 todo()
+
+var cagh = {};
+var id = '';
+var dkl = (cagh[id] = {
+  exports:{}
+})
+
+console.log(dkl);
+
+

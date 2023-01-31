@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2023-01-05 11:36:30
+ * @LastEditTime: 2023-01-31 16:32:04
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -190,9 +190,9 @@ module.exports = {
       }, {
         title: '全局注册组件',
         path: '/library/vue/global-registry-component',
-        }, {
-          title: '360浏览器inputNumber-BUG',
-          path: '/library/vue/input-number-360',
+      }, {
+        title: '360浏览器inputNumber-BUG',
+        path: '/library/vue/input-number-360',
       }]
     }, {
       title: 'Plugin',
@@ -221,12 +221,15 @@ module.exports = {
       }, {
         title: '请求模板',
         path: '/library/taro/taro-request'
-        }, {
+      }, {
         title: '渲染富文本',
         path: '/library/taro/taro-richtext'
-        }, {
+      }, {
         title: 'Weapp H5 踩坑',
         path: '/library/taro/taro-weapp-h5'
+      }, {
+        title: '依赖管理',
+        path:'/library/taro/taro-dependence'
       }]
     }, {
       title: 'Uni-App',
