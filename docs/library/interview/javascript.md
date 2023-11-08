@@ -90,15 +90,15 @@ console.log(arr); // ['Lily', 'Tom']
 
 - 内容随处可见
 - 不能像“追加到 **innerHTML** 一样使用
-- 即使使用**+=**，如 **"innerHTML= innerhTML+'htm'"**，旧的内容仍然会被 **HTML** 替换
+- 即使使用 **+=** ，如 **"innerHTML= innerhTML+'htm'"**，旧的内容仍然会被 **HTML** 替换
 - 整个 **innerHTML** 内容被重新解析并构建成元素，因此它的速度要慢得多
 - **innerHTML** 不提供验证，因此可能会在文档中插入具有破坏性的 HTML 并将其中断
 
 #### **9. 如何在不支持 JavaScript 的旧浏览器中隐藏 JavaScript 代码？**
 
-- 在< script>标签之后的代码中添加“<！--”，不带引号。
-- 在< /script>标签之前添加“//-->”，代码中没有引号。
-- 旧浏览器现在将 JavaScript 代码视为一个长的 HTML 注释，而支持 JavaScript 的浏览器则将"<！-"和"//-->"作为一行注释。
+- 在 `<script>` 标签之后的代码中添加 `<！--`，不带引号。
+- 在`</script>`标签之前添加 `//-->`，代码中没有引号。
+- 旧浏览器现在将 JavaScript 代码视为一个长的 HTML 注释，而支持 JavaScript 的浏览器则将`<！-`和`//-->`作为一行注释。
 
 #### **10. 如何实现浏览器内多个标签页之间的通信？**
 
@@ -255,9 +255,9 @@ document.cookie = "user=icketang；expires =" + new Date(0);
 **hasOwnProperty**
 [hasOwnProperty](../javascript/js-hasOwnProperty.md)
 
-#### **29. documen.wrte 和 innerHTML 的区别是什么**
+#### **29. document.write 和 innerHTML 的区别是什么**
 
-- **document.wite**重绘整个页面
+- **document.write**重绘整个页面
 - **innerHTML**可以重绘页面的一部分
 
 #### **30. 在 JavaScript 中读取文件的方法是什么**
@@ -338,7 +338,7 @@ document.cookie = "user=icketang；expires =" + new Date(0);
   var arr = [
     parsetInt(1, 0),
     parsetInt(2, 1),
-    parsetInt(3, 1),
+    parsetInt(3, 2),
     parsetInt(4, 3),
     parsetInt(10, 4),
   ];
@@ -370,7 +370,7 @@ JavaScript 是客户端和服务器端的脚本语言，可以插入 HTML 页面
 #### **37. 什么是全局变量？这些变量如何声明？使用全局变量有哪些问题？**
 
 - 全局变量是整个代码中都可用的变量，也就是说，这些变量没有任何作用域
-- var 关键字用于声明局部变量，如果省略 var 关键字，则声明一个全局变量使用全局变量面临的问题是局部变量和全局变量名称的冲突。此外，很难调试和测试依赖于全局变量的代码。
+- var 关键字用于声明局部变量，如果省略 var 关键字，则声明一个全局变量使用全局变量面临的问题是局部变量和全局变量名称的冲突。此外，很难调试和测试依赖于全局`变量的代码。
 
 #### **38. 解释 JavaScript 中定时器的工作，并说明使用定时器的作用**
 
