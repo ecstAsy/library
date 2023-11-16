@@ -1,7 +1,7 @@
 /*
  * @Author: ecstAsy
  * @Date: 2022-01-04 17:50:58
- * @LastEditTime: 2023-01-31 16:32:04
+ * @LastEditTime: 2023-11-16 16:48:10
  * @LastEditors: ecstAsy
  */
 module.exports = {
@@ -339,6 +339,9 @@ module.exports = {
       },{
         title: '基础JavaScript篇',
         path: '/library/interview/javascript',
+        }, {
+          title: 'HTML+CSS篇',
+          path: '/library/interview/html+css',
       }]
       }, {
         title: 'Vue3源码学习',
