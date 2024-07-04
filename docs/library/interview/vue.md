@@ -186,7 +186,7 @@ Vue 3.0 对 **v-if** 和 **v-for** 做了权重比较，可以混合使用
 
 #### **30. vue 中的 ajax 请求是应该写在组件还是 action 中**
 
-如果请求的数据不被其他组件公用，仅仅在组件内部使用，既不需要放在 **vuex** 的 **state** 中。 如果请求的请求的数据被多个组件公用的话，请将请求放在 **action** 中，方便数据复用，并包裹成 **Promise** 返回
+如果请求的数据不被其他组件公用，仅仅在组件内部使用，既不需要放在 **vuex** 的 **state** 中。 如果请求的数据被多个组件公用的话，请将请求放在 **action** 中，方便数据复用，并包裹成 **Promise** 返回
 
 #### **31. 为什么要使用 vuex**
 
@@ -254,7 +254,7 @@ Vue 3.0 对 **v-if** 和 **v-for** 做了权重比较，可以混合使用
   - **_pushState()_** 可以改变 url 地址且不会发送请求
   - **_replaceState()_** 可以读取历史记录栈,还可以对浏览器记录进行修改
 - 前面的 `hashchange`，你只能改变#后面的 url 片段。而 `pushState` 设置的新 URL 可以是与当前 URL 同源的任意 URL。
-  history 模式则会将 URL 修改得就和正常请求后端的 URL 一样,如后端没有配置对应/user/id 的路由处理，则会返回 404 错误
+  history 模式则会将 URL 修改常请求后端的 URL 一样,如后端没有配置对应/user/id 的路由处理，则会返回 404 错误
 
 #### **36. 父子组件生命周期执行顺序**
 
@@ -314,6 +314,9 @@ Vue3.0 采用原生 **Proxy** 替换 **Object.defineProperty()**
 - ssr 不支持 beforeMount、mounted 钩子函数，所以放在 created 中有助于一致性。
 
 #### **43. 在什么阶段才能访问操作 DOM**
+
+生命周期钩子顺序：
+**beforeCreated => created => beforMounted => mounted**
 
 在钩子函数 mounted 被调用前，Vue 已经将编译好的模板挂载到页面上，所以在 mounted 中可以访问操作 DOM。
 
@@ -376,7 +379,7 @@ diff 算法采用同级比较。
 
 - 函数式组件与普通组件的区别
 
-  - 函数式组件需要在生命组件时指定 **function:true**
+  - 函数式组件需要在声明组件时指定 **function:true**
   - 不需要实例化，所以没有 this，this 通过 render 函数的第二个参数 context 代替
   - 没有生命周期钩子函数，不能使用计算属性， watch
   - 不能通过 **$emit** 对外暴露事件，调用事件只能通过 **context.listeners.click** 的方式调用外部传入的事件

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义实现宽高比</title>
+  <style>
+    .content {
+      width: 50%;
+      background-color: red;
+      /* height: 500px; */
+      margin: 0 auto;
+      /* aspect-ratio: 4 / 3; */
+    }
+
+    .inner {
+      width: 100%;
+      padding-top: 75%;
+      background-color: gray;
+    }
+
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: aquamarine;
+    }
+
+    .test {
+      width: 100%;
+
+      padding-top: 50%;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="inner"></div>
+  </div>
+
+  <b>CSS 语法</b>
+  <b>%:定义基于父元素宽度的百分比上内边距。此值不会如预期的那样工作于所有的浏览器中。</b>
+  <div class="box">
+    <div class="test"></div>
+  </div>
+</body>
+
+</html>

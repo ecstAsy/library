@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .viewport {
+      width: 300px;
+      /* height: 400px; */
+      background-color: #ccc;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      overflow-y: scroll;
+    }
+
+    .listBox {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .row {
+      height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 用户视口: 超出部分滚动 -->
+  <div class="viewport">
+    <!-- 子元素超出父元素高度 -->
+    <div class="scrollBar"></div>
+    <!-- 列表区域 -->
+    <div class="listBox">
+    </div>
+  </div>
+  <script>
+    function throttle(fun, delay = 100) {
+      let timer = 0
+      return function (...args) {
+        if (timer) return
+        timer = setTimeout(() => {
+          fun.apply(this, args)
+          clearTimeout(timer)
+          timer = 0
+        }, delay)
+      }
+    }
+    let total = 100000
+    const bigData = new Array(total).fill(null).map((item, i) => {
+      return {
+        id: i + 1,
+        title: `item${i + 1}`,
+        content: `content${i + 1}`
+      }
+    })
+    let viewportDom = document.querySelector('.viewport')
+    let scrollBarDom = document.querySelector('.scrollBar')
+    let listDom = document.querySelector('.listBox')
+    let viewCount = 20
+    let rowHeight = 20
+    // 滚动事件
+    onScroll = throttle(function () {
+      let offsetTop = viewportDom.scrollTop;
+      let start = Math.floor(offsetTop / rowHeight);
+      let end = start + viewCount;
+      console.log(offsetTop)
+      listDom.style.transform = `translateY(${offsetTop}px)`;
+      // 渲染的数组列表
+      list = bigData.slice(start, end);
+      const fragMent = document.createDocumentFragment();
+      for (let i = 0; i < viewCount; i++) {
+        let div = document.createElement('div');
+        div.className = 'row'
+        div.innerHTML = `${list[i].title} - ${list[i].content}`
+        fragMent.appendChild(div)
+      }
+      listDom.innerHTML = ''
+      listDom.appendChild(fragMent)
+      console.log(start, end, '滚动了')
+    })
+    // 初始化可视窗口和滚动条的高度
+    viewportDom.style.height = viewCount * rowHeight + 'px';
+    scrollBarDom.style.height = bigData.length * rowHeight + 'px';
+    // 初始化的时候要执行一次
+    onScroll()
+    // 添加滚动事件
+    viewportDom.addEventListener('scroll', onScroll)
+  </script>
+</body>
+
+</html>
