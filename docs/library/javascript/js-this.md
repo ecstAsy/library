@@ -46,7 +46,7 @@ console.log(window.a); // 37
 function f1() {
   return this;
 }
-console.log(f1 === window); // true
+console.log(f1() === window); // true
 ```
 
 严格模式下 this 为 undefind
@@ -117,8 +117,7 @@ P.b = 3;
 console.log(P.Todo()); // 5 this 指向 P 调用方法的对象（最近的）
 ```
 
-由此可见 P 中没有 Todo 方法，但是执行 P.Todo 时，会查找 P 的原型链，找到 Todo 函数并执行，但这与内部 this 指向 P 没有任何关系，
-和调用函数的对象有关系。
+由此可见 P 中没有 Todo 方法，但是执行 P.Todo 时，会查找 P 的原型链，找到 Todo 函数并执行，但这与内部 this 指向 P 没有任何关系，和调用函数的对象有关系。
 
 **getter & setter**
 
@@ -255,7 +254,7 @@ var P2 = new Person1(); // 1s 后输出 window 对象
 
 使用箭头函数，this 指向上下文的 this， 而普通函数则指向 window 对象.
 
-** Object 中的箭头函数 **
+**Object 中的箭头函数**
 
 ```js
 var People = {
