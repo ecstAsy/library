@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="line">
+      <div class="item">1</div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+    <div class="line">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </div>
+</body>
+<script>
+  function getIndex(li) {
+    let _index = [...li.parentNode.children].indexOf(li);
+    const _p_index = [...li.parentNode.parentNode.children].indexOf(li.parentNode);
+    if (_p_index % 2) {
+      _index--;
+    }
+    return _index;
+  }
+
+  const items = document.querySelectorAll('.item')
+  for (let v of items) {
+    v.addEventListener('mouseenter', (e) => {
+      const li = e.target;
+      v.classList.add('magnify');
+      const _index = getIndex(li);
+      if (li.previousElementSibling) {
+        li.previousElementSibling.classList.add('shrink');
+      }
+      if (li.nextElementSibling) {
+        li.nextElementSibling.classList.add('shrink');
+      }
+
+      if (li.parentNode.previousElementSibling) {
+        if (li.parentNode.previousElementSibling.children[_index]) {
+          li.parentNode.previousElementSibling.children[_index].classList.add('shrink');
+        }
+        if (li.parentNode.previousElementSibling.children[_index + 1]) {
+          li.parentNode.previousElementSibling.children[_index + 1].classList.add('shrink');
+        }
+      }
+
+      if (li.parentNode.nextElementSibling) {
+        if (li.parentNode.nextElementSibling.children[_index]) {
+          li.parentNode.nextElementSibling.children[_index].classList.add('shrink');
+        }
+        if (li.parentNode.nextElementSibling.children[_index + 1]) {
+          li.parentNode.nextElementSibling.children[_index + 1].classList.add('shrink');
+        }
+      }
+    })
+    v.addEventListener('mouseleave', (e) => {
+      v.classList.remove('magnify');
+      const li = e.target;;
+      const _index = getIndex(li);
+      if (li.previousElementSibling) {
+        li.previousElementSibling.classList.remove('shrink');
+      }
+      if (li.nextElementSibling) {
+        li.nextElementSibling.classList.remove('shrink');
+      }
+
+      if (li.parentNode.previousElementSibling) {
+        if (li.parentNode.previousElementSibling.children[_index]) {
+          li.parentNode.previousElementSibling.children[_index].classList.remove('shrink');
+        }
+        if (li.parentNode.previousElementSibling.children[_index + 1]) {
+          li.parentNode.previousElementSibling.children[_index + 1].classList.remove('shrink');
+        }
+      }
+
+      if (li.parentNode.nextElementSibling) {
+        if (li.parentNode.nextElementSibling.children[_index]) {
+          li.parentNode.nextElementSibling.children[_index].classList.remove('shrink');
+        }
+        if (li.parentNode.nextElementSibling.children[_index + 1]) {
+          li.parentNode.nextElementSibling.children[_index + 1].classList.remove('shrink');
+        }
+      }
+    })
+  }
+</script>
+
+</html>

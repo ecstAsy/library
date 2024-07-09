@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: hidden;
+}
+
+$n:9;
+$size: 100vw / $n;
+
+.line {
+  display: flex;
+
+  &:nth-child(even) {
+    transform: translateX(-$size / 2);
+  }
+
+  &:nth-child(n+2) {
+    margin-top: -$size / 6;
+  }
+}
+
+.item {
+  flex-shrink: 0;
+  width: $size;
+  height: $size;
+  background-color: #000;
+  outline: 1px solid #f40;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+
+  &.magnify {
+    scale: 1.2;
+  }
+
+  &.shrink {
+    scale: 0.8;
+  }
+}
