@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #000;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  width: 150px;
+  height: 60px;
+  background-color: transparent;
+  color: #FFF;
+  text-align: center;
+  line-height: 60px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+}
+
+button::before {
+  content: '';
+  display: block;
+  width: 200%;
+  height: 200%;
+  background-color: #f40;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -2;
+  border-radius: 6px;
+  transform-origin: left top;
+  animation: rotate 2s linear infinite;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  --g: 2px;
+  width: calc(100% - var(--g) * 2);
+  height: calc(100% - var(--g) * 2);
+  background-color: #000;
+  top: calc(var(--g));
+  left: calc(var(--g));
+  z-index: -1;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
