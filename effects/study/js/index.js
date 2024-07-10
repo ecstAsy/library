@@ -39,18 +39,18 @@ Promise.resolve().then(() => {
   console.log(3);
 }).then(() => {
   console.log(5);
-}).then(() =>{
+}).then(() => {
   console.log(6);
 })
 
 
-setTimeout(function() {
+setTimeout(function () {
   console.log(1)
 }, 0)
-new Promise(function(resolve) {
+new Promise(function (resolve) {
   console.log(2)
   console.log(3)
-}).then(function() {
+}).then(function () {
   console.log(4)
 })
 console.log(5)
